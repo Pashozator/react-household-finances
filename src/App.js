@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Route } from 'react-router-dom';
 import { History } from './views/history/History';
 import './App.scss';
 import { Goals } from './views/goals/Goals';
@@ -21,8 +21,10 @@ class App extends Component {
 								</div>
 								<nav>
 									<ul>
-										<li><Link className="link" to="/history">Historia</Link></li>
-										<li><Link className="link" to="/goals">Cele</Link></li>
+										<li><NavLink className="link" activeClassName="active"
+													 to="/history">Historia</NavLink></li>
+										<li><NavLink className="link" activeClassName="active"
+													 to="/goals">Cele</NavLink></li>
 									</ul>
 								</nav>
 							</div>
