@@ -1,10 +1,30 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, NavLink, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Redirect, Route, Switch, Link } from 'react-router-dom';
 import { History } from './views/history/History';
 import './App.scss';
 import { Goals } from './views/goals/Goals';
+import Button from '@material-ui/core/Button/Button';
+import Icon from '@material-ui/core/Icon/Icon';
+import Menu from '@material-ui/core/Menu/Menu';
+import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			anchorEl: null
+		}
+	}
+
+	openMenu = event => this.setState({ anchorEl: event.currentTarget });
+
+	closeMenu = () => this.setState({ anchorEl: null });
+
+	openAddOperationDialog = () => this.closeMenu();
+
+	openAddGoalDialog = () => this.closeMenu();
+
 	render() {
 		return (
 			<Router>
@@ -36,6 +56,26 @@ class App extends Component {
 						<Route path="/goals" component={Goals}/>
 						<Redirect from="/" to="/history"/>
 					</Switch>
+
+					<Button variant="fab" color="primary" className="fab" onClick={this.openMenu}>
+						<Icon>
+							add_circle
+						</Icon>
+					</Button>
+
+					<Menu
+						id="simple-menu"
+						anchorEl={this.state.anchorEl}
+						open={Boolean(this.state.anchorEl)}
+						onClose={this.closeMenu}
+					>
+						<MenuItem onClick={this.openAddOperationDialog}>
+							Dodaj operację
+						</MenuItem>
+						<MenuItem onClick={this.openAddGoalDialog}>
+							Dodaj cel
+						</MenuItem>
+					</Menu>
 				</main>
 			</Router>
 		);
