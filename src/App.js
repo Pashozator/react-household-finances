@@ -7,13 +7,15 @@ import Button from '@material-ui/core/Button/Button';
 import Icon from '@material-ui/core/Icon/Icon';
 import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
+import { AddOperationDialog } from './components/dialogs/AddOperationDialog/AddOperationDialog';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			anchorEl: null
+			anchorEl: null,
+			addOperationDialogOpened: false
 		}
 	}
 
@@ -21,7 +23,10 @@ class App extends Component {
 
 	closeMenu = () => this.setState({ anchorEl: null });
 
-	openAddOperationDialog = () => this.closeMenu();
+	openAddOperationDialog = () => {
+		this.setState({ addOperationDialogOpened: true });
+		this.closeMenu();
+	};
 
 	openAddGoalDialog = () => this.closeMenu();
 
@@ -76,6 +81,12 @@ class App extends Component {
 							Dodaj cel
 						</MenuItem>
 					</Menu>
+
+					<AddOperationDialog
+						selectedValue={null}
+						open={this.state.addOperationDialogOpened}
+						onClose={() => this.setState({ addOperationDialogOpened: false })}
+					/>
 				</main>
 			</Router>
 		);
