@@ -8,6 +8,7 @@ import Icon from '@material-ui/core/Icon/Icon';
 import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import { AddOperationDialog } from './components/dialogs/AddOperationDialog/AddOperationDialog';
+import { AddGoalDialog } from './components/dialogs/AddGoalDialog/AddGoalDialog';
 
 class App extends Component {
 	constructor(props) {
@@ -15,7 +16,8 @@ class App extends Component {
 
 		this.state = {
 			anchorEl: null,
-			addOperationDialogOpened: false
+			addOperationDialogOpened: false,
+			addGoalDialogOpened: false
 		}
 	}
 
@@ -28,7 +30,10 @@ class App extends Component {
 		this.closeMenu();
 	};
 
-	openAddGoalDialog = () => this.closeMenu();
+	openAddGoalDialog = () => {
+		this.setState({ addGoalDialogOpened: true });
+		this.closeMenu();
+	};
 
 	render() {
 		return (
@@ -83,9 +88,12 @@ class App extends Component {
 					</Menu>
 
 					<AddOperationDialog
-						selectedValue={null}
 						open={this.state.addOperationDialogOpened}
 						onClose={() => this.setState({ addOperationDialogOpened: false })}
+					/>
+					<AddGoalDialog
+						open={this.state.addGoalDialogOpened}
+						onClose={() => this.setState({ addGoalDialogOpened: false })}
 					/>
 				</main>
 			</Router>
