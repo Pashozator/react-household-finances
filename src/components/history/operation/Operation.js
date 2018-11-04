@@ -4,28 +4,41 @@ import CardContent from '@material-ui/core/CardContent/CardContent';
 import CardActions from '@material-ui/core/CardActions/CardActions';
 import Button from '@material-ui/core/Button/Button';
 import './Operation.scss';
+import PropTypes from 'prop-types';
 
-export class Operation extends React.Component {
+class Operation extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
 			<Card>
 				<CardContent>
 					<div className="content">
 						<div className="label-date">
-							<span className="date">2018-14-13</span>
-							<span className="label">Wypłata</span>
+							<span className="date">{this.props.operation.date}</span>
+							<span className="label">{this.props.operation.label}</span>
 						</div>
-						<span className="value">3000</span>
+						<span className="value">{this.props.operation.value}</span>
 					</div>
 					<div className="description">
-						<p>Proin iaculis augue in elit sagittis varius. Nam ut metus vitae turpis pretium hendrerit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vestibulum laoreet enim vel felis facilisis tincidunt. Nam massa purus, rutrum aliquam ex nec, facilisis consectetur lectus.</p>
+						<p>{this.props.operation.description}</p>
 					</div>
 				</CardContent>
 				<CardActions>
-					<Button color="secondary">Usuń</Button>
+					<Button color="secondary" onClick={() => this.props.onRemove(this.props.operation)}>Usuń</Button>
 					<Button>Edytuj</Button>
 				</CardActions>
 			</Card>
 		);
 	}
 }
+
+Operation.propTypes = {
+	operation: PropTypes.object.isRequired,
+	onRemove: PropTypes.func.isRequired,
+	onEdit: PropTypes.func.isRequired
+};
+
+export default Operation;
