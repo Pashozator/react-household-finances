@@ -7,6 +7,7 @@ import LinearProgress from '@material-ui/core/LinearProgress/LinearProgress';
 import CardActions from '@material-ui/core/CardActions/CardActions';
 import Button from '@material-ui/core/Button/Button';
 import PropTypes from 'prop-types';
+import Icon from '@material-ui/core/Icon/Icon';
 
 class Goal extends React.Component {
 	constructor(props) {
@@ -17,11 +18,17 @@ class Goal extends React.Component {
 
 	render() {
 		return (
-			<Card>
+			<Card className={this.props.goal.realized ? 'realized' : null}>
 				<CardContent>
-					<Typography variant="h4">
+					<Typography className="header" variant="h4">
+						{this.props.goal.realized ? (<Icon>check_circle</Icon>) : null}
 						{this.props.goal.label}
 					</Typography>
+					{this.props.goal.realized ? (
+						<Typography variant="subtitle1" color="textSecondary">
+							Cel zrealizowany
+						</Typography>
+					) : null}
 					<p>{this.props.goal.description}</p>
 					<div className="divider"/>
 					<div className="numbers">
@@ -30,11 +37,14 @@ class Goal extends React.Component {
 					</div>
 					<LinearProgress variant="determinate" value={this.getPercentage()}/>
 				</CardContent>
-				<CardActions>
-					<Button disabled onClick={this.props.onRealize}>Realizuj</Button>
-					<Button onClick={this.props.onEdit}>Edytuj</Button>
-					<Button color="secondary" onClick={this.props.onRemove}>Usuń</Button>
-				</CardActions>
+				{!this.props.goal.realized ? (
+					<CardActions>
+						<Button onClick={this.props.onRealize}
+								disabled={this.props.goal.value > this.props.debit}>Realizuj</Button>
+						<Button onClick={this.props.onEdit}>Edytuj</Button>
+						<Button color="secondary" onClick={this.props.onRemove}>Usuń</Button>
+					</CardActions>
+				) : null}
 			</Card>
 		);
 	}

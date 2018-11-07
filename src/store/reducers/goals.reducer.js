@@ -5,6 +5,8 @@ const initialState = [];
 export function goalsReducer(state = initialState, action) {
 	switch (action.type) {
 		case GoalsActions.ADD_GOAL: {
+			action.payload.realized = false;
+
 			return [action.payload, ...state];
 		}
 		case GoalsActions.EDIT_GOAL: {
