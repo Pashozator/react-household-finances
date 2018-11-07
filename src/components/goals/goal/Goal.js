@@ -31,9 +31,9 @@ class Goal extends React.Component {
 					<LinearProgress variant="determinate" value={this.getPercentage()}/>
 				</CardContent>
 				<CardActions>
-					<Button disabled>Realizuj</Button>
-					<Button>Edytuj</Button>
-					<Button color="secondary">Usuń</Button>
+					<Button disabled onClick={this.props.onRealize}>Realizuj</Button>
+					<Button onClick={this.props.onEdit}>Edytuj</Button>
+					<Button color="secondary" onClick={this.props.onRemove}>Usuń</Button>
 				</CardActions>
 			</Card>
 		);
@@ -42,7 +42,10 @@ class Goal extends React.Component {
 
 Goal.propTypes = {
 	goal: PropTypes.object.isRequired,
-	debit: PropTypes.number.isRequired
+	debit: PropTypes.number.isRequired,
+	onEdit: PropTypes.func.isRequired,
+	onRemove: PropTypes.func.isRequired,
+	onRealize: PropTypes.func.isRequired
 };
 
 export default Goal;
