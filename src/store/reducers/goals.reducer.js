@@ -1,15 +1,6 @@
 import * as GoalsActions from '../actions/goals.actions';
-import { guid } from '../../utils/guid-util';
 
-const initialState = [
-	{
-		id: guid(),
-		label: 'iMac',
-		description: 'Sed iaculis pharetra vehicula. Quisque vel mattis quam. Nullam vitae interdum massa. Quisque laoreet porta molestie. Nunc hendrerit rhoncus orci et interdum. Aenean vitae massa consequat, lobortis purus id, tristique eros. Aliquam ultricies nibh sed tellus tempor mattis.',
-		value: 8000,
-		realized: false
-	}
-];
+const initialState = [];
 
 export function goalsReducer(state = initialState, action) {
 	switch (action.type) {
