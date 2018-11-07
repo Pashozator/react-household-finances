@@ -12,13 +12,19 @@ export class AddGoalDialog extends React.Component {
 		super(props);
 
 		this.state = {
-			name: '',
-			amount: '',
+			label: '',
+			value: '',
 			description: ''
 		};
 	}
 
 	close = () => this.props.onClose();
+
+	submit = () => this.props.onClose(this.state);
+
+	onTextChange = event => this.setState({ [event.target.name]: event.target.value });
+
+	onNumberChange = event => this.setState({ [event.target.name]: event.target.value });
 
 	render() {
 		const { classes, onClose, selectedValue, ...other } = this.props;
@@ -27,15 +33,18 @@ export class AddGoalDialog extends React.Component {
 			<Dialog onClose={this.close} {...other}>
 				<DialogTitle>Dodaj cel</DialogTitle>
 				<div className="dialog">
-					<Input placeholder="Nazwa" className="input"/>
-					<Input placeholder="Kwota" className="input"/>
-					<TextField multiline placeholder="Opis" className="input"/>
+					<Input name="label" inputProps={{ type: 'text' }} placeholder="Nazwa" className="input"
+						   onChange={this.onTextChange}/>
+					<Input name="value" inputProps={{ type: 'text' }} placeholder="Kwota" className="input"
+						   onChange={this.onNumberChange}/>
+					<TextField name="description" inputProps={{ type: 'number' }} multiline placeholder="Opis"
+							   className="input" onChange={this.onTextChange}/>
 				</div>
 				<DialogActions>
 					<Button onClick={this.close} color="primary">
 						Anuluj
 					</Button>
-					<Button onClick={this.close} color="primary" variant="contained">
+					<Button onClick={this.submit} color="primary" variant="contained">
 						Zapisz
 					</Button>
 				</DialogActions>

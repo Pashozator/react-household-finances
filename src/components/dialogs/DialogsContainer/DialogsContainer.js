@@ -5,6 +5,7 @@ import { AddGoalDialog } from '../AddGoalDialog/AddGoalDialog';
 import { connect } from 'react-redux';
 import { CLOSE_ADD_GOAL_DIALOG, CLOSE_ADD_OPERATION_DIALOG } from '../../../store/actions/dialogs.actions';
 import { ADD_OPERATION } from '../../../store/actions/budget.actions';
+import { ADD_GOAL } from '../../../store/actions/goals.actions';
 
 class DialogsContainer extends React.Component {
 	constructor(props) {
@@ -50,7 +51,13 @@ const mapDispatchToProps = dispatch => {
 
 			dispatch({ type: CLOSE_ADD_OPERATION_DIALOG })
 		},
-		closeAddGoalDialog: () => dispatch({ type: CLOSE_ADD_GOAL_DIALOG })
+		closeAddGoalDialog: result => {
+			if (result !== undefined) {
+				dispatch({ type: ADD_GOAL, payload: result })
+			}
+
+			dispatch({ type: CLOSE_ADD_GOAL_DIALOG })
+		}
 	}
 };
 
