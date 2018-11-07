@@ -48,7 +48,4 @@ const mapDispatchToProps = dispatch => {
 	}
 };
 
-export const VisibleHistory = connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(History);
+export const VisibleHistory = connect(mapStateToProps, mapDispatchToProps)(History);

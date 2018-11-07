@@ -1,12 +1,56 @@
 import React from 'react';
-import { Goal } from '../../components/goals/goal/Goal';
+import * as GoalsActions from '../../store/actions/goals.actions';
+import Goal from '../../components/goals/goal/Goal';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export class Goals extends React.Component {
+class Goals extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
 	render() {
 		return (
 			<div className="wrapper padding-top-25">
-				<Goal/>
+				{this.props.goals.map((goal, index) => (
+					<Goal goal={goal} debit={this.props.debit} key={index} onRemove={this.props.onGoalRemove}
+						  onEdit={this.props.onGoalEdit} onRealize={this.props.onGoalRealize}/>
+				))}
 			</div>
 		);
 	}
 }
+
+Goals.propTypes = {
+	goals: PropTypes.array.isRequired,
+	debit: PropTypes.number.isRequired,
+	onGoalRemove: PropTypes.func.isRequired,
+	onGoalEdit: PropTypes.func.isRequired,
+	onGoalRealize: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => {
+	return {
+		goals: state.goals,
+		debit: state.budget.debit
+	}
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		onGoalRemove: goal => dispatch({
+			type: GoalsActions.REMOVE_GOAL,
+			payload: goal
+		}),
+		onGoalEdit: goal => dispatch({
+			type: GoalsActions.EDIT_GOAL,
+			payload: goal
+		}),
+		onGoalRealize: goal => dispatch({
+			type: GoalsActions.REALIZE_GOAL,
+			payload: goal
+		})
+	}
+};
+
+export const VisibleGoals = connect(mapStateToProps, mapDispatchToProps)(Goals);

@@ -7,22 +7,29 @@ import Divider from '@material-ui/core/Divider/Divider';
 import LinearProgress from '@material-ui/core/LinearProgress/LinearProgress';
 import CardActions from '@material-ui/core/CardActions/CardActions';
 import Button from '@material-ui/core/Button/Button';
+import PropTypes from 'prop-types';
 
-export class Goal extends React.Component {
+class Goal extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	getPercentage = () => 100 - (this.props.goal.value - this.props.debit) / this.props.goal.value * 100;
+
 	render() {
 		return (
 			<Card>
 				<CardContent>
 					<Typography variant="h4">
-						iMac
+						{this.props.goal.label}
 					</Typography>
-					<p>Lorem ipsum sadfasdfsafd</p>
-					<Divider light/>
+					<p>{this.props.goal.description}</p>
+					<div className="divider" />
 					<div className="numbers">
-						<span>Cel 8000</span>
-						<span>Do osiągnięcia pozostało 8000</span>
+						<span>Cel {this.props.goal.value}</span>
+						<span>Do osiągnięcia pozostało {this.props.goal.value - this.props.debit >= 0 ? this.props.goal.value - this.props.debit : 0}</span>
 					</div>
-					<LinearProgress variant="determinate" value={0}/>
+					<LinearProgress variant="determinate" value={this.getPercentage()}/>
 				</CardContent>
 				<CardActions>
 					<Button disabled>Realizuj</Button>
@@ -33,3 +40,10 @@ export class Goal extends React.Component {
 		);
 	}
 }
+
+Goal.propTypes = {
+	goal: PropTypes.object.isRequired,
+	debit: PropTypes.number.isRequired
+};
+
+export default Goal;

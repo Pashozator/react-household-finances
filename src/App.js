@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { Goals } from './views/goals/Goals';
+import { VisibleGoals } from './views/goals/Goals';
 import Button from '@material-ui/core/Button/Button';
 import Icon from '@material-ui/core/Icon/Icon';
 import Menu from '@material-ui/core/Menu/Menu';
@@ -62,7 +62,7 @@ class App extends Component {
 
 					<Switch>
 						<Route path="/history" component={VisibleHistory}/>
-						<Route path="/goals" component={Goals}/>
+						<Route path="/goals" component={VisibleGoals}/>
 						<Redirect from="/" to="/history"/>
 					</Switch>
 
