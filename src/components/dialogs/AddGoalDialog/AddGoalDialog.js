@@ -35,9 +35,9 @@ export class AddGoalDialog extends React.Component {
 				<div className="dialog">
 					<Input name="label" inputProps={{ type: 'text' }} placeholder="Nazwa" className="input"
 						   onChange={this.onTextChange}/>
-					<Input name="value" inputProps={{ type: 'text' }} placeholder="Kwota" className="input"
+					<Input name="value" inputProps={{ type: 'number' }} placeholder="Kwota" className="input"
 						   onChange={this.onNumberChange}/>
-					<TextField name="description" inputProps={{ type: 'number' }} multiline placeholder="Opis"
+					<TextField name="description" inputProps={{ type: 'text' }} multiline placeholder="Opis"
 							   className="input" onChange={this.onTextChange}/>
 				</div>
 				<DialogActions>
