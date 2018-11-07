@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import { Goals } from './views/goals/Goals';
 import Button from '@material-ui/core/Button/Button';
@@ -36,56 +36,58 @@ class App extends Component {
 
 	render() {
 		return (
-			<>
-				<header>
-					<div className="wrapper">
-						<div className="header-top">
-							<span className="header-top-logo">Domowe finanse</span>
-							<a className="header-top-author">Autor</a>
-						</div>
-						<div className="header-links">
-							<div className="header-links-date">
-								2018
+			<Router>
+				<>
+					<header>
+						<div className="wrapper">
+							<div className="header-top">
+								<span className="header-top-logo">Domowe finanse</span>
+								<a className="header-top-author">Autor</a>
 							</div>
-							<nav>
-								<ul>
-									<li><NavLink className="link" activeClassName="active"
-												 to="/history">Historia</NavLink></li>
-									<li><NavLink className="link" activeClassName="active"
-												 to="/goals">Cele</NavLink></li>
-								</ul>
-							</nav>
+							<div className="header-links">
+								<div className="header-links-date">
+									2018
+								</div>
+								<nav>
+									<ul>
+										<li><NavLink className="link" activeClassName="active"
+													 to="/history">Historia</NavLink></li>
+										<li><NavLink className="link" activeClassName="active"
+													 to="/goals">Cele</NavLink></li>
+									</ul>
+								</nav>
+							</div>
 						</div>
-					</div>
-				</header>
+					</header>
 
-				<Switch>
-					<Route path="/history" component={VisibleHistory}/>
-					<Route path="/goals" component={Goals}/>
-					<Redirect from="/" to="/history"/>
-				</Switch>
+					<Switch>
+						<Route path="/history" component={VisibleHistory}/>
+						<Route path="/goals" component={Goals}/>
+						<Redirect from="/" to="/history"/>
+					</Switch>
 
-				<Button variant="fab" color="primary" className="fab" onClick={this.openMenu}>
-					<Icon>
-						add_circle
-					</Icon>
-				</Button>
+					<Button variant="fab" color="primary" className="fab" onClick={this.openMenu}>
+						<Icon>
+							add_circle
+						</Icon>
+					</Button>
 
-				<Menu
-					id="simple-menu"
-					anchorEl={this.state.anchorEl}
-					open={Boolean(this.state.anchorEl)}
-					onClose={this.closeMenu}
-				>
-					<MenuItem onClick={this.openAddOperationDialog}>
-						Dodaj operację
-					</MenuItem>
-					<MenuItem onClick={this.openAddGoalDialog}>
-						Dodaj cel
-					</MenuItem>
-				</Menu>
-				<DialogsContainer />
-			</>
+					<Menu
+						id="simple-menu"
+						anchorEl={this.state.anchorEl}
+						open={Boolean(this.state.anchorEl)}
+						onClose={this.closeMenu}
+					>
+						<MenuItem onClick={this.openAddOperationDialog}>
+							Dodaj operację
+						</MenuItem>
+						<MenuItem onClick={this.openAddGoalDialog}>
+							Dodaj cel
+						</MenuItem>
+					</Menu>
+					<DialogsContainer/>
+				</>
+			</Router>
 		);
 	}
 }

@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Provider from 'react-redux/es/components/Provider';
 import { createStore } from 'redux';
 import { appReducer } from './store/reducers/app.reducer';
@@ -13,9 +12,7 @@ const store = createStore(appReducer, {}, devToolsEnhancer());
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Router>
-			<App/>
-		</Router>
+		<App/>
 	</Provider>,
 	document.getElementById('root')
 );
