@@ -12,7 +12,7 @@ export class AddOperationDialog extends React.Component {
 		super(props);
 
 		this.state = {
-			name: null,
+			label: null,
 			date: null,
 			value: null,
 			description: null
@@ -34,15 +34,14 @@ export class AddOperationDialog extends React.Component {
 			<Dialog onClose={this.close} {...other}>
 				<DialogTitle>Dodaj operację</DialogTitle>
 				<div className="dialog">
-					<Input name="name" inputProps={{ type: 'text' }} placeholder="Nazwa" className="input"
+					<Input name="label" inputProps={{ type: 'text' }} placeholder="Nazwa" className="input"
 						   onChange={this.onTextChange}/>
 					<Input name="date" inputProps={{ type: 'text' }} placeholder="Data" className="input"
 						   onChange={this.onTextChange}/>
 					<Input name="value" inputProps={{ type: 'number' }} placeholder="Kwota" className="input"
 						   onChange={this.onNumberChange}/>
 					<TextField name="description" type="text" required={true} multiline placeholder="Opis"
-							   className="input"
-							   onChange={this.onTextChange}/>
+							   className="input" onChange={this.onTextChange}/>
 				</div>
 				<DialogActions>
 					<Button onClick={this.close} color="primary">
