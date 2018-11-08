@@ -8,7 +8,7 @@ import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import { VisibleHistory } from './views/history/History';
 import DialogsContainer from './components/dialogs/DialogsContainer/DialogsContainer';
-import { OPEN_ADD_GOAL_DIALOG, OPEN_ADD_OPERATION_DIALOG } from './store/actions/dialogs.actions';
+import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -94,8 +94,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		openAddOperationDialog: () => dispatch({ type: OPEN_ADD_OPERATION_DIALOG }),
-		openAddGoalDialog: () => dispatch({ type: OPEN_ADD_GOAL_DIALOG })
+		openAddOperationDialog: () => dispatch(openAddOperationDialogAction()),
+		openAddGoalDialog: () => dispatch(openAddGoalDialogAction())
 	}
 };
 

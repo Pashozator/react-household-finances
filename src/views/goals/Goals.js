@@ -1,8 +1,9 @@
 import React from 'react';
-import * as GoalsActions from '../../store/actions/goals.actions';
+import { realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
 import Goal from '../../components/goals/goal/Goal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
 
 class Goals extends React.Component {
 	constructor(props) {
@@ -38,18 +39,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onGoalRemove: goal => dispatch({
-			type: GoalsActions.REMOVE_GOAL,
-			payload: goal
-		}),
-		onGoalEdit: goal => dispatch({
-			type: GoalsActions.EDIT_GOAL,
-			payload: goal
-		}),
-		onGoalRealize: goal => dispatch({
-			type: GoalsActions.REALIZE_GOAL,
-			payload: goal
-		})
+		onGoalRemove: goal => dispatch(removeGoalAction(goal)),
+		onGoalEdit: goal => dispatch(openEditGoalDialogAction(goal)),
+		onGoalRealize: goal => dispatch(realizeGoalAction(goal))
 	}
 };
 

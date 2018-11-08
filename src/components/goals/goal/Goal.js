@@ -16,6 +16,12 @@ class Goal extends React.Component {
 
 	getPercentage = () => 100 - (this.props.goal.value - this.props.debit) / this.props.goal.value * 100;
 
+	remove = () => this.props.onRemove(this.props.goal);
+
+	edit = () => this.props.onEdit(this.props.goal);
+
+	realize = () => this.props.onRealize(this.props.goal);
+
 	render() {
 		return (
 			<Card className={this.props.goal.realized ? 'realized' : null}>
@@ -39,10 +45,10 @@ class Goal extends React.Component {
 				</CardContent>
 				{!this.props.goal.realized ? (
 					<CardActions>
-						<Button onClick={this.props.onRealize}
+						<Button onClick={this.realize}
 								disabled={this.props.goal.value > this.props.debit}>Realizuj</Button>
-						<Button onClick={this.props.onEdit}>Edytuj</Button>
-						<Button color="secondary" onClick={this.props.onRemove}>Usuń</Button>
+						<Button onClick={this.edit}>Edytuj</Button>
+						<Button color="secondary" onClick={this.remove}>Usuń</Button>
 					</CardActions>
 				) : null}
 			</Card>

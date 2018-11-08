@@ -11,6 +11,10 @@ class Operation extends React.Component {
 		super(props);
 	}
 
+	remove = () => this.props.onRemove(this.props.operation);
+
+	edit = () => this.props.onEdit(this.props.operation);
+
 	render() {
 		return (
 			<Card>
@@ -27,8 +31,8 @@ class Operation extends React.Component {
 					</div>
 				</CardContent>
 				<CardActions>
-					<Button color="secondary" onClick={() => this.props.onRemove(this.props.operation)}>Usuń</Button>
-					<Button>Edytuj</Button>
+					<Button color="secondary" onClick={this.remove}>Usuń</Button>
+					<Button onClick={this.edit}>Edytuj</Button>
 				</CardActions>
 			</Card>
 		);

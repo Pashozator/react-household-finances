@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Operation from '../../components/history/operation/Operation';
-import * as BudgetActions from '../../store/actions/budget.actions';
+import { removeOperationAction } from '../../store/actions/budget.actions';
 import { connect } from 'react-redux';
+import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
 
 class History extends React.Component {
 	constructor(props) {
@@ -37,14 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onOperationRemove: operation => dispatch({
-			type: BudgetActions.REMOVE_OPERATION,
-			payload: operation
-		}),
-		onOperationEdit: operation => dispatch({
-			type: BudgetActions.EDIT_OPERATION,
-			payload: operation
-		})
+		onOperationRemove: operation => dispatch(removeOperationAction(operation)),
+		onOperationEdit: operation => dispatch(openEditOperationDialogAction(operation))
 	}
 };
 
