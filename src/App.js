@@ -8,7 +8,11 @@ import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
 import { VisibleHistory } from './views/history/History';
 import DialogsContainer from './components/dialogs/DialogsContainer/DialogsContainer';
-import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
+import {
+	openAddGoalDialogAction,
+	openAddOperationDialogAction,
+	openAuthorDialogAction
+} from './store/actions/dialogs.actions';
 import { connect } from 'react-redux';
 
 class App extends Component {
@@ -42,7 +46,7 @@ class App extends Component {
 						<div className="wrapper">
 							<div className="header-top">
 								<span className="header-top-logo">Domowe finanse</span>
-								<a className="header-top-author">Autor</a>
+								<a className="header-top-author" onClick={this.props.openAuthorDialogAction}>Autor</a>
 							</div>
 							<div className="header-links">
 								<div className="header-links-date">
@@ -95,7 +99,8 @@ class App extends Component {
 const mapDispatchToProps = dispatch => {
 	return {
 		openAddOperationDialog: () => dispatch(openAddOperationDialogAction()),
-		openAddGoalDialog: () => dispatch(openAddGoalDialogAction())
+		openAddGoalDialog: () => dispatch(openAddGoalDialogAction()),
+		openAuthorDialogAction: () => dispatch(openAuthorDialogAction())
 	}
 };
 

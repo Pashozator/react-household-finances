@@ -6,7 +6,8 @@ const initialState = {
 	editOperationDialogPayload: { id: null, label: '', date: '', value: '', description: '' },
 	addGoalDialogOpened: false,
 	editGoalDialogOpened: false,
-	editGoalDialogPayload: { id: null, label: '', value: '', description: '' }
+	editGoalDialogPayload: { id: null, label: '', value: '', description: '' },
+	authorDialogOpened: false
 };
 
 export function dialogReducer(state = initialState, action) {
@@ -34,6 +35,12 @@ export function dialogReducer(state = initialState, action) {
 		}
 		case DialogsActions.CLOSE_EDIT_GOAL_DIALOG: {
 			return { ...state, editGoalDialogOpened: false, editGoalDialogPayload: { id: null, label: '', value: '', description: '' } };
+		}
+		case DialogsActions.OPEN_AUTHOR_DIALOG: {
+			return { ...state, authorDialogOpened: true };
+		}
+		case DialogsActions.CLOSE_AUTHOR_DIALOG: {
+			return { ...state, authorDialogOpened: false };
 		}
 		default:
 			return state;

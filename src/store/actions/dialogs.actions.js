@@ -6,6 +6,8 @@ export const OPEN_ADD_GOAL_DIALOG = '[Dialogs] Open add goal dialog';
 export const CLOSE_ADD_GOAL_DIALOG = '[Dialogs] Close add goal dialog';
 export const OPEN_EDIT_GOAL_DIALOG = '[Dialogs] Open edit goal dialog';
 export const CLOSE_EDIT_GOAL_DIALOG = '[Dialogs] Close edit goal dialog';
+export const OPEN_AUTHOR_DIALOG = '[Dialogs] Open author dialog';
+export const CLOSE_AUTHOR_DIALOG = '[Dialogs] Close author dialog';
 
 export const openAddOperationDialogAction = () => {
 	return {
@@ -54,5 +56,17 @@ export const openEditGoalDialogAction = goal => {
 export const closeEditGoalDialogAction = () => {
 	return {
 		type: CLOSE_EDIT_GOAL_DIALOG
+	}
+};
+
+export const openAuthorDialogAction = () => {
+	return {
+		type: OPEN_AUTHOR_DIALOG
+	}
+};
+
+export const closeAuthorDialogAction = () => {
+	return {
+		type: CLOSE_AUTHOR_DIALOG
 	}
 };

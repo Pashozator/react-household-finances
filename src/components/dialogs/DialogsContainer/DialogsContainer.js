@@ -5,7 +5,7 @@ import { AddGoalDialog } from '../AddGoalDialog/AddGoalDialog';
 import { connect } from 'react-redux';
 import {
 	closeAddGoalDialogAction,
-	closeAddOperationDialogAction,
+	closeAddOperationDialogAction, closeAuthorDialogAction,
 	closeEditGoalDialogAction,
 	closeEditOperationDialogAction
 } from '../../../store/actions/dialogs.actions';
@@ -13,6 +13,7 @@ import { addOperationAction, editOperationAction } from '../../../store/actions/
 import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
 import { EditOperationDialog } from '../EditOperationDialog/EditOperationDialog';
 import { EditGoalDialog } from '../EditGoalDialog/EditGoalDialog';
+import { AuthorDialog } from '../AuthorDialog/AuthorDialog';
 
 class DialogsContainer extends React.Component {
 	constructor(props) {
@@ -40,6 +41,10 @@ class DialogsContainer extends React.Component {
 					goal={this.props.editGoalDialogPayload}
 					onClose={this.props.closeEditGoalDialog}
 				/>
+				<AuthorDialog
+					open={this.props.authorDialogOpened}
+					onClose={this.props.closeAuthorDialog}
+				/>
 			</>
 		);
 	}
@@ -50,6 +55,7 @@ DialogsContainer.propTypes = {
 	addGoalDialogOpened: PropTypes.bool.isRequired,
 	editOperationDialogOpened: PropTypes.bool.isRequired,
 	editGoalDialogOpened: PropTypes.bool.isRequired,
+	authorDialogOpened: PropTypes.bool.isRequired,
 	closeAddOperationDialog: PropTypes.func.isRequired,
 	closeAddGoalDialog: PropTypes.func.isRequired,
 	closeEditOperationDialog: PropTypes.func.isRequired,
@@ -65,7 +71,8 @@ const mapStateToProps = state => {
 		editOperationDialogPayload: state.dialogs.editOperationDialogPayload,
 		addGoalDialogOpened: state.dialogs.addGoalDialogOpened,
 		editGoalDialogOpened: state.dialogs.editGoalDialogOpened,
-		editGoalDialogPayload: state.dialogs.editGoalDialogPayload
+		editGoalDialogPayload: state.dialogs.editGoalDialogPayload,
+		authorDialogOpened: state.dialogs.authorDialogOpened
 	}
 };
 
@@ -98,7 +105,8 @@ const mapDispatchToProps = dispatch => {
 			}
 
 			dispatch(closeEditGoalDialogAction());
-		}
+		},
+		closeAuthorDialog: () => dispatch(closeAuthorDialogAction())
 	}
 };
 
