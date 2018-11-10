@@ -12,7 +12,7 @@ export class EditGoalDialog extends React.Component {
 		super(props);
 
 		this.state = {
-			id: null,
+			id: '',
 			label: '',
 			value: '',
 			description: ''

@@ -12,10 +12,10 @@ export class AddOperationDialog extends React.Component {
 		super(props);
 
 		this.state = {
-			label: null,
-			date: null,
-			value: null,
-			description: null
+			label: '',
+			date: '',
+			value: '',
+			description: ''
 		};
 	}
 
@@ -40,7 +40,7 @@ export class AddOperationDialog extends React.Component {
 						   onChange={this.onTextChange}/>
 					<Input name="value" inputProps={{ type: 'number' }} placeholder="Kwota" className="input"
 						   onChange={this.onNumberChange}/>
-					<TextField name="description" type="text" required={true} multiline placeholder="Opis"
+					<TextField name="description" type="text" multiline placeholder="Opis"
 							   className="input" onChange={this.onTextChange}/>
 				</div>
 				<DialogActions>

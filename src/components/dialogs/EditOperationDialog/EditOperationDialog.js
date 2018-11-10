@@ -12,7 +12,7 @@ export class EditOperationDialog extends React.Component {
 		super(props);
 
 		this.state = {
-			id: null,
+			id: '',
 			label: '',
 			date: '',
 			value: '',
@@ -57,7 +57,7 @@ export class EditOperationDialog extends React.Component {
 						   onChange={this.onTextChange} value={this.state.date}/>
 					<Input name="value" inputProps={{ type: 'number' }} placeholder="Kwota" className="input"
 						   onChange={this.onNumberChange} value={this.state.value}/>
-					<TextField name="description" type="text" required={true} multiline placeholder="Opis"
+					<TextField name="description" type="text" multiline placeholder="Opis"
 							   className="input" onChange={this.onTextChange} value={this.state.description}/>
 				</div>
 				<DialogActions>
