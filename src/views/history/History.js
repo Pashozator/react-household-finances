@@ -4,6 +4,7 @@ import Operation from '../../components/history/operation/Operation';
 import { removeOperationAction } from '../../store/actions/budget.actions';
 import { connect } from 'react-redux';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
+import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
 
 class History extends React.Component {
 	constructor(props) {
@@ -29,10 +30,11 @@ History.propTypes = {
 	onOperationEdit: PropTypes.func.isRequired
 };
 
+
 const mapStateToProps = state => {
 	return {
-		debit: state.budget.debit,
-		operations: state.budget.operations
+		debit: selectDebit(state),
+		operations: selectOperations(state)
 	}
 };
 
