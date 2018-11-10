@@ -7,6 +7,8 @@ export const ADD_GOAL = '[Goals] Add goal';
 export const ADD_GOAL_SUCCESS = '[Goals] Add goal success';
 export const ADD_GOAL_FAILURE = '[Goals] Add goal failure';
 export const EDIT_GOAL = '[Goals] Edit goal';
+export const EDIT_GOAL_SUCCESS = '[Goals] Edit goal success';
+export const EDIT_GOAL_FAILURE = '[Goals] Edit goal failure';
 export const REMOVE_GOAL = '[Goals] Remove goal';
 export const REMOVE_GOAL_SUCCESS = '[Goals] Remove goal success';
 export const REMOVE_GOAL_FAILURE = '[Goals] Remove goal failure';
@@ -55,6 +57,19 @@ export const editGoalAction = goal => {
 	return {
 		type: EDIT_GOAL,
 		payload: goal
+	}
+};
+
+export const editGoalSuccessAction = goal => {
+	return {
+		type: EDIT_GOAL_SUCCESS,
+		payload: goal
+	}
+};
+
+export const editGoalFailureAction = () => {
+	return {
+		type: EDIT_GOAL_FAILURE
 	}
 };
 

@@ -28,9 +28,15 @@ export function goalsReducer(state = initialState, action) {
 			return state;
 		}
 		case GoalsActions.EDIT_GOAL: {
+			return state;
+		}
+		case GoalsActions.EDIT_GOAL_SUCCESS: {
 			const index = state.findIndex(goal => goal.get('id') === action.payload.id);
 
 			return state.update(index, () => fromJS(action.payload));
+		}
+		case GoalsActions.EDIT_GOAL_FAILURE: {
+			return state;
 		}
 		case GoalsActions.REMOVE_GOAL: {
 			return state;

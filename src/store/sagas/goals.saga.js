@@ -8,6 +8,8 @@ import {
 import { put, takeLatest } from 'redux-saga/effects';
 import { removeGoalSuccessAction } from '../actions/goals.actions';
 import { removeGoalFailureAction } from '../actions/goals.actions';
+import { editGoalSuccessAction } from '../actions/goals.actions';
+import { editGoalFailureAction } from '../actions/goals.actions';
 
 function* getGoals() {
 	try {
@@ -45,6 +47,18 @@ function* removeGoal(action) {
 	}
 }
 
+function* editGoal(action) {
+	try {
+		const response = yield fetch(`/goals/${action.payload.id}`, { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
+			body = yield response.json();
+
+		yield put(editGoalSuccessAction(action.payload));
+	} catch (err) {
+		console.error(err);
+		yield put(editGoalFailureAction());
+	}
+}
+
 export function* goalsSaga() {
 	yield takeLatest(GoalsActions.GET_GOALS, getGoals);
 }
@@ -55,4 +69,8 @@ export function* addGoalSaga() {
 
 export function* removeGoalSaga() {
 	yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoal);
+}
+
+export function* editGoalSaga() {
+	yield takeLatest(GoalsActions.EDIT_GOAL, editGoal);
 }
