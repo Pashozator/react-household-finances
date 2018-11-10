@@ -13,6 +13,8 @@ export const REMOVE_GOAL = '[Goals] Remove goal';
 export const REMOVE_GOAL_SUCCESS = '[Goals] Remove goal success';
 export const REMOVE_GOAL_FAILURE = '[Goals] Remove goal failure';
 export const REALIZE_GOAL = '[Goals] Realize goal';
+export const REALIZE_GOAL_SUCCESS = '[Goals] Realize goal success';
+export const REALIZE_GOAL_FAILURE = '[Goals] Realize goal failure';
 
 export const getGoalsAction = () => {
 	return {
@@ -94,8 +96,21 @@ export const removeGoalFailureAction = () => {
 };
 
 export const realizeGoalAction = goal => {
+	return {
+		type: REALIZE_GOAL,
+		payload: goal
+	}
+};
+
+export const realizeGoalSuccessAction = goal => {
 	return dispatch => {
 		dispatch(reduceDebitAction(goal));
-		dispatch({ type: REALIZE_GOAL, payload: goal })
+		dispatch({ type: REALIZE_GOAL_SUCCESS, payload: goal })
+	}
+};
+
+export const realizeGoalFailureAction = () => {
+	return {
+		type: REALIZE_GOAL_FAILURE
 	}
 };

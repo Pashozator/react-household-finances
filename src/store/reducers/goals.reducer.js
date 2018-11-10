@@ -48,9 +48,15 @@ export function goalsReducer(state = initialState, action) {
 			return state;
 		}
 		case GoalsActions.REALIZE_GOAL: {
+			return state;
+		}
+		case GoalsActions.REALIZE_GOAL_SUCCESS: {
 			const index = state.findIndex(goal => goal.get('id') === action.payload.id);
 
 			return state.updateIn([index, 'realized'], () => true);
+		}
+		case GoalsActions.REALIZE_GOAL_FAILURE: {
+			return state;
 		}
 		default:
 			return state;

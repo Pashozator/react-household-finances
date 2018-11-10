@@ -10,6 +10,8 @@ import { removeGoalSuccessAction } from '../actions/goals.actions';
 import { removeGoalFailureAction } from '../actions/goals.actions';
 import { editGoalSuccessAction } from '../actions/goals.actions';
 import { editGoalFailureAction } from '../actions/goals.actions';
+import { realizeGoalSuccessAction } from '../actions/goals.actions';
+import { realizeGoalFailureAction } from '../actions/goals.actions';
 
 function* getGoals() {
 	try {
@@ -28,7 +30,7 @@ function* addGoal(action) {
 		const response = yield fetch('/goals', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
 			body = yield response.json();
 
-		yield put(addGoalSuccessAction(action.payload));
+		yield put(addGoalSuccessAction(body.data));
 	} catch (err) {
 		console.error(err);
 		yield put(addGoalFailureAction())
@@ -59,6 +61,18 @@ function* editGoal(action) {
 	}
 }
 
+function* realizeGoal(action) {
+	try {
+		const response = yield fetch(`/goals/${action.payload.id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({}) }),
+			body = yield response.json();
+
+		yield put(realizeGoalSuccessAction(action.payload));
+	} catch (err) {
+		console.error(err);
+		yield put(realizeGoalFailureAction());
+	}
+}
+
 export function* goalsSaga() {
 	yield takeLatest(GoalsActions.GET_GOALS, getGoals);
 }
@@ -73,4 +87,8 @@ export function* removeGoalSaga() {
 
 export function* editGoalSaga() {
 	yield takeLatest(GoalsActions.EDIT_GOAL, editGoal);
+}
+
+export function* realizeGoalSaga() {
+	yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoal);
 }

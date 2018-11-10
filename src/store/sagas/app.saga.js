@@ -1,6 +1,6 @@
 import budgetSaga from './budget.saga';
 import { all } from 'redux-saga/effects';
-import { addGoalSaga, goalsSaga, removeGoalSaga, editGoalSaga } from './goals.saga';
+import { addGoalSaga, goalsSaga, removeGoalSaga, editGoalSaga, realizeGoalSaga } from './goals.saga';
 
 export default function* appSaga() {
 	yield all([
@@ -8,6 +8,7 @@ export default function* appSaga() {
 		goalsSaga(),
 		addGoalSaga(),
 		removeGoalSaga(),
-		editGoalSaga()
+		editGoalSaga(),
+		realizeGoalSaga()
 	])
 }
