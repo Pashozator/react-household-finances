@@ -33,7 +33,13 @@ export function goalsReducer(state = initialState, action) {
 			return state.update(index, () => fromJS(action.payload));
 		}
 		case GoalsActions.REMOVE_GOAL: {
+			return state;
+		}
+		case GoalsActions.REMOVE_GOAL_SUCCESS: {
 			return state.filter(goal => goal.get('id') !== action.payload.id);
+		}
+		case GoalsActions.REMOVE_GOAL_FAILURE: {
+			return state;
 		}
 		case GoalsActions.REALIZE_GOAL: {
 			const index = state.findIndex(goal => goal.get('id') === action.payload.id);

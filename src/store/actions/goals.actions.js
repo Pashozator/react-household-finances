@@ -8,6 +8,8 @@ export const ADD_GOAL_SUCCESS = '[Goals] Add goal success';
 export const ADD_GOAL_FAILURE = '[Goals] Add goal failure';
 export const EDIT_GOAL = '[Goals] Edit goal';
 export const REMOVE_GOAL = '[Goals] Remove goal';
+export const REMOVE_GOAL_SUCCESS = '[Goals] Remove goal success';
+export const REMOVE_GOAL_FAILURE = '[Goals] Remove goal failure';
 export const REALIZE_GOAL = '[Goals] Realize goal';
 
 export const getGoalsAction = () => {
@@ -60,6 +62,19 @@ export const removeGoalAction = goal => {
 	return {
 		type: REMOVE_GOAL,
 		payload: goal
+	}
+};
+
+export const removeGoalSuccessAction = goal => {
+	return {
+		type: REMOVE_GOAL_SUCCESS,
+		payload: goal
+	}
+};
+
+export const removeGoalFailureAction = () => {
+	return {
+		type: REMOVE_GOAL_FAILURE
 	}
 };
 
