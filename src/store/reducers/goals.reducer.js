@@ -16,10 +16,16 @@ export function goalsReducer(state = initialState, action) {
 			return state;
 		}
 		case GoalsActions.ADD_GOAL: {
+			return state;
+		}
+		case GoalsActions.ADD_GOAL_SUCCESS: {
 			action.payload.id = guid();
 			action.payload.realized = false;
 
 			return state.insert(null, fromJS(action.payload));
+		}
+		case GoalsActions.ADD_GOAL_FAILURE: {
+			return state;
 		}
 		case GoalsActions.EDIT_GOAL: {
 			const index = state.findIndex(goal => goal.get('id') === action.payload.id);

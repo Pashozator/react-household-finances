@@ -4,6 +4,8 @@ export const GET_GOALS = '[Goals] Get goals';
 export const GET_GOALS_SUCCESS = '[Goals] Get goals success';
 export const GET_GOALS_FAILURE = '[Goals] Get goals failure';
 export const ADD_GOAL = '[Goals] Add goal';
+export const ADD_GOAL_SUCCESS = '[Goals] Add goal success';
+export const ADD_GOAL_FAILURE = '[Goals] Add goal failure';
 export const EDIT_GOAL = '[Goals] Edit goal';
 export const REMOVE_GOAL = '[Goals] Remove goal';
 export const REALIZE_GOAL = '[Goals] Realize goal';
@@ -31,6 +33,19 @@ export const addGoalAction = goal => {
 	return {
 		type: ADD_GOAL,
 		payload: goal
+	}
+};
+
+export const addGoalSuccessAction = goal => {
+	return {
+		type: ADD_GOAL_SUCCESS,
+		payload: goal
+	}
+};
+
+export const addGoalFailureAction = () => {
+	return {
+		type: ADD_GOAL_FAILURE
 	}
 };
 

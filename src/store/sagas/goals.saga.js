@@ -1,5 +1,10 @@
 import * as GoalsActions from '../actions/goals.actions';
-import { getGoalsFailureAction, getGoalsSuccessAction } from '../actions/goals.actions';
+import {
+	addGoalFailureAction,
+	addGoalSuccessAction,
+	getGoalsFailureAction,
+	getGoalsSuccessAction
+} from '../actions/goals.actions';
 import { put, takeLatest } from 'redux-saga/effects';
 
 function* getGoals() {
@@ -14,8 +19,26 @@ function* getGoals() {
 	}
 }
 
-function* goalsSaga() {
-	yield takeLatest(GoalsActions.GET_GOALS, getGoals)
+function* addGoal(action) {
+	try {
+		console.log(action);
+		const response = yield fetch('/goals', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
+			body = yield response.json();
+
+		console.log(response);
+		console.log(body);
+		yield put(addGoalSuccessAction(action.payload));
+	} catch (err) {
+		console.error(err);
+		yield put(addGoalFailureAction())
+	}
 }
 
-export default goalsSaga;
+export function* goalsSaga() {
+	yield takeLatest(GoalsActions.GET_GOALS, getGoals);
+}
+
+export function* addGoalSaga() {
+	yield takeLatest(GoalsActions.ADD_GOAL, addGoal);
+}
+
