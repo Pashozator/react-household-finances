@@ -14,6 +14,11 @@ import { addGoalAction, editGoalAction } from '../../../store/actions/goals.acti
 import { EditOperationDialog } from '../EditOperationDialog/EditOperationDialog';
 import { EditGoalDialog } from '../EditGoalDialog/EditGoalDialog';
 import { AuthorDialog } from '../AuthorDialog/AuthorDialog';
+import {
+	selectAddGoalDialogOpened,
+	selectAddOperationDialogOpened, selectAuthorDialogOpened, selectEditGoalDialogOpened, selectEditGoalDialogPayload,
+	selectEditOperationDialogOpened, selectEditOperationDialogPayload
+} from "../../../store/selectors/dialogs.selectors";
 
 class DialogsContainer extends React.Component {
 	constructor(props) {
@@ -66,13 +71,13 @@ DialogsContainer.propTypes = {
 
 const mapStateToProps = state => {
 	return {
-		addOperationDialogOpened: state.dialogs.addOperationDialogOpened,
-		editOperationDialogOpened: state.dialogs.editOperationDialogOpened,
-		editOperationDialogPayload: state.dialogs.editOperationDialogPayload,
-		addGoalDialogOpened: state.dialogs.addGoalDialogOpened,
-		editGoalDialogOpened: state.dialogs.editGoalDialogOpened,
-		editGoalDialogPayload: state.dialogs.editGoalDialogPayload,
-		authorDialogOpened: state.dialogs.authorDialogOpened
+		addOperationDialogOpened: selectAddOperationDialogOpened(state),
+		editOperationDialogOpened: selectEditOperationDialogOpened(state),
+		editOperationDialogPayload: selectEditOperationDialogPayload(state),
+		addGoalDialogOpened: selectAddGoalDialogOpened(state),
+		editGoalDialogOpened: selectEditGoalDialogOpened(state),
+		editGoalDialogPayload: selectEditGoalDialogPayload(state),
+		authorDialogOpened: selectAuthorDialogOpened(state)
 	}
 };
 

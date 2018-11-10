@@ -4,6 +4,8 @@ import Goal from '../../components/goals/goal/Goal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
+import { selectGoals } from '../../store/selectors/goals.selectors';
+import { selectDebit } from '../../store/selectors/budget.selectors';
 
 class Goals extends React.Component {
 	constructor(props) {
@@ -32,8 +34,8 @@ Goals.propTypes = {
 
 const mapStateToProps = state => {
 	return {
-		goals: state.goals,
-		debit: state.budget.debit
+		goals: selectGoals(state),
+		debit: selectDebit(state)
 	}
 };
 
