@@ -1,6 +1,7 @@
 import * as DialogsActions from '../actions/dialogs.actions';
+import { fromJS } from 'immutable';
 
-const initialState = {
+const initialState = fromJS({
 	addOperationDialogOpened: false,
 	editOperationDialogOpened: false,
 	editOperationDialogPayload: { id: null, label: '', date: '', value: '', description: '' },
@@ -8,39 +9,43 @@ const initialState = {
 	editGoalDialogOpened: false,
 	editGoalDialogPayload: { id: null, label: '', value: '', description: '' },
 	authorDialogOpened: false
-};
+});
 
 export function dialogReducer(state = initialState, action) {
 	switch (action.type) {
 		case DialogsActions.OPEN_ADD_OPERATION_DIALOG: {
-			return { ...state, addOperationDialogOpened: true };
+			return state.setIn(['addOperationDialogOpened'], true);
 		}
 		case DialogsActions.CLOSE_ADD_OPERATION_DIALOG: {
-			return { ...state, addOperationDialogOpened: false };
+			return state.setIn(['addOperationDialogOpened'], false);
 		}
 		case DialogsActions.OPEN_EDIT_OPERATION_DIALOG: {
-			return { ...state, editOperationDialogOpened: true, editOperationDialogPayload: action.payload };
+			return state.setIn(['editOperationDialogOpened'], true)
+				.setIn(['editOperationDialogPayload'], fromJS(action.payload));
 		}
 		case DialogsActions.CLOSE_EDIT_OPERATION_DIALOG: {
-			return { ...state, editOperationDialogOpened: false, editOperationDialogPayload: { id: null, label: '', date: '', value: '', description: '' } };
+			return state.setIn(['editOperationDialogOpened'], false)
+				.setIn(['editOperationDialogPayload'], fromJS({ id: null, label: '', date: '', value: '', description: '' }));
 		}
 		case DialogsActions.OPEN_ADD_GOAL_DIALOG: {
-			return { ...state, addGoalDialogOpened: true };
+			return state.setIn(['addGoalDialogOpened'], true);
 		}
 		case DialogsActions.CLOSE_ADD_GOAL_DIALOG: {
-			return { ...state, addGoalDialogOpened: false };
+			return state.setIn(['addGoalDialogOpened'], false);
 		}
 		case DialogsActions.OPEN_EDIT_GOAL_DIALOG: {
-			return { ...state, editGoalDialogOpened: true, editGoalDialogPayload: action.payload };
+			return state.setIn(['editGoalDialogOpened'], true)
+				.setIn(['editGoalDialogPayload'], fromJS(action.payload));
 		}
 		case DialogsActions.CLOSE_EDIT_GOAL_DIALOG: {
-			return { ...state, editGoalDialogOpened: false, editGoalDialogPayload: { id: null, label: '', value: '', description: '' } };
+			return state.setIn(['editGoalDialogOpened'], false)
+				.setIn(['editGoalDialogPayload]'], fromJS({ id: null, label: '', value: '', description: '' }));
 		}
 		case DialogsActions.OPEN_AUTHOR_DIALOG: {
-			return { ...state, authorDialogOpened: true };
+			return state.setIn(['authorDialogOpened'], true);
 		}
 		case DialogsActions.CLOSE_AUTHOR_DIALOG: {
-			return { ...state, authorDialogOpened: false };
+			return state.setIn(['authorDialogOpened'], false);
 		}
 		default:
 			return state;

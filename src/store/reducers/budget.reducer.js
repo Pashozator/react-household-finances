@@ -1,37 +1,42 @@
 import * as BudgetActions from '../actions/budget.actions';
 import { guid } from '../../utils/guid-util';
+import { fromJS } from 'immutable';
 import * as moment from 'moment';
 
-const initialState = {
+const initialState = fromJS({
 	operations: [],
 	debit: 0
-};
+});
 
 export function budgetReducer(state = initialState, action) {
 	switch (action.type) {
 		case BudgetActions.ADD_OPERATION: {
-			return { ...state, operations: [action.payload, ...state.operations], debit: state.debit + action.payload.value };
+			action.payload.id = guid();
+
+			return state.set('operations', state.get('operations').insert(null, fromJS(action.payload)))
+				.set('debit', state.get('debit') + action.payload.value);
 		}
 		case BudgetActions.EDIT_OPERATION: {
-			const operations = state.operations,
-				index = operations.findIndex(operation => operation.id === action.payload.id);
+			let operations = state.get('operations');
+			const index = operations.findIndex(operation => operation.get('id') === action.payload.id);
 
-			operations[index] = action.payload;
+			operations = operations.update(index, () => fromJS(action.payload));
 
 			let debit = 0;
 
-			for (const operation of operations) {
-				debit += operation.value;
-			}
+			operations.forEach(operation => {
+				debit += operation.get('value')
+			});
 
-			return { ...state, operations: operations, debit: debit };
+			return state.set('operations', operations)
+				.set('debit', debit);
 		}
 		case BudgetActions.REMOVE_OPERATION: {
-			return {
-				...state,
-				operations: state.operations.filter(operation => operation.id !== action.payload.id),
-				debit: state.debit - action.payload.value
-			};
+			const operations = state.get('operations').filter(operation => operation.get('id') !== action.payload.id),
+				debit = state.get('debit') - action.payload.value;
+
+			return state.set('operations', operations)
+				.set('debit', debit);
 		}
 		case BudgetActions.REDUCE_DEBIT: {
 			const operation = {
@@ -42,7 +47,8 @@ export function budgetReducer(state = initialState, action) {
 				description: action.payload.description
 			};
 
-			return { ...state, operations: [operation, ...state.operations], debit: state.debit - action.payload.value };
+			return state.set('operations', state.get('operations').insert(null, fromJS(operation)))
+				.set('debit', state.get('debit') - action.payload.value);
 		}
 		default:
 			return state;
