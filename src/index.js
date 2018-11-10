@@ -8,8 +8,9 @@ import { applyMiddleware, createStore } from 'redux';
 import { appReducer } from './store/reducers/app.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
+import Immutable from 'immutable';
 
-const store = createStore(appReducer, {}, composeWithDevTools(applyMiddleware(thunk)));
+const store = createStore(appReducer, Immutable.fromJS({}), composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
 	<Provider store={store}>

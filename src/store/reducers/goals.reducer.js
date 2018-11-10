@@ -1,32 +1,29 @@
 import * as GoalsActions from '../actions/goals.actions';
+import { fromJS } from 'immutable';
+import { guid } from '../../utils/guid-util';
 
-const initialState = [];
+const initialState = fromJS([]);
 
 export function goalsReducer(state = initialState, action) {
 	switch (action.type) {
 		case GoalsActions.ADD_GOAL: {
+			action.payload.id = guid();
 			action.payload.realized = false;
 
-			return [action.payload, ...state];
+			return state.insert(null, fromJS(action.payload));
 		}
 		case GoalsActions.EDIT_GOAL: {
-			const goals = [...state],
-				index = goals.findIndex(goal => goal.id === action.payload.id);
+			const index = state.findIndex(goal => goal.get('id') === action.payload.id);
 
-			goals[index] = action.payload;
-
-			return goals;
+			return state.update(index, () => fromJS(action.payload));
 		}
 		case GoalsActions.REMOVE_GOAL: {
-			return [...state.filter(goal => goal.id !== action.payload.id)];
+			return state.filter(goal => goal.id !== action.payload.id);
 		}
 		case GoalsActions.REALIZE_GOAL: {
-			const goals = [...state],
-				index = goals.findIndex(_goal => _goal.id === action.payload.id);
+			const index = state.findIndex(goal => goal.id === action.payload.id);
 
-			goals[index].realized = true;
-
-			return goals;
+			return state.updateIn([index, 'realized'], () => true);
 		}
 		default:
 			return state;
