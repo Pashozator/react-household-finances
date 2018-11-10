@@ -6,6 +6,15 @@ const initialState = fromJS([]);
 
 export function goalsReducer(state = initialState, action) {
 	switch (action.type) {
+		case GoalsActions.GET_GOALS: {
+			return state;
+		}
+		case GoalsActions.GET_GOALS_SUCCESS: {
+			return fromJS(action.payload);
+		}
+		case GoalsActions.GET_GOALS_FAILURE: {
+			return state;
+		}
 		case GoalsActions.ADD_GOAL: {
 			action.payload.id = guid();
 			action.payload.realized = false;

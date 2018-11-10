@@ -9,8 +9,13 @@ import { appReducer } from './store/reducers/app.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import Immutable from 'immutable';
+import createSagaMiddleware from 'redux-saga';
+import appSaga from './store/sagas/app.saga';
 
-const store = createStore(appReducer, Immutable.fromJS({}), composeWithDevTools(applyMiddleware(thunk)));
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(appReducer, Immutable.fromJS({}), composeWithDevTools(applyMiddleware(thunk, sagaMiddleware)));
+
+sagaMiddleware.run(appSaga);
 
 ReactDOM.render(
 	<Provider store={store}>

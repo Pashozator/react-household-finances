@@ -1,5 +1,5 @@
 import React from 'react';
-import { realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
+import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
 import Goal from '../../components/goals/goal/Goal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,6 +10,10 @@ import { selectDebit } from '../../store/selectors/budget.selectors';
 class Goals extends React.Component {
 	constructor(props) {
 		super(props)
+	}
+
+	componentWillMount() {
+		this.props.onGetGoals();
 	}
 
 	render() {
@@ -43,7 +47,8 @@ const mapDispatchToProps = dispatch => {
 	return {
 		onGoalRemove: goal => dispatch(removeGoalAction(goal)),
 		onGoalEdit: goal => dispatch(openEditGoalDialogAction(goal)),
-		onGoalRealize: goal => dispatch(realizeGoalAction(goal))
+		onGoalRealize: goal => dispatch(realizeGoalAction(goal)),
+		onGetGoals: () => dispatch(getGoalsAction())
 	}
 };
 

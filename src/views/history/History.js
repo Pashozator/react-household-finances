@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Operation from '../../components/history/operation/Operation';
-import { removeOperationAction } from '../../store/actions/budget.actions';
+import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { connect } from 'react-redux';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
 import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
@@ -9,6 +9,10 @@ import { selectDebit, selectOperations } from '../../store/selectors/budget.sele
 class History extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+
+	componentWillMount() {
+		this.props.onGetBudget();
 	}
 
 	render() {
@@ -41,7 +45,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
 	return {
 		onOperationRemove: operation => dispatch(removeOperationAction(operation)),
-		onOperationEdit: operation => dispatch(openEditOperationDialogAction(operation))
+		onOperationEdit: operation => dispatch(openEditOperationDialogAction(operation)),
+		onGetBudget: () => dispatch(getBudgetAction())
 	}
 };
 

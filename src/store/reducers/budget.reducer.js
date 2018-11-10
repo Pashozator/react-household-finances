@@ -10,6 +10,15 @@ const initialState = fromJS({
 
 export function budgetReducer(state = initialState, action) {
 	switch (action.type) {
+		case BudgetActions.GET_BUDGET: {
+			return state;
+		}
+		case BudgetActions.GET_BUDGET_SUCCESS: {
+			return state.update(() => fromJS(action.payload));
+		}
+		case BudgetActions.GET_BUDGET_FAILURE: {
+			return state;
+		}
 		case BudgetActions.ADD_OPERATION: {
 			action.payload.id = guid();
 
