@@ -20,10 +20,14 @@ export function budgetReducer(state = initialState, action) {
 			return state;
 		}
 		case BudgetActions.ADD_OPERATION: {
-			action.payload.id = guid();
-
+			return state;
+		}
+		case BudgetActions.ADD_OPERATION_SUCCESS: {
 			return state.set('operations', state.get('operations').insert(null, fromJS(action.payload)))
 				.set('debit', state.get('debit') + action.payload.value);
+		}
+		case BudgetActions.ADD_OPERATION_FAILURE: {
+			return state;
 		}
 		case BudgetActions.EDIT_OPERATION: {
 			let operations = state.get('operations');
