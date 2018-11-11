@@ -5,6 +5,8 @@ import { addOperationFailureAction } from '../actions/budget.actions';
 import { addOperationSuccessAction } from '../actions/budget.actions';
 import { editOperationFailureAction } from '../actions/budget.actions';
 import { editOperationSuccessAction } from '../actions/budget.actions';
+import { removeOperationFailureAction } from '../actions/budget.actions';
+import { removeOperationSuccessAction } from '../actions/budget.actions';
 
 function* getBudget() {
 	try {
@@ -37,8 +39,20 @@ function* editOperation(action) {
 
 		yield put(editOperationSuccessAction(action.payload));
 	} catch (err) {
-		console.log(err);
+		console.error(err);
 		yield put(editOperationFailureAction());
+	}
+}
+
+function* removeOperation(action) {
+	try {
+		const response = yield fetch(`/budget/operations/${action.payload.id}`, { method: 'delete' }),
+			body = yield response.json();
+
+		yield put(removeOperationSuccessAction(action.payload));
+	} catch (err) {
+		console.error(err);
+		yield put(removeOperationFailureAction());
 	}
 }
 
@@ -52,4 +66,8 @@ export function* addOperationSaga() {
 
 export function* editOperationSaga() {
 	yield takeLatest(BudgetActions.EDIT_OPERATION, editOperation);
+}
+
+export function* removeOperationSaga() {
+	yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperation);
 }

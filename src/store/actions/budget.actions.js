@@ -8,6 +8,8 @@ export const EDIT_OPERATION = '[Budget] Edit operation';
 export const EDIT_OPERATION_SUCCESS = '[Budget] Edit operation success';
 export const EDIT_OPERATION_FAILURE = '[Budget] Edit operation failure';
 export const REMOVE_OPERATION = '[Budget] Remove operation';
+export const REMOVE_OPERATION_SUCCESS = '[Budget] Remove operation success';
+export const REMOVE_OPERATION_FAILURE = '[Budget] Remove operation failure';
 export const REDUCE_DEBIT = '[Budget] Reduce debit';
 
 export const getBudgetAction = () => {
@@ -73,6 +75,19 @@ export const removeOperationAction = operation => {
 	return {
 		type: REMOVE_OPERATION,
 		payload: operation
+	}
+};
+
+export const removeOperationSuccessAction = operation => {
+	return {
+		type: REMOVE_OPERATION_SUCCESS,
+		payload: operation
+	}
+};
+
+export const removeOperationFailureAction = () => {
+	return {
+		type: REMOVE_OPERATION_FAILURE
 	}
 };
 

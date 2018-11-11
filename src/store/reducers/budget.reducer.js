@@ -51,11 +51,17 @@ export function budgetReducer(state = initialState, action) {
 			return state;
 		}
 		case BudgetActions.REMOVE_OPERATION: {
+			return state;
+		}
+		case BudgetActions.REMOVE_OPERATION_SUCCESS: {
 			const operations = state.get('operations').filter(operation => operation.get('id') !== action.payload.id),
 				debit = state.get('debit') - action.payload.value;
 
 			return state.set('operations', operations)
 				.set('debit', debit);
+		}
+		case BudgetActions.REMOVE_OPERATION_FAILURE: {
+			return state;
 		}
 		case BudgetActions.REDUCE_DEBIT: {
 			const operation = {
