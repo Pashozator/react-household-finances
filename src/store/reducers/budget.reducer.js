@@ -30,6 +30,9 @@ export function budgetReducer(state = initialState, action) {
 			return state;
 		}
 		case BudgetActions.EDIT_OPERATION: {
+			return state;
+		}
+		case BudgetActions.EDIT_OPERATION_SUCCESS: {
 			let operations = state.get('operations');
 			const index = operations.findIndex(operation => operation.get('id') === action.payload.id);
 
@@ -42,7 +45,10 @@ export function budgetReducer(state = initialState, action) {
 			});
 
 			return state.set('operations', operations)
-				.set('debit', debit);
+			.set('debit', debit);
+		}
+		case BudgetActions.EDIT_OPERATION_FAILURE: {
+			return state;
 		}
 		case BudgetActions.REMOVE_OPERATION: {
 			const operations = state.get('operations').filter(operation => operation.get('id') !== action.payload.id),

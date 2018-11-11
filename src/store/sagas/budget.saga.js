@@ -3,6 +3,8 @@ import { getBudgetFailure, getBudgetSuccess } from '../actions/budget.actions';
 import { put, takeLatest } from 'redux-saga/effects';
 import { addOperationFailureAction } from '../actions/budget.actions';
 import { addOperationSuccessAction } from '../actions/budget.actions';
+import { editOperationFailureAction } from '../actions/budget.actions';
+import { editOperationSuccessAction } from '../actions/budget.actions';
 
 function* getBudget() {
 	try {
@@ -28,10 +30,26 @@ function* addOperation(action) {
 	}
 }
 
+function* editOperation(action) {
+	try {
+		const response = yield fetch(`/budget/operations/${action.payload.id}`, { method: 'put', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
+			body = yield response.json();
+
+		yield put(editOperationSuccessAction(action.payload));
+	} catch (err) {
+		console.log(err);
+		yield put(editOperationFailureAction());
+	}
+}
+
 export function* budgetSaga() {
 	yield takeLatest(BudgetActions.GET_BUDGET, getBudget);
 }
 
 export function* addOperationSaga() {
 	yield takeLatest(BudgetActions.ADD_OPERATION, addOperation);
+}
+
+export function* editOperationSaga() {
+	yield takeLatest(BudgetActions.EDIT_OPERATION, editOperation);
 }
