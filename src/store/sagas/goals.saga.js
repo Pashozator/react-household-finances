@@ -5,7 +5,7 @@ import {
 	getGoalsFailureAction,
 	getGoalsSuccessAction
 } from '../actions/goals.actions';
-import { put, takeLatest } from 'redux-saga/effects';
+import { all, put, takeLatest } from 'redux-saga/effects';
 import { removeGoalSuccessAction } from '../actions/goals.actions';
 import { removeGoalFailureAction } from '../actions/goals.actions';
 import { editGoalSuccessAction } from '../actions/goals.actions';
@@ -73,22 +73,12 @@ function* realizeGoal(action) {
 	}
 }
 
-export function* goalsSaga() {
-	yield takeLatest(GoalsActions.GET_GOALS, getGoals);
-}
-
-export function* addGoalSaga() {
-	yield takeLatest(GoalsActions.ADD_GOAL, addGoal);
-}
-
-export function* removeGoalSaga() {
-	yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoal);
-}
-
-export function* editGoalSaga() {
-	yield takeLatest(GoalsActions.EDIT_GOAL, editGoal);
-}
-
-export function* realizeGoalSaga() {
-	yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoal);
+export function* goalsSagas() {
+	yield all([
+		yield takeLatest(GoalsActions.GET_GOALS, getGoals),
+		yield takeLatest(GoalsActions.ADD_GOAL, addGoal),
+		yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoal),
+		yield takeLatest(GoalsActions.EDIT_GOAL, editGoal),
+		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoal)
+	])
 }

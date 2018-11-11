@@ -1,6 +1,6 @@
 import * as BudgetActions from '../actions/budget.actions';
 import { getBudgetFailure, getBudgetSuccess } from '../actions/budget.actions';
-import { put, takeLatest } from 'redux-saga/effects';
+import { all, put, takeLatest } from 'redux-saga/effects';
 import { addOperationFailureAction } from '../actions/budget.actions';
 import { addOperationSuccessAction } from '../actions/budget.actions';
 import { editOperationFailureAction } from '../actions/budget.actions';
@@ -56,18 +56,11 @@ function* removeOperation(action) {
 	}
 }
 
-export function* budgetSaga() {
-	yield takeLatest(BudgetActions.GET_BUDGET, getBudget);
-}
-
-export function* addOperationSaga() {
-	yield takeLatest(BudgetActions.ADD_OPERATION, addOperation);
-}
-
-export function* editOperationSaga() {
-	yield takeLatest(BudgetActions.EDIT_OPERATION, editOperation);
-}
-
-export function* removeOperationSaga() {
-	yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperation);
+export function* budgetSagas() {
+	yield all([
+		yield takeLatest(BudgetActions.GET_BUDGET, getBudget),
+		yield takeLatest(BudgetActions.ADD_OPERATION, addOperation),
+		yield takeLatest(BudgetActions.EDIT_OPERATION, editOperation),
+		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperation)
+	]);
 }
