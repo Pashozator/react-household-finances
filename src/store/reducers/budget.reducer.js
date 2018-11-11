@@ -10,13 +10,29 @@ const initialState = fromJS({
 
 export function budgetReducer(state = initialState, action) {
 	switch (action.type) {
+		case BudgetActions.GET_BUDGET: {
+			return state;
+		}
+		case BudgetActions.GET_BUDGET_SUCCESS: {
+			return state.update(() => fromJS(action.payload));
+		}
+		case BudgetActions.GET_BUDGET_FAILURE: {
+			return state;
+		}
 		case BudgetActions.ADD_OPERATION: {
-			action.payload.id = guid();
-
+			return state;
+		}
+		case BudgetActions.ADD_OPERATION_SUCCESS: {
 			return state.set('operations', state.get('operations').insert(null, fromJS(action.payload)))
 				.set('debit', state.get('debit') + action.payload.value);
 		}
+		case BudgetActions.ADD_OPERATION_FAILURE: {
+			return state;
+		}
 		case BudgetActions.EDIT_OPERATION: {
+			return state;
+		}
+		case BudgetActions.EDIT_OPERATION_SUCCESS: {
 			let operations = state.get('operations');
 			const index = operations.findIndex(operation => operation.get('id') === action.payload.id);
 
@@ -29,14 +45,23 @@ export function budgetReducer(state = initialState, action) {
 			});
 
 			return state.set('operations', operations)
-				.set('debit', debit);
+			.set('debit', debit);
+		}
+		case BudgetActions.EDIT_OPERATION_FAILURE: {
+			return state;
 		}
 		case BudgetActions.REMOVE_OPERATION: {
+			return state;
+		}
+		case BudgetActions.REMOVE_OPERATION_SUCCESS: {
 			const operations = state.get('operations').filter(operation => operation.get('id') !== action.payload.id),
 				debit = state.get('debit') - action.payload.value;
 
 			return state.set('operations', operations)
 				.set('debit', debit);
+		}
+		case BudgetActions.REMOVE_OPERATION_FAILURE: {
+			return state;
 		}
 		case BudgetActions.REDUCE_DEBIT: {
 			const operation = {
