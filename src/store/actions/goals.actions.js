@@ -16,91 +16,31 @@ export const REALIZE_GOAL = '[Goals] Realize goal';
 export const REALIZE_GOAL_SUCCESS = '[Goals] Realize goal success';
 export const REALIZE_GOAL_FAILURE = '[Goals] Realize goal failure';
 
-export const getGoalsAction = () => {
-	return {
-		type: GET_GOALS
-	}
-};
+export const getGoalsAction = () => ({ type: GET_GOALS });
 
-export const getGoalsSuccessAction = goals => {
-	return {
-		type: GET_GOALS_SUCCESS,
-		payload: goals
-	}
-};
+export const getGoalsSuccessAction = goals => ({ type: GET_GOALS_SUCCESS, payload: goals });
 
-export const getGoalsFailureAction = () => {
-	return {
-		type: GET_GOALS_FAILURE
-	}
-};
+export const getGoalsFailureAction = () => ({ type: GET_GOALS_FAILURE });
 
-export const addGoalAction = goal => {
-	return {
-		type: ADD_GOAL,
-		payload: goal
-	}
-};
+export const addGoalAction = goal => ({ type: ADD_GOAL, payload: goal });
 
-export const addGoalSuccessAction = goal => {
-	return {
-		type: ADD_GOAL_SUCCESS,
-		payload: goal
-	}
-};
+export const addGoalSuccessAction = goal => ({ type: ADD_GOAL_SUCCESS, payload: goal });
 
-export const addGoalFailureAction = () => {
-	return {
-		type: ADD_GOAL_FAILURE
-	}
-};
+export const addGoalFailureAction = () => ({ type: ADD_GOAL_FAILURE });
 
-export const editGoalAction = goal => {
-	return {
-		type: EDIT_GOAL,
-		payload: goal
-	}
-};
+export const editGoalAction = goal => ({ type: EDIT_GOAL, payload: goal });
 
-export const editGoalSuccessAction = goal => {
-	return {
-		type: EDIT_GOAL_SUCCESS,
-		payload: goal
-	}
-};
+export const editGoalSuccessAction = goal => ({ type: EDIT_GOAL_SUCCESS, payload: goal });
 
-export const editGoalFailureAction = () => {
-	return {
-		type: EDIT_GOAL_FAILURE
-	}
-};
+export const editGoalFailureAction = () => ({ type: EDIT_GOAL_FAILURE });
 
-export const removeGoalAction = goal => {
-	return {
-		type: REMOVE_GOAL,
-		payload: goal
-	}
-};
+export const removeGoalAction = goal => ({ type: REMOVE_GOAL, payload: goal });
 
-export const removeGoalSuccessAction = goal => {
-	return {
-		type: REMOVE_GOAL_SUCCESS,
-		payload: goal
-	}
-};
+export const removeGoalSuccessAction = goal => ({ type: REMOVE_GOAL_SUCCESS, payload: goal });
 
-export const removeGoalFailureAction = () => {
-	return {
-		type: REMOVE_GOAL_FAILURE
-	}
-};
+export const removeGoalFailureAction = () => ({ type: REMOVE_GOAL_FAILURE });
 
-export const realizeGoalAction = goal => {
-	return {
-		type: REALIZE_GOAL,
-		payload: goal
-	}
-};
+export const realizeGoalAction = goal => ({ type: REALIZE_GOAL, payload: goal });
 
 export const realizeGoalSuccessAction = goal => {
 	return dispatch => {
@@ -109,8 +49,4 @@ export const realizeGoalSuccessAction = goal => {
 	}
 };
 
-export const realizeGoalFailureAction = () => {
-	return {
-		type: REALIZE_GOAL_FAILURE
-	}
-};
+export const realizeGoalFailureAction = () => ({ type: REALIZE_GOAL_FAILURE });

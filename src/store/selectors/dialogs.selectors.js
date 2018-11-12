@@ -36,3 +36,8 @@ export const selectAuthorDialogOpened = createSelector(
 	selectDialogs,
 	substate => substate.get('authorDialogOpened')
 );
+
+export const selectErrorDialogOpened = createSelector(
+	selectDialogs,
+	substate => substate.get('errorDialogOpened')
+);

@@ -8,7 +8,8 @@ const initialState = fromJS({
 	addGoalDialogOpened: false,
 	editGoalDialogOpened: false,
 	editGoalDialogPayload: { id: null, label: '', value: '', description: '' },
-	authorDialogOpened: false
+	authorDialogOpened: false,
+	errorDialogOpened: false
 });
 
 export function dialogReducer(state = initialState, action) {
@@ -46,6 +47,12 @@ export function dialogReducer(state = initialState, action) {
 		}
 		case DialogsActions.CLOSE_AUTHOR_DIALOG: {
 			return state.setIn(['authorDialogOpened'], false);
+		}
+		case DialogsActions.OPEN_ERROR_DIALOG: {
+			return state.setIn(['errorDialogOpened'], true);
+		}
+		case DialogsActions.CLOSE_ERROR_DIALOG: {
+			return state.setIn(['errorDialogOpened'], false);
 		}
 		default:
 			return state;

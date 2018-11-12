@@ -12,6 +12,7 @@ import { editGoalSuccessAction } from '../actions/goals.actions';
 import { editGoalFailureAction } from '../actions/goals.actions';
 import { realizeGoalSuccessAction } from '../actions/goals.actions';
 import { realizeGoalFailureAction } from '../actions/goals.actions';
+import { openErrorDialogAction } from '../actions/dialogs.actions';
 
 function* getGoals() {
 	try {
@@ -73,12 +74,21 @@ function* realizeGoal(action) {
 	}
 }
 
+function* failureHandler() {
+	yield put(openErrorDialogAction());
+}
+
 export function* goalsSagas() {
 	yield all([
 		yield takeLatest(GoalsActions.GET_GOALS, getGoals),
 		yield takeLatest(GoalsActions.ADD_GOAL, addGoal),
 		yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoal),
 		yield takeLatest(GoalsActions.EDIT_GOAL, editGoal),
-		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoal)
+		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoal),
+		yield takeLatest(GoalsActions.GET_GOALS_FAILURE, failureHandler),
+		yield takeLatest(GoalsActions.ADD_GOAL_FAILURE, failureHandler),
+		yield takeLatest(GoalsActions.EDIT_GOAL_FAILURE, failureHandler),
+		yield takeLatest(GoalsActions.REMOVE_GOAL_FAILURE, failureHandler),
+		yield takeLatest(GoalsActions.REALIZE_GOAL_FAILURE, failureHandler)
 	])
 }
