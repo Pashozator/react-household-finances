@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Operation from '../../components/history/operation/Operation';
+import Operation from '../../components/history/Operation/Operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { connect } from 'react-redux';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';

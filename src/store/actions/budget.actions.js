@@ -1,15 +1,15 @@
 export const GET_BUDGET = '[Budget] Get budget';
 export const GET_BUDGET_SUCCESS = '[Budget] Get budget success';
 export const GET_BUDGET_FAILURE = '[Budget] Get budget failure';
-export const ADD_OPERATION = '[Budget] Add operation';
-export const ADD_OPERATION_SUCCESS = '[Budget] Add operation success';
-export const ADD_OPERATION_FAILURE = '[Budget] Add operation failure';
-export const EDIT_OPERATION = '[Budget] Edit operation';
-export const EDIT_OPERATION_SUCCESS = '[Budget] Edit operation success';
-export const EDIT_OPERATION_FAILURE = '[Budget] Edit operation failure';
-export const REMOVE_OPERATION = '[Budget] Remove operation';
-export const REMOVE_OPERATION_SUCCESS = '[Budget] Remove operation success';
-export const REMOVE_OPERATION_FAILURE = '[Budget] Remove operation failure';
+export const ADD_OPERATION = '[Budget] Add Operation';
+export const ADD_OPERATION_SUCCESS = '[Budget] Add Operation success';
+export const ADD_OPERATION_FAILURE = '[Budget] Add Operation failure';
+export const EDIT_OPERATION = '[Budget] Edit Operation';
+export const EDIT_OPERATION_SUCCESS = '[Budget] Edit Operation success';
+export const EDIT_OPERATION_FAILURE = '[Budget] Edit Operation failure';
+export const REMOVE_OPERATION = '[Budget] Remove Operation';
+export const REMOVE_OPERATION_SUCCESS = '[Budget] Remove Operation success';
+export const REMOVE_OPERATION_FAILURE = '[Budget] Remove Operation failure';
 export const REDUCE_DEBIT = '[Budget] Reduce debit';
 
 export const getBudgetAction = () => ({ type: GET_BUDGET });

@@ -16,7 +16,7 @@ import { openErrorDialogAction } from '../actions/dialogs.actions';
 
 function* getGoals() {
 	try {
-		const response = yield fetch('/goals', { method: 'get' }),
+		const response = yield fetch('/Goals', { method: 'get' }),
 			body = yield response.json();
 
 		yield put(getGoalsSuccessAction(body.data));
@@ -28,7 +28,7 @@ function* getGoals() {
 
 function* addGoal(action) {
 	try {
-		const response = yield fetch('/goals', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
+		const response = yield fetch('/Goals', { method: 'post', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }),
 			body = yield response.json();
 
 		yield put(addGoalSuccessAction(body.data));

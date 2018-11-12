@@ -1,6 +1,6 @@
 import React from 'react';
 import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
-import Goal from '../../components/goals/goal/Goal';
+import Goal from '../../components/goals/Goal/Goal';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
