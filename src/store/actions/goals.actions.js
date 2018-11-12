@@ -1,20 +1,20 @@
 import { reduceDebitAction } from './budget.actions';
 
-export const GET_GOALS = '[Goals] Get goals';
-export const GET_GOALS_SUCCESS = '[Goals] Get goals success';
-export const GET_GOALS_FAILURE = '[Goals] Get goals failure';
-export const ADD_GOAL = '[Goals] Add goal';
-export const ADD_GOAL_SUCCESS = '[Goals] Add goal success';
-export const ADD_GOAL_FAILURE = '[Goals] Add goal failure';
-export const EDIT_GOAL = '[Goals] Edit goal';
-export const EDIT_GOAL_SUCCESS = '[Goals] Edit goal success';
-export const EDIT_GOAL_FAILURE = '[Goals] Edit goal failure';
-export const REMOVE_GOAL = '[Goals] Remove goal';
-export const REMOVE_GOAL_SUCCESS = '[Goals] Remove goal success';
-export const REMOVE_GOAL_FAILURE = '[Goals] Remove goal failure';
-export const REALIZE_GOAL = '[Goals] Realize goal';
-export const REALIZE_GOAL_SUCCESS = '[Goals] Realize goal success';
-export const REALIZE_GOAL_FAILURE = '[Goals] Realize goal failure';
+export const GET_GOALS = '[Goals] Get Goals';
+export const GET_GOALS_SUCCESS = '[Goals] Get Goals success';
+export const GET_GOALS_FAILURE = '[Goals] Get Goals failure';
+export const ADD_GOAL = '[Goals] Add Goal';
+export const ADD_GOAL_SUCCESS = '[Goals] Add Goal success';
+export const ADD_GOAL_FAILURE = '[Goals] Add Goal failure';
+export const EDIT_GOAL = '[Goals] Edit Goal';
+export const EDIT_GOAL_SUCCESS = '[Goals] Edit Goal success';
+export const EDIT_GOAL_FAILURE = '[Goals] Edit Goal failure';
+export const REMOVE_GOAL = '[Goals] Remove Goal';
+export const REMOVE_GOAL_SUCCESS = '[Goals] Remove Goal success';
+export const REMOVE_GOAL_FAILURE = '[Goals] Remove Goal failure';
+export const REALIZE_GOAL = '[Goals] Realize Goal';
+export const REALIZE_GOAL_SUCCESS = '[Goals] Realize Goal success';
+export const REALIZE_GOAL_FAILURE = '[Goals] Realize Goal failure';
 
 export const getGoalsAction = () => ({ type: GET_GOALS });
 

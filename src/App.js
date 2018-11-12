@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import './App.scss';
-import { VisibleGoals } from './views/goals/Goals';
+import { VisibleGoals } from './views/Goals/Goals';
 import Button from '@material-ui/core/Button/Button';
 import Icon from '@material-ui/core/Icon/Icon';
 import Menu from '@material-ui/core/Menu/Menu';
 import MenuItem from '@material-ui/core/MenuItem/MenuItem';
-import { VisibleHistory } from './views/history/History';
+import { VisibleHistory } from './views/History/History';
 import DialogsContainer from './components/dialogs/DialogsContainer/DialogsContainer';
 import {
 	openAddGoalDialogAction,
