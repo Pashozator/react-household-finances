@@ -36,20 +36,16 @@ Goals.propTypes = {
 	onGoalRealize: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => {
-	return {
-		goals: selectGoals(state),
-		debit: selectDebit(state)
-	}
-};
+const mapStateToProps = state => ({
+	goals: selectGoals(state),
+	debit: selectDebit(state)
+});
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onGoalRemove: goal => dispatch(removeGoalAction(goal)),
-		onGoalEdit: goal => dispatch(openEditGoalDialogAction(goal)),
-		onGoalRealize: goal => dispatch(realizeGoalAction(goal)),
-		onGetGoals: () => dispatch(getGoalsAction())
-	}
-};
+const mapDispatchToProps = dispatch => ({
+	onGoalRemove: goal => dispatch(removeGoalAction(goal)),
+	onGoalEdit: goal => dispatch(openEditGoalDialogAction(goal)),
+	onGoalRealize: goal => dispatch(realizeGoalAction(goal)),
+	onGetGoals: () => dispatch(getGoalsAction())
+});
 
 export const VisibleGoals = connect(mapStateToProps, mapDispatchToProps)(Goals);

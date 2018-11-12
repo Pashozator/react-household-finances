@@ -5,7 +5,8 @@ import { AddGoalDialog } from '../AddGoalDialog/AddGoalDialog';
 import { connect } from 'react-redux';
 import {
 	closeAddGoalDialogAction,
-	closeAddOperationDialogAction, closeAuthorDialogAction,
+	closeAddOperationDialogAction,
+	closeAuthorDialogAction,
 	closeEditGoalDialogAction,
 	closeEditOperationDialogAction
 } from '../../../store/actions/dialogs.actions';
@@ -16,8 +17,12 @@ import { EditGoalDialog } from '../EditGoalDialog/EditGoalDialog';
 import { AuthorDialog } from '../AuthorDialog/AuthorDialog';
 import {
 	selectAddGoalDialogOpened,
-	selectAddOperationDialogOpened, selectAuthorDialogOpened, selectEditGoalDialogOpened, selectEditGoalDialogPayload,
-	selectEditOperationDialogOpened, selectEditOperationDialogPayload
+	selectAddOperationDialogOpened,
+	selectAuthorDialogOpened,
+	selectEditGoalDialogOpened,
+	selectEditGoalDialogPayload,
+	selectEditOperationDialogOpened,
+	selectEditOperationDialogPayload
 } from "../../../store/selectors/dialogs.selectors";
 
 class DialogsContainer extends React.Component {
@@ -69,50 +74,46 @@ DialogsContainer.propTypes = {
 	editGoalDialogPayload: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
-	return {
-		addOperationDialogOpened: selectAddOperationDialogOpened(state),
-		editOperationDialogOpened: selectEditOperationDialogOpened(state),
-		editOperationDialogPayload: selectEditOperationDialogPayload(state),
-		addGoalDialogOpened: selectAddGoalDialogOpened(state),
-		editGoalDialogOpened: selectEditGoalDialogOpened(state),
-		editGoalDialogPayload: selectEditGoalDialogPayload(state),
-		authorDialogOpened: selectAuthorDialogOpened(state)
-	}
-};
+const mapStateToProps = state => ({
+	addOperationDialogOpened: selectAddOperationDialogOpened(state),
+	editOperationDialogOpened: selectEditOperationDialogOpened(state),
+	editOperationDialogPayload: selectEditOperationDialogPayload(state),
+	addGoalDialogOpened: selectAddGoalDialogOpened(state),
+	editGoalDialogOpened: selectEditGoalDialogOpened(state),
+	editGoalDialogPayload: selectEditGoalDialogPayload(state),
+	authorDialogOpened: selectAuthorDialogOpened(state)
+});
 
-const mapDispatchToProps = dispatch => {
-	return {
-		closeAddOperationDialog: result => {
-			if (result !== undefined) {
-				dispatch(addOperationAction(result));
-			}
+const mapDispatchToProps = dispatch => ({
+	closeAddOperationDialog: result => {
+		if (result !== undefined) {
+			dispatch(addOperationAction(result));
+		}
 
-			dispatch(closeAddOperationDialogAction());
-		},
-		closeEditOperationDialog: result => {
-			if (result !== undefined) {
-				dispatch(editOperationAction(result));
-			}
+		dispatch(closeAddOperationDialogAction());
+	},
+	closeEditOperationDialog: result => {
+		if (result !== undefined) {
+			dispatch(editOperationAction(result));
+		}
 
-			dispatch(closeEditOperationDialogAction());
-		},
-		closeAddGoalDialog: result => {
-			if (result !== undefined) {
-				dispatch(addGoalAction(result));
-			}
+		dispatch(closeEditOperationDialogAction());
+	},
+	closeAddGoalDialog: result => {
+		if (result !== undefined) {
+			dispatch(addGoalAction(result));
+		}
 
-			dispatch(closeAddGoalDialogAction());
-		},
-		closeEditGoalDialog: result => {
-			if (result !== undefined) {
-				dispatch(editGoalAction(result));
-			}
+		dispatch(closeAddGoalDialogAction());
+	},
+	closeEditGoalDialog: result => {
+		if (result !== undefined) {
+			dispatch(editGoalAction(result));
+		}
 
-			dispatch(closeEditGoalDialogAction());
-		},
-		closeAuthorDialog: () => dispatch(closeAuthorDialogAction())
-	}
-};
+		dispatch(closeEditGoalDialogAction());
+	},
+	closeAuthorDialog: () => dispatch(closeAuthorDialogAction())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);

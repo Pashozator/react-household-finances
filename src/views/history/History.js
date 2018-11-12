@@ -35,19 +35,15 @@ History.propTypes = {
 };
 
 
-const mapStateToProps = state => {
-	return {
-		debit: selectDebit(state),
-		operations: selectOperations(state)
-	}
-};
+const mapStateToProps = state => ({
+	debit: selectDebit(state),
+	operations: selectOperations(state)
+});
 
-const mapDispatchToProps = dispatch => {
-	return {
-		onOperationRemove: operation => dispatch(removeOperationAction(operation)),
-		onOperationEdit: operation => dispatch(openEditOperationDialogAction(operation)),
-		onGetBudget: () => dispatch(getBudgetAction())
-	}
-};
+const mapDispatchToProps = dispatch => ({
+	onOperationRemove: operation => dispatch(removeOperationAction(operation)),
+	onOperationEdit: operation => dispatch(openEditOperationDialogAction(operation)),
+	onGetBudget: () => dispatch(getBudgetAction())
+});
 
 export const VisibleHistory = connect(mapStateToProps, mapDispatchToProps)(History);
