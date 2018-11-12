@@ -11,76 +11,26 @@ export const CLOSE_AUTHOR_DIALOG = '[Dialogs] Close author dialog';
 export const OPEN_ERROR_DIALOG = '[Dialogs] Open error dialog';
 export const CLOSE_ERROR_DIALOG = '[Dialogs] Close error dialog';
 
-export const openAddOperationDialogAction = () => {
-	return {
-		type: OPEN_ADD_OPERATION_DIALOG
-	}
-};
+export const openAddOperationDialogAction = () => ({ type: OPEN_ADD_OPERATION_DIALOG });
 
-export const closeAddOperationDialogAction = () => {
-	return {
-		type: CLOSE_ADD_OPERATION_DIALOG
-	}
-};
+export const closeAddOperationDialogAction = () => ({ type: CLOSE_ADD_OPERATION_DIALOG });
 
-export const openEditOperationDialogAction = operation => {
-	return {
-		type: OPEN_EDIT_OPERATION_DIALOG,
-		payload: operation
-	}
-};
+export const openEditOperationDialogAction = operation => ({ type: OPEN_EDIT_OPERATION_DIALOG, payload: operation });
 
-export const closeEditOperationDialogAction = () => {
-	return {
-		type: CLOSE_EDIT_OPERATION_DIALOG
-	}
-};
+export const closeEditOperationDialogAction = () => ({ type: CLOSE_EDIT_OPERATION_DIALOG });
 
-export const openAddGoalDialogAction = () => {
-	return {
-		type: OPEN_ADD_GOAL_DIALOG
-	}
-};
+export const openAddGoalDialogAction = () => ({ type: OPEN_ADD_GOAL_DIALOG });
 
-export const closeAddGoalDialogAction = () => {
-	return {
-		type: CLOSE_ADD_GOAL_DIALOG
-	}
-};
+export const closeAddGoalDialogAction = () => ({ type: CLOSE_ADD_GOAL_DIALOG });
 
-export const openEditGoalDialogAction = goal => {
-	return {
-		type: OPEN_EDIT_GOAL_DIALOG,
-		payload: goal
-	}
-};
+export const openEditGoalDialogAction = goal => ({ type: OPEN_EDIT_GOAL_DIALOG, payload: goal });
 
-export const closeEditGoalDialogAction = () => {
-	return {
-		type: CLOSE_EDIT_GOAL_DIALOG
-	}
-};
+export const closeEditGoalDialogAction = () => ({ type: CLOSE_EDIT_GOAL_DIALOG });
 
-export const openAuthorDialogAction = () => {
-	return {
-		type: OPEN_AUTHOR_DIALOG
-	}
-};
+export const openAuthorDialogAction = () => ({ type: OPEN_AUTHOR_DIALOG });
 
-export const closeAuthorDialogAction = () => {
-	return {
-		type: CLOSE_AUTHOR_DIALOG
-	}
-};
+export const closeAuthorDialogAction = () => ({ type: CLOSE_AUTHOR_DIALOG });
 
-export const openErrorDialogAction = () => {
-	return {
-		type: OPEN_ERROR_DIALOG
-	}
-};
+export const openErrorDialogAction = () => ({ type: OPEN_ERROR_DIALOG });
 
-export const closeErrorDialogAction = () => {
-	return {
-		type: CLOSE_ERROR_DIALOG
-	}
-};
+export const closeErrorDialogAction = () => ({ type: CLOSE_ERROR_DIALOG });

@@ -12,88 +12,28 @@ export const REMOVE_OPERATION_SUCCESS = '[Budget] Remove operation success';
 export const REMOVE_OPERATION_FAILURE = '[Budget] Remove operation failure';
 export const REDUCE_DEBIT = '[Budget] Reduce debit';
 
-export const getBudgetAction = () => {
-	return {
-		type: GET_BUDGET
-	}
-};
+export const getBudgetAction = () => ({ type: GET_BUDGET });
 
-export const getBudgetSuccess = budget => {
-	return {
-		type: GET_BUDGET_SUCCESS,
-		payload: budget
-	}
-};
+export const getBudgetSuccess = budget => ({ type: GET_BUDGET_SUCCESS, payload: budget });
 
-export const getBudgetFailure = () => {
-	return {
-		type: GET_BUDGET_FAILURE
-	}
-};
+export const getBudgetFailure = () => ({ type: GET_BUDGET_FAILURE });
 
-export const addOperationAction = operation => {
-	return {
-		type: ADD_OPERATION,
-		payload: operation
-	}
-};
+export const addOperationAction = operation => ({ type: ADD_OPERATION, payload: operation });
 
-export const addOperationSuccessAction = operation => {
-	return {
-		type: ADD_OPERATION_SUCCESS,
-		payload: operation
-	}
-};
+export const addOperationSuccessAction = operation => ({ type: ADD_OPERATION_SUCCESS, payload: operation });
 
-export const addOperationFailureAction = () => {
-	return {
-		type: ADD_OPERATION_FAILURE
-	}
-};
+export const addOperationFailureAction = () => ({ type: ADD_OPERATION_FAILURE });
 
-export const editOperationAction = operation => {
-	return {
-		type: EDIT_OPERATION,
-		payload: operation
-	}
-};
+export const editOperationAction = operation => ({ type: EDIT_OPERATION, payload: operation });
 
-export const editOperationSuccessAction = operation => {
-	return {
-		type: EDIT_OPERATION_SUCCESS,
-		payload: operation
-	}
-};
+export const editOperationSuccessAction = operation => ({ type: EDIT_OPERATION_SUCCESS, payload: operation });
 
-export const editOperationFailureAction = () => {
-	return {
-		type: EDIT_OPERATION_FAILURE
-	}
-};
+export const editOperationFailureAction = () => ({ type: EDIT_OPERATION_FAILURE });
 
-export const removeOperationAction = operation => {
-	return {
-		type: REMOVE_OPERATION,
-		payload: operation
-	}
-};
+export const removeOperationAction = operation => ({ type: REMOVE_OPERATION, payload: operation });
 
-export const removeOperationSuccessAction = operation => {
-	return {
-		type: REMOVE_OPERATION_SUCCESS,
-		payload: operation
-	}
-};
+export const removeOperationSuccessAction = operation => ({ type: REMOVE_OPERATION_SUCCESS, payload: operation });
 
-export const removeOperationFailureAction = () => {
-	return {
-		type: REMOVE_OPERATION_FAILURE
-	}
-};
+export const removeOperationFailureAction = () => ({ type: REMOVE_OPERATION_FAILURE });
 
-export const reduceDebitAction = goal => {
-	return {
-		type: REDUCE_DEBIT,
-		payload: goal
-	}
-};
+export const reduceDebitAction = goal => ({ type: REDUCE_DEBIT, payload: goal });
