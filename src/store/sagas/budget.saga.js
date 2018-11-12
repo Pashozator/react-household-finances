@@ -7,6 +7,7 @@ import { editOperationFailureAction } from '../actions/budget.actions';
 import { editOperationSuccessAction } from '../actions/budget.actions';
 import { removeOperationFailureAction } from '../actions/budget.actions';
 import { removeOperationSuccessAction } from '../actions/budget.actions';
+import { openErrorDialogAction } from '../actions/dialogs.actions';
 
 function* getBudget() {
 	try {
@@ -56,11 +57,19 @@ function* removeOperation(action) {
 	}
 }
 
+function* failureHandler() {
+	yield put(openErrorDialogAction());
+}
+
 export function* budgetSagas() {
 	yield all([
 		yield takeLatest(BudgetActions.GET_BUDGET, getBudget),
 		yield takeLatest(BudgetActions.ADD_OPERATION, addOperation),
 		yield takeLatest(BudgetActions.EDIT_OPERATION, editOperation),
-		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperation)
+		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperation),
+		yield takeLatest(BudgetActions.GET_BUDGET_FAILURE, failureHandler),
+		yield takeLatest(BudgetActions.ADD_OPERATION_FAILURE, failureHandler),
+		yield takeLatest(BudgetActions.EDIT_OPERATION_FAILURE, failureHandler),
+		yield takeLatest(BudgetActions.REMOVE_OPERATION_FAILURE, failureHandler)
 	]);
 }

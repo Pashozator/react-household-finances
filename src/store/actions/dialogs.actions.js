@@ -8,6 +8,8 @@ export const OPEN_EDIT_GOAL_DIALOG = '[Dialogs] Open edit goal dialog';
 export const CLOSE_EDIT_GOAL_DIALOG = '[Dialogs] Close edit goal dialog';
 export const OPEN_AUTHOR_DIALOG = '[Dialogs] Open author dialog';
 export const CLOSE_AUTHOR_DIALOG = '[Dialogs] Close author dialog';
+export const OPEN_ERROR_DIALOG = '[Dialogs] Open error dialog';
+export const CLOSE_ERROR_DIALOG = '[Dialogs] Close error dialog';
 
 export const openAddOperationDialogAction = () => {
 	return {
@@ -68,5 +70,17 @@ export const openAuthorDialogAction = () => {
 export const closeAuthorDialogAction = () => {
 	return {
 		type: CLOSE_AUTHOR_DIALOG
+	}
+};
+
+export const openErrorDialogAction = () => {
+	return {
+		type: OPEN_ERROR_DIALOG
+	}
+};
+
+export const closeErrorDialogAction = () => {
+	return {
+		type: CLOSE_ERROR_DIALOG
 	}
 };

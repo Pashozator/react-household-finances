@@ -8,7 +8,7 @@ import {
 	closeAddOperationDialogAction,
 	closeAuthorDialogAction,
 	closeEditGoalDialogAction,
-	closeEditOperationDialogAction
+	closeEditOperationDialogAction, closeErrorDialogAction
 } from '../../../store/actions/dialogs.actions';
 import { addOperationAction, editOperationAction } from '../../../store/actions/budget.actions';
 import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
@@ -22,8 +22,9 @@ import {
 	selectEditGoalDialogOpened,
 	selectEditGoalDialogPayload,
 	selectEditOperationDialogOpened,
-	selectEditOperationDialogPayload
-} from "../../../store/selectors/dialogs.selectors";
+	selectEditOperationDialogPayload, selectErrorDialogOpened
+} from '../../../store/selectors/dialogs.selectors';
+import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
 
 class DialogsContainer extends React.Component {
 	constructor(props) {
@@ -55,6 +56,10 @@ class DialogsContainer extends React.Component {
 					open={this.props.authorDialogOpened}
 					onClose={this.props.closeAuthorDialog}
 				/>
+				<ErrorDialog
+					open={this.props.errorDialogOpened}
+					onClose={this.props.closeErrorDialog}
+				/>
 			</>
 		);
 	}
@@ -71,7 +76,8 @@ DialogsContainer.propTypes = {
 	closeEditOperationDialog: PropTypes.func.isRequired,
 	closeEditGoalDialog: PropTypes.func.isRequired,
 	editOperationDialogPayload: PropTypes.object.isRequired,
-	editGoalDialogPayload: PropTypes.object.isRequired
+	editGoalDialogPayload: PropTypes.object.isRequired,
+	errorDialogOpened: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -81,7 +87,8 @@ const mapStateToProps = state => ({
 	addGoalDialogOpened: selectAddGoalDialogOpened(state),
 	editGoalDialogOpened: selectEditGoalDialogOpened(state),
 	editGoalDialogPayload: selectEditGoalDialogPayload(state),
-	authorDialogOpened: selectAuthorDialogOpened(state)
+	authorDialogOpened: selectAuthorDialogOpened(state),
+	errorDialogOpened: selectErrorDialogOpened(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -113,7 +120,8 @@ const mapDispatchToProps = dispatch => ({
 
 		dispatch(closeEditGoalDialogAction());
 	},
-	closeAuthorDialog: () => dispatch(closeAuthorDialogAction())
+	closeAuthorDialog: () => dispatch(closeAuthorDialogAction()),
+	closeErrorDialog: () => dispatch(closeErrorDialogAction())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DialogsContainer);
