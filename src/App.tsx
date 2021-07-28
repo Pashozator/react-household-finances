@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
 import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
 import { GoalsView } from './views/GoalsView/GoalsView';
-import { HistoryView } from './views/HistoryView/HistoryView';
+import { BudgetView } from './views/BudgetView/BudgetView';
 import { DialogsContainer } from './components/dialogs/DialogsContainer/DialogsContainer';
 import moment from 'moment';
 
@@ -41,7 +41,7 @@ export const App: React.FC = () => {
 							<nav>
 								<ul>
 									<li><NavLink className="link" activeClassName="active"
-												 to="/history">History</NavLink></li>
+												 to="/budget">Budget</NavLink></li>
 									<li><NavLink className="link" activeClassName="active"
 												 to="/goals">Goals</NavLink></li>
 								</ul>
@@ -51,9 +51,9 @@ export const App: React.FC = () => {
 				</header>
 
 				<Switch>
-					<Route path="/history" component={HistoryView}/>
+					<Route path="/budget" component={BudgetView}/>
 					<Route path="/goals" component={GoalsView}/>
-					<Redirect from="/" to="/history"/>
+					<Redirect from="/" to="/budget"/>
 				</Switch>
 
 				<Fab color="primary" className="fab" onClick={openMenu}>

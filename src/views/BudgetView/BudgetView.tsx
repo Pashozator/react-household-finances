@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HistoryViewProps } from './HistoryView.props';
+import { BudgetViewProps } from './BudgetView.props';
 import { Operation as OperationComponent } from '../../components/history/Operation/Operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
@@ -7,7 +7,7 @@ import { Operation } from '../../domain/interfaces/operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
 
-export const HistoryView: React.FC<HistoryViewProps> = () => {
+export const BudgetView: React.FC<BudgetViewProps> = () => {
 	const dispatch = useDispatch();
 	const operations = useSelector(selectOperations);
 	const debit = useSelector(selectDebit);
