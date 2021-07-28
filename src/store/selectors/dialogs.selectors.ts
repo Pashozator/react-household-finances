@@ -34,11 +34,6 @@ export const selectEditGoalDialogPayload = createSelector(
 	(state: DialogsState) => state.editGoalDialogPayload
 );
 
-export const selectAuthorDialogOpened = createSelector(
-	selectDialogs,
-	(state: DialogsState) => state.authorDialogOpened
-);
-
 export const selectErrorDialogOpened = createSelector(
 	selectDialogs,
 	(state: DialogsState) => state.errorDialogOpened

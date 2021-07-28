@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import './App.scss';
 import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import {
-	openAddGoalDialogAction,
-	openAddOperationDialogAction,
-	openAuthorDialogAction
-} from './store/actions/dialogs.actions';
+import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
 import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
 import { Goals } from './views/Goals/Goals';
 import { History } from './views/History/History';
@@ -30,8 +25,6 @@ export const App: React.FC = () => {
 		closeMenu();
 	};
 
-	const openAuthorDialog = () => dispatch(openAuthorDialogAction());
-
 	return (
 		<Router>
 			<>
@@ -39,7 +32,6 @@ export const App: React.FC = () => {
 					<div className="wrapper">
 						<div className="header-top">
 							<span className="header-top-logo">Household finances</span>
-							<a className="header-top-author" onClick={openAuthorDialog}>Author</a>
 						</div>
 						<div className="header-links">
 							<div className="header-links-date">

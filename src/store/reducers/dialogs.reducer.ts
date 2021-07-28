@@ -9,7 +9,6 @@ export const dialogsInitialState: DialogsState = {
 	addGoalDialogOpened: false,
 	editGoalDialogOpened: false,
 	editGoalDialogPayload: { id: '', label: '', value: 0, description: '', realized: false },
-	authorDialogOpened: false,
 	errorDialogOpened: false
 };
 
@@ -38,12 +37,6 @@ export function dialogsReducer(state: DialogsState = dialogsInitialState, action
 		}
 		case DialogsActions.CLOSE_EDIT_GOAL_DIALOG: {
 			return { ...state, editGoalDialogOpened: false, editGoalDialogPayload: { id: null, label: '', value: '', description: '' } };
-		}
-		case DialogsActions.OPEN_AUTHOR_DIALOG: {
-			return { ...state, authorDialogOpened: true };
-		}
-		case DialogsActions.CLOSE_AUTHOR_DIALOG: {
-			return { ...state, authorDialogOpened: false };
 		}
 		case DialogsActions.OPEN_ERROR_DIALOG: {
 			return { ...state, errorDialogOpened: true };

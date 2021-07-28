@@ -1,7 +1,6 @@
 import React from 'react';
 import { AddOperationDialog } from '../../history/AddOperationDialog/AddOperationDialog';
 import { AddGoalDialog } from '../../goals/AddGoalDialog/AddGoalDialog';
-import { AuthorDialog } from '../AuthorDialog/AuthorDialog';
 import { DialogsContainerProps } from './DialogsContainer.props';
 import { EditOperationDialog } from '../../history/EditOperationDialog/EditOperationDialog';
 import { EditGoalDialog } from '../../goals/EditGoalDialog/EditGoalDialog';
@@ -9,14 +8,20 @@ import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectAddGoalDialogOpened,
-	selectAddOperationDialogOpened, selectAuthorDialogOpened, selectEditGoalDialogOpened, selectEditGoalDialogPayload,
-	selectEditOperationDialogOpened, selectEditOperationDialogPayload, selectErrorDialogOpened
+	selectAddOperationDialogOpened,
+	selectEditGoalDialogOpened,
+	selectEditGoalDialogPayload,
+	selectEditOperationDialogOpened,
+	selectEditOperationDialogPayload,
+	selectErrorDialogOpened
 } from '../../../store/selectors/dialogs.selectors';
 import { addOperationAction, editOperationAction } from '../../../store/actions/budget.actions';
 import {
 	closeAddGoalDialogAction,
-	closeAddOperationDialogAction, closeAuthorDialogAction, closeEditGoalDialogAction,
-	closeEditOperationDialogAction, closeErrorDialogAction
+	closeAddOperationDialogAction,
+	closeEditGoalDialogAction,
+	closeEditOperationDialogAction,
+	closeErrorDialogAction
 } from '../../../store/actions/dialogs.actions';
 import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
 
@@ -28,7 +33,6 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = (props: Dialogs
 	const addGoalDialogOpened = useSelector(selectAddGoalDialogOpened);
 	const editGoalDialogOpened = useSelector(selectEditGoalDialogOpened);
 	const editGoalDialogPayload = useSelector(selectEditGoalDialogPayload);
-	const authorDialogOpened = useSelector(selectAuthorDialogOpened);
 	const errorDialogOpened = useSelector(selectErrorDialogOpened);
 
 	const closeAddOperationDialog = (result: any) => {
@@ -63,8 +67,6 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = (props: Dialogs
 		dispatch(closeEditGoalDialogAction());
 	}
 
-	const closeAuthorDialog = () => dispatch(closeAuthorDialogAction());
-
 	const closeErrorDialog = () => dispatch(closeErrorDialogAction());
 
 	return (
@@ -86,10 +88,6 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = (props: Dialogs
 				open={editGoalDialogOpened}
 				goal={editGoalDialogPayload}
 				onClose={closeEditGoalDialog}
-			/>
-			<AuthorDialog
-				open={authorDialogOpened}
-				onClose={closeAuthorDialog}
 			/>
 			<ErrorDialog
 				open={errorDialogOpened}

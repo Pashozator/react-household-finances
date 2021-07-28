@@ -8,6 +8,5 @@ export interface DialogsState {
 	addGoalDialogOpened: boolean;
 	editGoalDialogOpened: boolean;
 	editGoalDialogPayload: Goal;
-	authorDialogOpened: boolean;
 	errorDialogOpened: boolean;
 }
