@@ -6,6 +6,7 @@ import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
 import { Goals } from './views/Goals/Goals';
 import { History } from './views/History/History';
 import { DialogsContainer } from './components/dialogs/DialogsContainer/DialogsContainer';
+import moment from 'moment';
 
 export const App: React.FC = () => {
 	const [anchorEl, setAnchorEl] = useState<any>();
@@ -35,7 +36,7 @@ export const App: React.FC = () => {
 						</div>
 						<div className="header-links">
 							<div className="header-links-date">
-								2021
+								{moment().format('YYYY')}
 							</div>
 							<nav>
 								<ul>
