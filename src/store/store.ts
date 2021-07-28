@@ -5,8 +5,9 @@ import { rootReducer } from './reducers/root.reducer';
 import { rootSaga } from './sagas/root.saga';
 import { budgetInitialState } from './reducers/budget.reducer';
 import { goalsInitialState } from './reducers/goals.reducer';
+import { dialogsInitialState } from './reducers/dialogs.reducer';
 
 const sagaMiddleware: SagaMiddleware = createSagaMiddleware();
-export const store: Store = createStore(rootReducer, { budget: budgetInitialState, goals: goalsInitialState }, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+export const store: Store = createStore(rootReducer, { budget: budgetInitialState, goals: goalsInitialState, dialogs: dialogsInitialState }, composeWithDevTools(applyMiddleware(sagaMiddleware)));
 
 sagaMiddleware.run(rootSaga);
