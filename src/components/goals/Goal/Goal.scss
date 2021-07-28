@@ -1,0 +1,29 @@
+p {
+  margin: 10px 0 10px 0;
+  width: 100%;
+}
+
+.numbers {
+  margin: 10px 0 10px 0;
+  justify-content: space-between;
+  flex-direction: row;
+  display: flex;
+}
+
+.divider {
+  margin: 5px 0 5px 0;
+  width: 100%;
+  border: 1px solid #e5e5e5;
+}
+
+.realized {
+  opacity: .6;
+}
+
+.header {
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  display: flex;
+}
