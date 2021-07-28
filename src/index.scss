@@ -1,13 +1,91 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import '~normalize.css/normalize.css';
+@import './styles/colors';
+
+* {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html, body {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.fab {
+  position: fixed!important;
+  bottom: 20px;
+  right: 20px;
+}
+
+.wrapper {
+  margin: 0 auto 0 auto;
+  width: 95%;
+}
+
+.padding-top-25 {
+  padding: 25px 0 0 0;
+}
+
+header {
+  padding: 25px 0;
+  width: 100%;
+  background: $purple;
+  color: #fff;
+
+  .header-top {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid $light-purple;
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+
+    .header-top-logo {
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .header-top-author {
+      cursor: pointer;
+    }
+  }
+
+  .header-links {
+    padding: 25px 0 0 0;
+    justify-content: flex-start;
+    flex-direction: row;
+    display: flex;
+
+    .header-links-date {
+      padding: 0 25px 0 0;
+      border-right: 2px solid $light-purple;
+    }
+
+    nav {
+      margin: 0 0 0 25px;
+
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        .active {
+          opacity: .7;
+        }
+
+        li {
+          margin: 0 20px 0 0;
+          display: inline;
+
+          .link {
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+              opacity: .7;
+            }
+          }
+        }
+      }
+    }
+  }
 }
