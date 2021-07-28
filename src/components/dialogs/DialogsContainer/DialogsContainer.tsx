@@ -1,10 +1,10 @@
 import React from 'react';
-import { AddOperationDialog } from '../AddOperationDialog/AddOperationDialog';
-import { AddGoalDialog } from '../AddGoalDialog/AddGoalDialog';
+import { AddOperationDialog } from '../../history/AddOperationDialog/AddOperationDialog';
+import { AddGoalDialog } from '../../goals/AddGoalDialog/AddGoalDialog';
 import { AuthorDialog } from '../AuthorDialog/AuthorDialog';
 import { DialogsContainerProps } from './DialogsContainer.props';
-import { EditOperationDialog } from '../EditOperationDialog/EditOperationDialog';
-import { EditGoalDialog } from '../EditGoalDialog/EditGoalDialog';
+import { EditOperationDialog } from '../../history/EditOperationDialog/EditOperationDialog';
+import { EditGoalDialog } from '../../goals/EditGoalDialog/EditGoalDialog';
 import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import {

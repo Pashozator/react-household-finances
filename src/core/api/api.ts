@@ -2,7 +2,7 @@ import { Endpoint } from './interfaces/endpoint';
 import { RequestMethod } from './enums/request-method.enum';
 import { QueryParam } from './interfaces/query-param';
 
-export class ApiService {
+export class Api {
 	private base: string = process.env.REACT_APP_HOST as string;
 	private headers: any = {
 		'Content-Type': 'application/json',
@@ -94,4 +94,4 @@ export class ApiService {
 	}
 }
 
-export const apiService = new ApiService();
+export const api = new Api();

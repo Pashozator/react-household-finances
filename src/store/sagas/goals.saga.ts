@@ -5,7 +5,7 @@ import {
 	editGoalSuccessAction, getGoalsFailureAction, getGoalsSuccessAction, GoalsActions, realizeGoalFailureAction,
 	realizeGoalSuccessAction, removeGoalFailureAction, removeGoalSuccessAction
 } from '../actions/goals.actions';
-import { apiService } from '../../core/api/api';
+import { api } from '../../core/api/api';
 import { getGoals } from '../../domain/endpoints/goals/goals.get.endpoint';
 import { postGoal } from '../../domain/endpoints/goals/goal.post.endpoint';
 import { deleteGoal } from '../../domain/endpoints/goals/goal.delete.endpoint';
@@ -14,7 +14,7 @@ import { patchGoal } from '../../domain/endpoints/goals/goal.patch.endpoint';
 
 function* getGoalsSaga(): Generator {
 	try {
-		const response: any = yield apiService.request(getGoals());
+		const response: any = yield api.request(getGoals());
 
 		yield put(getGoalsSuccessAction(response.data));
 	} catch (err) {
@@ -25,7 +25,7 @@ function* getGoalsSaga(): Generator {
 
 function* addGoalSaga(action: any): Generator {
 	try {
-		const response: any = yield apiService.request(postGoal(action.payload));
+		const response: any = yield api.request(postGoal(action.payload));
 
 		yield put(addGoalSuccessAction(response.data));
 	} catch (err) {
@@ -36,7 +36,7 @@ function* addGoalSaga(action: any): Generator {
 
 function* removeGoalSaga(action: any): Generator {
 	try {
-		yield apiService.request(deleteGoal({ id: action.payload.id }));
+		yield api.request(deleteGoal({ id: action.payload.id }));
 		yield put(removeGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -46,7 +46,7 @@ function* removeGoalSaga(action: any): Generator {
 
 function* editGoalSaga(action: any): Generator {
 	try {
-		yield apiService.request(putGoal({ id: action.payload.id }, action.payload ));
+		yield api.request(putGoal({ id: action.payload.id }, action.payload ));
 		yield put(editGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -56,7 +56,7 @@ function* editGoalSaga(action: any): Generator {
 
 function* realizeGoalSaga(action: any): Generator {
 	try {
-		yield apiService.request(patchGoal({ id: action.payload.id }));
+		yield api.request(patchGoal({ id: action.payload.id }));
 		yield put(realizeGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);

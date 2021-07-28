@@ -6,7 +6,7 @@ import { editOperationFailureAction } from '../actions/budget.actions';
 import { editOperationSuccessAction } from '../actions/budget.actions';
 import { removeOperationFailureAction } from '../actions/budget.actions';
 import { removeOperationSuccessAction } from '../actions/budget.actions';
-import { apiService } from '../../core/api/api';
+import { api } from '../../core/api/api';
 import { getBudget } from '../../domain/endpoints/budget/budget.get.endpoint';
 import { postOperation } from '../../domain/endpoints/budget/operation.post.endpoint';
 import { putOperation } from '../../domain/endpoints/budget/operation.put.endpoint';
@@ -14,7 +14,7 @@ import { deleteOperation } from '../../domain/endpoints/budget/operation.delete.
 
 function* getBudgetSaga(): Generator {
 	try {
-		const response: any = yield apiService.request(getBudget());
+		const response: any = yield api.request(getBudget());
 
 		yield put(getBudgetSuccess(response.data));
 	} catch (err) {
@@ -25,7 +25,7 @@ function* getBudgetSaga(): Generator {
 
 function* addOperationSaga(action: any): Generator {
 	try {
-		const response: any = yield apiService.request(postOperation(action.payload));
+		const response: any = yield api.request(postOperation(action.payload));
 
 		yield put(addOperationSuccessAction(response.data));
 	} catch (err) {
@@ -36,7 +36,7 @@ function* addOperationSaga(action: any): Generator {
 
 function* editOperationSaga(action: any): Generator {
 	try {
-		yield apiService.request(putOperation({ id:action.payload.id }, action.payload ));
+		yield api.request(putOperation({ id:action.payload.id }, action.payload ));
 		yield put(editOperationSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -46,7 +46,7 @@ function* editOperationSaga(action: any): Generator {
 
 function* removeOperationSaga(action: any): Generator {
 	try {
-		yield apiService.request(deleteOperation({ id: action.payload.id }));
+		yield api.request(deleteOperation({ id: action.payload.id }));
 		yield put(removeOperationSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
