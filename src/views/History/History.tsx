@@ -24,7 +24,7 @@ export const History: React.FC<HistoryProps> = () => {
 
 	return (
 		<div className="wrapper">
-			<h3>Aktualny stan budżetu: {debit}</h3>
+			<h3>Debit: {debit}</h3>
 			{operations.map((operation, index) => (
 				<OperationComponent operation={operation} key={index} onRemove={onOperationRemove}
 						   onEdit={onOperationEdit}/>))}
