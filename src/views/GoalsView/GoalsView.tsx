@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { GoalsProps } from './Goals.props';
+import { GoalsViewProps } from './GoalsView.props';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectGoals } from '../../store/selectors/goals.selectors';
 import { selectDebit } from '../../store/selectors/budget.selectors';
@@ -8,7 +8,7 @@ import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store
 import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
 import { Goal } from '../../domain/interfaces/goal';
 
-export const Goals: React.FC<GoalsProps> = () => {
+export const GoalsView: React.FC<GoalsViewProps> = () => {
 	const dispatch = useDispatch();
 	const goals = useSelector(selectGoals);
 	const debit = useSelector(selectDebit);

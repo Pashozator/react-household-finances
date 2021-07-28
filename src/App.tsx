@@ -3,8 +3,8 @@ import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react
 import { useDispatch } from 'react-redux';
 import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
 import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
-import { Goals } from './views/Goals/Goals';
-import { History } from './views/History/History';
+import { GoalsView } from './views/GoalsView/GoalsView';
+import { HistoryView } from './views/HistoryView/HistoryView';
 import { DialogsContainer } from './components/dialogs/DialogsContainer/DialogsContainer';
 import moment from 'moment';
 
@@ -51,8 +51,8 @@ export const App: React.FC = () => {
 				</header>
 
 				<Switch>
-					<Route path="/history" component={History}/>
-					<Route path="/goals" component={Goals}/>
+					<Route path="/history" component={HistoryView}/>
+					<Route path="/goals" component={GoalsView}/>
 					<Redirect from="/" to="/history"/>
 				</Switch>
 
