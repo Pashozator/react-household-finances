@@ -1,8 +1,6 @@
 import { BudgetState } from '../interfaces/budget-state.interface';
 import { BudgetActions } from '../actions/budget.actions';
 import { ActionWithPayload } from '../interfaces/action-with-payload.interface';
-import { v4 as uuid } from 'uuid';
-import moment from 'moment';
 
 export const budgetInitialState: BudgetState = {
 	operations: [],
@@ -60,17 +58,6 @@ export function budgetReducer(state: BudgetState = budgetInitialState, action: A
 		}
 		case BudgetActions.REMOVE_OPERATION_FAILURE: {
 			return state;
-		}
-		case BudgetActions.REDUCE_DEBIT: {
-			const operation = {
-				id: uuid(),
-				label: `Realizacja celu: ${action.payload.label}`,
-				date: moment().format('YYYY-MM-DD'),
-				value: -action.payload.value,
-				description: action.payload.description
-			};
-
-			return { operations: [operation, ...state.operations], debit: state.debit - action.payload.value };
 		}
 		default:
 			return state;

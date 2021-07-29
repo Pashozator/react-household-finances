@@ -1,6 +1,5 @@
 import { Budget } from '../../domain/interfaces/budget';
 import { Operation } from '../../domain/interfaces/operation';
-import { Goal } from '../../domain/interfaces/goal';
 
 export enum BudgetActions {
 	GET_BUDGET = '[Budget] Get budget',
@@ -15,7 +14,6 @@ export enum BudgetActions {
 	REMOVE_OPERATION = '[Budget] Remove Operation',
 	REMOVE_OPERATION_SUCCESS = '[Budget] Remove Operation success',
 	REMOVE_OPERATION_FAILURE = '[Budget] Remove Operation failure',
-	REDUCE_DEBIT = '[Budget] Reduce debit'
 }
 
 export const getBudgetAction = () => ({ type: BudgetActions.GET_BUDGET });
@@ -41,5 +39,3 @@ export const removeOperationAction = (operation: Operation) => ({ type: BudgetAc
 export const removeOperationSuccessAction = (operation: Operation) => ({ type: BudgetActions.REMOVE_OPERATION_SUCCESS, payload: operation });
 
 export const removeOperationFailureAction = () => ({ type: BudgetActions.REMOVE_OPERATION_FAILURE });
-
-export const reduceDebitAction = (goal: Goal) => ({ type: BudgetActions.REDUCE_DEBIT, payload: goal });
