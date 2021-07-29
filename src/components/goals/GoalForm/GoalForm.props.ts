@@ -1,11 +1,12 @@
 import { FormikErrors, FormikHelpers } from 'formik';
+import { GoalFormValues } from '../../../interfaces/goal-form-values';
 
 export interface GoalFormProps {
-	initialValues: any;
-	validate: (values: any) => FormikErrors<any>;
+	initialValues: GoalFormValues;
+	validate: (values: GoalFormValues) => FormikErrors<GoalFormValues>;
 	submit: (
-		values: any,
-		formikHelpers: FormikHelpers<any>,
-	) => void | Promise<any>;
+		values: GoalFormValues,
+		formikHelpers: FormikHelpers<GoalFormValues>,
+	) => void;
 	cancel: () => void;
 }

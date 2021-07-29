@@ -1,11 +1,16 @@
-import { BudgetActions, getBudgetFailure, getBudgetSuccess } from '../actions/budget.actions';
-import { all, put, takeLatest } from 'redux-saga/effects';
-import { addOperationFailureAction } from '../actions/budget.actions';
-import { addOperationSuccessAction } from '../actions/budget.actions';
-import { editOperationFailureAction } from '../actions/budget.actions';
-import { editOperationSuccessAction } from '../actions/budget.actions';
-import { removeOperationFailureAction } from '../actions/budget.actions';
-import { removeOperationSuccessAction } from '../actions/budget.actions';
+import { SagaIterator } from 'redux-saga';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
+import {
+	addOperationFailureAction,
+	addOperationSuccessAction,
+	BudgetActions,
+	editOperationFailureAction,
+	editOperationSuccessAction,
+	getBudgetFailure,
+	getBudgetSuccess,
+	removeOperationFailureAction,
+	removeOperationSuccessAction
+} from '../actions/budget.actions';
 import { api } from '../../core/api/api';
 import { getBudget } from '../../domain/endpoints/budget/budget.get.endpoint';
 import { postOperation } from '../../domain/endpoints/budget/operation.post.endpoint';
@@ -13,9 +18,9 @@ import { putOperation } from '../../domain/endpoints/budget/operation.put.endpoi
 import { deleteOperation } from '../../domain/endpoints/budget/operation.delete.endpoint';
 import { openErrorDialogAction } from '../actions/dialogs.actions';
 
-function* getBudgetSaga(): Generator {
+function* getBudgetSaga(): SagaIterator {
 	try {
-		const response: any = yield api.request(getBudget());
+		const response = yield call(() => api.request(getBudget()));
 
 		yield put(getBudgetSuccess(response.data));
 	} catch (err) {
@@ -24,9 +29,9 @@ function* getBudgetSaga(): Generator {
 	}
 }
 
-function* addOperationSaga(action: any): Generator {
+function* addOperationSaga(action: any): SagaIterator {
 	try {
-		const response: any = yield api.request(postOperation(action.payload));
+		const response = yield call(() => api.request(postOperation(action.payload)));
 
 		yield put(addOperationSuccessAction(response.data));
 	} catch (err) {
@@ -35,9 +40,9 @@ function* addOperationSaga(action: any): Generator {
 	}
 }
 
-function* editOperationSaga(action: any): Generator {
+function* editOperationSaga(action: any): SagaIterator {
 	try {
-		yield api.request(putOperation({ id:action.payload.id }, action.payload ));
+		yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload)));
 		yield put(editOperationSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -45,9 +50,9 @@ function* editOperationSaga(action: any): Generator {
 	}
 }
 
-function* removeOperationSaga(action: any): Generator {
+function* removeOperationSaga(action: any): SagaIterator {
 	try {
-		yield api.request(deleteOperation({ id: action.payload.id }));
+		yield call(() => api.request(deleteOperation({ id: action.payload.id })));
 		yield put(removeOperationSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -55,11 +60,11 @@ function* removeOperationSaga(action: any): Generator {
 	}
 }
 
-function* handleFailureSaga(): Generator {
+function* handleFailureSaga(): SagaIterator {
 	yield put(openErrorDialogAction());
 }
 
-export function* budgetSagas(): Generator {
+export function* budgetSagas(): SagaIterator {
 	yield all([
 		yield takeLatest(BudgetActions.GET_BUDGET, getBudgetSaga),
 		yield takeLatest(BudgetActions.ADD_OPERATION, addOperationSaga),

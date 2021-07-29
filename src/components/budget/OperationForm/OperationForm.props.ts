@@ -1,11 +1,12 @@
 import { FormikErrors, FormikHelpers } from 'formik';
+import { OperationFormValues } from '../../../interfaces/operation-form-values';
 
 export interface OperationFormProps {
-	initialValues: any;
-	validate: (values: any) => FormikErrors<any>;
+	initialValues: OperationFormValues;
+	validate: (values: OperationFormValues) => FormikErrors<OperationFormValues>;
 	submit: (
-		values: any,
-		formikHelpers: FormikHelpers<any>,
-	) => void | Promise<any>;
+		values: OperationFormValues,
+		formikHelpers: FormikHelpers<OperationFormValues>,
+	) => void;
 	cancel: () => void;
 }

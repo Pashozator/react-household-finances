@@ -1,9 +1,17 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
+import { SagaIterator } from 'redux-saga';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
-	addGoalFailureAction, addGoalSuccessAction,
+	addGoalFailureAction,
+	addGoalSuccessAction,
 	editGoalFailureAction,
-	editGoalSuccessAction, getGoalsFailureAction, getGoalsSuccessAction, GoalsActions, realizeGoalFailureAction,
-	realizeGoalSuccessAction, removeGoalFailureAction, removeGoalSuccessAction
+	editGoalSuccessAction,
+	getGoalsFailureAction,
+	getGoalsSuccessAction,
+	GoalsActions,
+	realizeGoalFailureAction,
+	realizeGoalSuccessAction,
+	removeGoalFailureAction,
+	removeGoalSuccessAction
 } from '../actions/goals.actions';
 import { api } from '../../core/api/api';
 import { getGoals } from '../../domain/endpoints/goals/goals.get.endpoint';
@@ -13,9 +21,9 @@ import { putGoal } from '../../domain/endpoints/goals/goal.put.endpoint';
 import { patchGoal } from '../../domain/endpoints/goals/goal.patch.endpoint';
 import { openErrorDialogAction } from '../actions/dialogs.actions';
 
-function* getGoalsSaga(): Generator {
+function* getGoalsSaga(): SagaIterator {
 	try {
-		const response: any = yield api.request(getGoals());
+		const response = yield call(() => api.request(getGoals()));
 
 		yield put(getGoalsSuccessAction(response.data));
 	} catch (err) {
@@ -24,9 +32,9 @@ function* getGoalsSaga(): Generator {
 	}
 }
 
-function* addGoalSaga(action: any): Generator {
+function* addGoalSaga(action: any): SagaIterator {
 	try {
-		const response: any = yield api.request(postGoal(action.payload));
+		const response = yield call(() => api.request(postGoal(action.payload)));
 
 		yield put(addGoalSuccessAction(response.data));
 	} catch (err) {
@@ -35,9 +43,9 @@ function* addGoalSaga(action: any): Generator {
 	}
 }
 
-function* removeGoalSaga(action: any): Generator {
+function* removeGoalSaga(action: any): SagaIterator {
 	try {
-		yield api.request(deleteGoal({ id: action.payload.id }));
+		yield call(() => api.request(deleteGoal({ id: action.payload.id })));
 		yield put(removeGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -45,9 +53,9 @@ function* removeGoalSaga(action: any): Generator {
 	}
 }
 
-function* editGoalSaga(action: any): Generator {
+function* editGoalSaga(action: any): SagaIterator {
 	try {
-		yield api.request(putGoal({ id: action.payload.id }, action.payload ));
+		yield call(() => api.request(putGoal({ id: action.payload.id }, action.payload)));
 		yield put(editGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -55,9 +63,9 @@ function* editGoalSaga(action: any): Generator {
 	}
 }
 
-function* realizeGoalSaga(action: any): Generator {
+function* realizeGoalSaga(action: any): SagaIterator {
 	try {
-		yield api.request(patchGoal({ id: action.payload.id }));
+		yield call(() => api.request(patchGoal({ id: action.payload.id })));
 		yield put(realizeGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
@@ -65,11 +73,11 @@ function* realizeGoalSaga(action: any): Generator {
 	}
 }
 
-function* handleFailureSaga(): Generator {
+function* handleFailureSaga(): SagaIterator {
 	yield put(openErrorDialogAction());
 }
 
-export function* goalsSagas(): Generator {
+export function* goalsSagas(): SagaIterator {
 	yield all([
 		yield takeLatest(GoalsActions.GET_GOALS, getGoalsSaga),
 		yield takeLatest(GoalsActions.ADD_GOAL, addGoalSaga),
