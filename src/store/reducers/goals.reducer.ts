@@ -1,7 +1,6 @@
 import { Goal } from '../../domain/interfaces/goal';
 import { ActionWithPayload } from '../interfaces/action-with-payload.interface';
 import { GoalsActions } from '../actions/goals.actions';
-import { v4 as uuid } from 'uuid';
 
 export const goalsInitialState: Goal[] = [];
 
