@@ -39,7 +39,7 @@ export const OperationForm: React.FC<OperationFormProps> = (props: OperationForm
 							   placeholder="Value"
 							   className="input"
 							   value={values.value}
-							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
+							   onChange={(e => setFieldValue(e.target.name, parseFloat(e.target.value)))}
 						/>
 						<TextField name="description"
 								   type="text"

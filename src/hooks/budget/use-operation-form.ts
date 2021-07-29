@@ -1,24 +1,25 @@
 import { useCallback, useState } from 'react';
 import { FormikErrors } from 'formik';
 import { Operation } from '../../domain/interfaces/operation';
+import { OperationFormValues } from '../../interfaces/operation-form-values';
 
 export function useOperationForm(): {
-	initialValues: any;
+	initialValues: OperationFormValues;
 	patchValues: (operation: Operation) => void;
-	validate: (values: any) => FormikErrors<any>;
+	validate: (values: OperationFormValues) => FormikErrors<OperationFormValues>;
 } {
-	const [initialValues, setInitialValues] = useState({
-		label: '',
-		value: '',
-		description: '',
-		date: '',
+	const [initialValues, setInitialValues] = useState<OperationFormValues>({
+		label: null,
+		value: null,
+		description: null,
+		date: null,
 	});
 
 	const patchValues = useCallback(
 		(operation: Operation): void => {
 			setInitialValues({
 				label: operation.label,
-				value: operation.value.toString(),
+				value: operation.value,
 				description: operation.description,
 				date: operation.date,
 			});
@@ -27,8 +28,8 @@ export function useOperationForm(): {
 	);
 
 	const validate = useCallback(
-		(values: any): FormikErrors<any> => {
-			const errors: any = {};
+		(values: OperationFormValues): FormikErrors<OperationFormValues> => {
+			const errors: FormikErrors<OperationFormValues> = {};
 
 			if (!values.label) {
 				errors.label = 'Label is required.';

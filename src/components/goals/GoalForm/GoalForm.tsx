@@ -32,7 +32,7 @@ export const GoalForm: React.FC<GoalFormProps> = (props: GoalFormProps) => {
 							   placeholder="Value"
 							   className="input"
 							   value={values.value}
-							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
+							   onChange={(e => setFieldValue(e.target.name, parseFloat(e.target.value)))}
 						/>
 						<TextField name="description"
 								   inputProps={{ type: 'text' }}

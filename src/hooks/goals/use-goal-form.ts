@@ -1,16 +1,17 @@
 import { useCallback, useState } from 'react';
 import { FormikErrors } from 'formik';
 import { Goal } from '../../domain/interfaces/goal';
+import { GoalFormValues } from '../../interfaces/goal-form-values';
 
 export function useGoalForm(): {
-	initialValues: any;
+	initialValues: GoalFormValues;
 	patchValues: (goal: Goal) => void;
-	validate: (values: any) => FormikErrors<any>;
+	validate: (values: GoalFormValues) => FormikErrors<GoalFormValues>;
 } {
-	const [initialValues, setInitialValues] = useState({
-		label: '',
-		value: '',
-		description: '',
+	const [initialValues, setInitialValues] = useState<GoalFormValues>({
+		label: null,
+		value: null,
+		description: null,
 	});
 
 	const patchValues = useCallback(
@@ -25,8 +26,8 @@ export function useGoalForm(): {
 	);
 
 	const validate = useCallback(
-		(values: any): FormikErrors<any> => {
-			const errors: any = {};
+		(values: GoalFormValues): FormikErrors<GoalFormValues> => {
+			const errors: FormikErrors<GoalFormValues> = {};
 
 			if (!values.label) {
 				errors.label = 'Label is required.';
