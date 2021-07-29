@@ -1,13 +1,13 @@
-import { BudgetState } from '../interfaces/budget-state.interface';
 import { BudgetActions } from '../actions/budget.actions';
 import { ActionWithPayload } from '../interfaces/action-with-payload.interface';
+import { Budget } from '../../domain/interfaces/budget';
 
-export const budgetInitialState: BudgetState = {
+export const budgetInitialState: Budget = {
 	operations: [],
 	debit: 0
 }
 
-export function budgetReducer(state: BudgetState = budgetInitialState, action: ActionWithPayload<BudgetActions>): BudgetState {
+export function budgetReducer(state: Budget = budgetInitialState, action: ActionWithPayload<BudgetActions>): Budget {
 	switch (action.type) {
 		case BudgetActions.GET_BUDGET: {
 			return state;
