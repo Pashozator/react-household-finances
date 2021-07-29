@@ -2,7 +2,7 @@ import React from 'react';
 import { ErrorDialogProps } from './ErrorDialog.props';
 import { Button, Dialog } from '@material-ui/core';
 
-export const ErrorDialog: React.FC<ErrorDialogProps> = (props: ErrorDialogProps) => {
+export const ErrorDialog: React.FC<ErrorDialogProps> = React.memo((props: ErrorDialogProps) => {
 	const { classes, onClose, ...other } = props;
 
 	const close = () => onClose();
@@ -17,5 +17,4 @@ export const ErrorDialog: React.FC<ErrorDialogProps> = (props: ErrorDialogProps)
 			</div>
 		</Dialog>
 	);
-}
-
+});

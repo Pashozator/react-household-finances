@@ -4,7 +4,7 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { OperationForm } from '../OperationForm/OperationForm';
 import { useOperationForm } from '../../../hooks/budget/use-operation-form';
 
-export const AddOperationDialog: React.FC<AddOperationDialogProps> = (props: AddOperationDialogProps) => {
+export const AddOperationDialog: React.FC<AddOperationDialogProps> = React.memo((props: AddOperationDialogProps) => {
 	const { classes, onClose, ...other } = props;
 	const { initialValues, validate } = useOperationForm();
 
@@ -18,4 +18,4 @@ export const AddOperationDialog: React.FC<AddOperationDialogProps> = (props: Add
 			<OperationForm initialValues={initialValues} validate={validate} cancel={close} submit={submit}/>
 		</Dialog>
 	);
-}
+});

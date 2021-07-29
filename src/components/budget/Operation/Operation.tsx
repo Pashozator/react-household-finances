@@ -3,7 +3,7 @@ import './Operation.scss';
 import { OperationProps } from './Operation.props';
 import { Button, Card, CardActions, CardContent } from '@material-ui/core';
 
-export const Operation: React.FC<OperationProps> = (props: OperationProps) => {
+export const Operation: React.FC<OperationProps> = React.memo((props: OperationProps) => {
 	const { className, operation, onRemove, onEdit } = props;
 
 	const remove = () => onRemove(operation);
@@ -30,4 +30,4 @@ export const Operation: React.FC<OperationProps> = (props: OperationProps) => {
 			</CardActions>
 		</Card>
 	);
-}
+});

@@ -5,7 +5,7 @@ import { AddGoalDialogProps } from './AddGoalDialog.props';
 import { GoalForm } from '../GoalForm/GoalForm';
 import { useGoalForm } from '../../../hooks/goals/use-goal-form';
 
-export const AddGoalDialog: React.FC<AddGoalDialogProps> = (props: AddGoalDialogProps) => {
+export const AddGoalDialog: React.FC<AddGoalDialogProps> = React.memo((props: AddGoalDialogProps) => {
 	const { classes, onClose, ...other } = props;
 	const { initialValues, validate } = useGoalForm();
 
@@ -19,4 +19,4 @@ export const AddGoalDialog: React.FC<AddGoalDialogProps> = (props: AddGoalDialog
 			<GoalForm initialValues={initialValues} validate={validate} cancel={close} submit={submit} />
 		</Dialog>
 	);
-}
+});

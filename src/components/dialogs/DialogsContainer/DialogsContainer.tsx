@@ -25,7 +25,7 @@ import {
 } from '../../../store/actions/dialogs.actions';
 import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
 
-export const DialogsContainer: React.FC<DialogsContainerProps> = (props: DialogsContainerProps) => {
+export const DialogsContainer: React.FC<DialogsContainerProps> = React.memo(() => {
 	const dispatch = useDispatch();
 	const addOperationDialogOpened = useSelector(selectAddOperationDialogOpened);
 	const editOperationDialogOpened = useSelector(selectEditOperationDialogOpened);
@@ -95,4 +95,4 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = (props: Dialogs
 			/>
 		</>
 	);
-}
+});

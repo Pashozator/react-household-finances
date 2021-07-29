@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import { GoalFormProps } from './GoalForm.props';
 import { Button, DialogActions, Input, TextField } from '@material-ui/core';
 
-export const GoalForm: React.FC<GoalFormProps> = (props: GoalFormProps) => {
+export const GoalForm: React.FC<GoalFormProps> = React.memo((props: GoalFormProps) => {
 	const { initialValues, validate, cancel, submit } = props;
 
 	return (
@@ -55,5 +55,4 @@ export const GoalForm: React.FC<GoalFormProps> = (props: GoalFormProps) => {
 			)}
 		</Formik>
 	);
-}
-
+});

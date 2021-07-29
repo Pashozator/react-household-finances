@@ -4,7 +4,7 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { useGoalForm } from '../../../hooks/goals/use-goal-form';
 import { GoalForm } from '../GoalForm/GoalForm';
 
-export const EditGoalDialog: React.FC<EditGoalDialogProps> = (props: EditGoalDialogProps) => {
+export const EditGoalDialog: React.FC<EditGoalDialogProps> = React.memo((props: EditGoalDialogProps) => {
 	const { classes, onClose, goal, ...other } = props;
 	const { initialValues, validate, patchValues } = useGoalForm();
 
@@ -22,4 +22,4 @@ export const EditGoalDialog: React.FC<EditGoalDialogProps> = (props: EditGoalDia
 			<GoalForm initialValues={initialValues} validate={validate} cancel={close} submit={submit} />
 		</Dialog>
 	);
-}
+});

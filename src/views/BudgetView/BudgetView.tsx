@@ -7,7 +7,7 @@ import { Operation } from '../../domain/interfaces/operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
 
-export const BudgetView: React.FC<BudgetViewProps> = () => {
+export const BudgetView: React.FC<BudgetViewProps> = React.memo(() => {
 	const dispatch = useDispatch();
 	const operations = useSelector(selectOperations);
 	const debit = useSelector(selectDebit);
@@ -30,4 +30,4 @@ export const BudgetView: React.FC<BudgetViewProps> = () => {
 						   onEdit={onOperationEdit}/>))}
 		</div>
 	);
-}
+});

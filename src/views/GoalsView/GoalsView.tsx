@@ -8,7 +8,7 @@ import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store
 import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
 import { Goal } from '../../domain/interfaces/goal';
 
-export const GoalsView: React.FC<GoalsViewProps> = () => {
+export const GoalsView: React.FC<GoalsViewProps> = React.memo(() => {
 	const dispatch = useDispatch();
 	const goals = useSelector(selectGoals);
 	const debit = useSelector(selectDebit);
@@ -30,4 +30,4 @@ export const GoalsView: React.FC<GoalsViewProps> = () => {
 			))}
 		</div>
 	);
-}
+});

@@ -3,7 +3,7 @@ import { OperationFormProps } from './OperationForm.props';
 import { Formik } from 'formik';
 import { Button, DialogActions, Input, TextField } from '@material-ui/core';
 
-export const OperationForm: React.FC<OperationFormProps> = (props: OperationFormProps) => {
+export const OperationForm: React.FC<OperationFormProps> = React.memo((props: OperationFormProps) => {
 	const { initialValues, validate, cancel, submit } = props;
 
 	return (
@@ -62,4 +62,4 @@ export const OperationForm: React.FC<OperationFormProps> = (props: OperationForm
 			)}
 		</Formik>
 	);
-};
+});
