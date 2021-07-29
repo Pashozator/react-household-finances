@@ -20,9 +20,6 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 			return state;
 		}
 		case GoalsActions.ADD_GOAL_SUCCESS: {
-			action.payload.id = uuid();
-			action.payload.realized = false;
-
 			return [action.payload, ...state];
 		}
 		case GoalsActions.ADD_GOAL_FAILURE: {

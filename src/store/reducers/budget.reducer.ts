@@ -24,7 +24,7 @@ export function budgetReducer(state: BudgetState = budgetInitialState, action: A
 			return state;
 		}
 		case BudgetActions.ADD_OPERATION_SUCCESS: {
-			return { operations: [...action.payload, ...state.operations], debit: state.debit + action.payload.value };
+			return { operations: [action.payload, ...state.operations], debit: state.debit + action.payload.value };
 		}
 		case BudgetActions.ADD_OPERATION_FAILURE: {
 			return state;
