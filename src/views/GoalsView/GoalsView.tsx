@@ -25,7 +25,7 @@ export const GoalsView: React.FC<GoalsViewProps> = () => {
 	return (
 		<div className="wrapper padding-top-25">
 			{goals.map((goal, index) => (
-				<GoalComponent goal={goal} debit={debit} key={index} onRemove={onGoalRemove}
+				<GoalComponent className="margin-top-10-not-on-first" goal={goal} debit={debit} key={index} onRemove={onGoalRemove}
 					  onEdit={onGoalEdit} onRealize={onGoalRealize}/>
 			))}
 		</div>

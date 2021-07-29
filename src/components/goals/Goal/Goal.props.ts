@@ -6,4 +6,5 @@ export interface GoalProps {
 	onEdit: (goal: Goal) => void;
 	onRemove: (goal: Goal) => void;
 	onRealize: (goal: Goal) => void;
+	className: string;
 }

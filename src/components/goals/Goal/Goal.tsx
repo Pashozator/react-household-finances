@@ -3,7 +3,7 @@ import { GoalProps } from './Goal.props';
 import { Button, Card, CardActions, CardContent, Icon, LinearProgress, Typography } from '@material-ui/core';
 
 export const Goal: React.FC<GoalProps> = (props: GoalProps) => {
-	const { goal, debit, onRemove, onEdit, onRealize } = props;
+	const { className, goal, debit, onRemove, onEdit, onRealize } = props;
 
 	const getPercentage = () => 100 - (goal.value - debit) / goal.value * 100;
 
@@ -14,7 +14,7 @@ export const Goal: React.FC<GoalProps> = (props: GoalProps) => {
 	const realize = () => onRealize(goal);
 
 	return (
-		<Card className={goal.realized ? 'realized' : ''}>
+		<Card className={`${className} ${goal.realized ? 'realized' : ''}`}>
 			<CardContent>
 				<Typography className="header" variant="h4">
 					{goal.realized ? (<Icon>check_circle</Icon>) : null}
