@@ -85,3 +85,9 @@ header {
     }
   }
 }
+
+.margin-top-10-not-on-first {
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}

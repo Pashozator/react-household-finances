@@ -26,7 +26,7 @@ export const BudgetView: React.FC<BudgetViewProps> = () => {
 		<div className="wrapper">
 			<h3>Debit: {debit}</h3>
 			{operations.map((operation, index) => (
-				<OperationComponent operation={operation} key={index} onRemove={onOperationRemove}
+				<OperationComponent className="margin-top-10-not-on-first" operation={operation} key={index} onRemove={onOperationRemove}
 						   onEdit={onOperationEdit}/>))}
 		</div>
 	);

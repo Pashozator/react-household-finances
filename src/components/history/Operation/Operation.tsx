@@ -3,14 +3,14 @@ import { OperationProps } from './Operation.props';
 import { Button, Card, CardActions, CardContent } from '@material-ui/core';
 
 export const Operation: React.FC<OperationProps> = (props: OperationProps) => {
-	const { operation, onRemove, onEdit } = props;
+	const { className, operation, onRemove, onEdit } = props;
 
 	const remove = () => onRemove(operation);
 
 	const edit = () => onEdit(operation);
 
 	return (
-		<Card>
+		<Card className={className}>
 			<CardContent>
 				<div className="content">
 					<div className="label-date">
