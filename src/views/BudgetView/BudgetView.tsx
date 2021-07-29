@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BudgetViewProps } from './BudgetView.props';
-import { Operation as OperationComponent } from '../../components/history/Operation/Operation';
+import { Operation as OperationComponent } from '../../components/budget/Operation/Operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
 import { Operation } from '../../domain/interfaces/operation';

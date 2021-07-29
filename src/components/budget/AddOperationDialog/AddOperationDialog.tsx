@@ -2,7 +2,7 @@ import React from 'react';
 import { AddOperationDialogProps } from './AddOperationDialog.props';
 import { Dialog, DialogTitle } from '@material-ui/core';
 import { OperationForm } from '../OperationForm/OperationForm';
-import { useOperationForm } from '../../../hooks/history/use-operation-form';
+import { useOperationForm } from '../../../hooks/budget/use-operation-form';
 
 export const AddOperationDialog: React.FC<AddOperationDialogProps> = (props: AddOperationDialogProps) => {
 	const { classes, onClose, ...other } = props;
