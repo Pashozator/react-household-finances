@@ -11,6 +11,7 @@ import { postGoal } from '../../domain/endpoints/goals/goal.post.endpoint';
 import { deleteGoal } from '../../domain/endpoints/goals/goal.delete.endpoint';
 import { putGoal } from '../../domain/endpoints/goals/goal.put.endpoint';
 import { patchGoal } from '../../domain/endpoints/goals/goal.patch.endpoint';
+import { openErrorDialogAction } from '../actions/dialogs.actions';
 
 function* getGoalsSaga(): Generator {
 	try {
@@ -64,12 +65,21 @@ function* realizeGoalSaga(action: any): Generator {
 	}
 }
 
+function* handleFailureSaga(): Generator {
+	yield put(openErrorDialogAction());
+}
+
 export function* goalsSagas(): Generator {
 	yield all([
 		yield takeLatest(GoalsActions.GET_GOALS, getGoalsSaga),
 		yield takeLatest(GoalsActions.ADD_GOAL, addGoalSaga),
-		yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoalSaga),
 		yield takeLatest(GoalsActions.EDIT_GOAL, editGoalSaga),
-		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoalSaga)
+		yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoalSaga),
+		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoalSaga),
+		yield takeLatest(GoalsActions.GET_GOALS_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.ADD_GOAL_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.EDIT_GOAL_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.REMOVE_GOAL_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.REALIZE_GOAL_FAILURE, handleFailureSaga),
 	])
 }

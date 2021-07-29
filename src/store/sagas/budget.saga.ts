@@ -11,6 +11,7 @@ import { getBudget } from '../../domain/endpoints/budget/budget.get.endpoint';
 import { postOperation } from '../../domain/endpoints/budget/operation.post.endpoint';
 import { putOperation } from '../../domain/endpoints/budget/operation.put.endpoint';
 import { deleteOperation } from '../../domain/endpoints/budget/operation.delete.endpoint';
+import { openErrorDialogAction } from '../actions/dialogs.actions';
 
 function* getBudgetSaga(): Generator {
 	try {
@@ -54,11 +55,19 @@ function* removeOperationSaga(action: any): Generator {
 	}
 }
 
+function* handleFailureSaga(): Generator {
+	yield put(openErrorDialogAction());
+}
+
 export function* budgetSagas(): Generator {
 	yield all([
 		yield takeLatest(BudgetActions.GET_BUDGET, getBudgetSaga),
 		yield takeLatest(BudgetActions.ADD_OPERATION, addOperationSaga),
 		yield takeLatest(BudgetActions.EDIT_OPERATION, editOperationSaga),
-		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperationSaga)
+		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperationSaga),
+		yield takeLatest(BudgetActions.GET_BUDGET_FAILURE, handleFailureSaga),
+		yield takeLatest(BudgetActions.ADD_OPERATION_FAILURE, handleFailureSaga),
+		yield takeLatest(BudgetActions.EDIT_OPERATION_FAILURE, handleFailureSaga),
+		yield takeLatest(BudgetActions.REMOVE_OPERATION_FAILURE, handleFailureSaga),
 	]);
 }

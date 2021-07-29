@@ -4,7 +4,7 @@ import { Operation } from '../../interfaces/operation';
 
 export function postOperation(body: PostOperationRequestBody): Endpoint {
 	return {
-		url: '/budget/operations',
+		url: 'budget/operations',
 		method: RequestMethod.POST,
 		body
 	}
