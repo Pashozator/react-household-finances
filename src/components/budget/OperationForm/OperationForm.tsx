@@ -2,6 +2,7 @@ import React from 'react';
 import { OperationFormProps } from './OperationForm.props';
 import { Formik } from 'formik';
 import { Button, DialogActions, Input, TextField } from '@material-ui/core';
+import moment from 'moment';
 
 export const OperationForm: React.FC<OperationFormProps> = React.memo((props: OperationFormProps) => {
 	const { initialValues, validate, cancel, submit } = props;
@@ -28,10 +29,11 @@ export const OperationForm: React.FC<OperationFormProps> = React.memo((props: Op
 							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
 						/>
 						<Input name="date"
-							   inputProps={{ type: 'text' }}
+							   inputProps={{ type: 'date' }}
 							   placeholder="Date"
 							   className="input"
 							   value={values.date}
+							   defaultValue={moment().format('YYYY-MM-DD')}
 							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
 						/>
 						<Input name="value"

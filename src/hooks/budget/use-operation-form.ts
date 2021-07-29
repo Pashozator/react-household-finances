@@ -12,7 +12,7 @@ export function useOperationForm(): {
 		label: null,
 		value: null,
 		description: null,
-		date: null,
+		date: null
 	});
 
 	const patchValues = useCallback(
