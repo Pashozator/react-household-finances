@@ -1,4 +1,5 @@
 import React from 'react';
+import './Operation.scss';
 import { OperationProps } from './Operation.props';
 import { Button, Card, CardActions, CardContent } from '@material-ui/core';
 

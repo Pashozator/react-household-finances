@@ -1,4 +1,5 @@
 import React from 'react';
+import './Goal.scss';
 import { GoalProps } from './Goal.props';
 import { Button, Card, CardActions, CardContent, Icon, LinearProgress, Typography } from '@material-ui/core';
 
