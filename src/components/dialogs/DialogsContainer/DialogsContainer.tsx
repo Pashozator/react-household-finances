@@ -1,7 +1,6 @@
 import React from 'react';
 import { AddOperationDialog } from '../../budget/AddOperationDialog/AddOperationDialog';
 import { AddGoalDialog } from '../../goals/AddGoalDialog/AddGoalDialog';
-import { DialogsContainerProps } from './DialogsContainer.props';
 import { EditOperationDialog } from '../../budget/EditOperationDialog/EditOperationDialog';
 import { EditGoalDialog } from '../../goals/EditGoalDialog/EditGoalDialog';
 import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
@@ -27,7 +26,7 @@ import { addGoalAction, editGoalAction } from '../../../store/actions/goals.acti
 import { Operation } from '../../../domain/interfaces/operation';
 import { Goal } from '../../../domain/interfaces/goal';
 
-export const DialogsContainer: React.FC<DialogsContainerProps> = React.memo(() => {
+export const DialogsContainer: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const addOperationDialogOpened = useSelector(selectAddOperationDialogOpened);
 	const editOperationDialogOpened = useSelector(selectEditOperationDialogOpened);

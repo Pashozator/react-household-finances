@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { BudgetViewProps } from './BudgetView.props';
 import { Operation as OperationComponent } from '../../components/budget/Operation/Operation';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
@@ -7,7 +6,7 @@ import { Operation } from '../../domain/interfaces/operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
 
-export const BudgetView: React.FC<BudgetViewProps> = React.memo(() => {
+export const BudgetView: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
 	const operations = useSelector(selectOperations);
 	const debit = useSelector(selectDebit);
