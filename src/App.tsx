@@ -12,7 +12,7 @@ export const App: React.FC = () => {
 	const [anchorEl, setAnchorEl] = useState<any>();
 	const dispatch = useDispatch();
 
-	const openMenu = (event: any) => setAnchorEl(event.currentTarget);
+	const openMenu = (event: React.SyntheticEvent) => setAnchorEl(event.currentTarget);
 
 	const closeMenu = () => setAnchorEl(null);
 

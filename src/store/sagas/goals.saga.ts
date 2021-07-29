@@ -20,6 +20,7 @@ import { deleteGoal } from '../../domain/endpoints/goals/goal.delete.endpoint';
 import { putGoal } from '../../domain/endpoints/goals/goal.put.endpoint';
 import { patchGoal } from '../../domain/endpoints/goals/goal.patch.endpoint';
 import { openErrorDialogAction } from '../actions/dialogs.actions';
+import { Goal } from '../../domain/interfaces/goal';
 
 function* getGoalsSaga(): SagaIterator {
 	try {
@@ -32,7 +33,7 @@ function* getGoalsSaga(): SagaIterator {
 	}
 }
 
-function* addGoalSaga(action: any): SagaIterator {
+function* addGoalSaga(action: { type: GoalsActions.ADD_GOAL, payload: Goal }): SagaIterator {
 	try {
 		const response = yield call(() => api.request(postGoal(action.payload)));
 
@@ -43,7 +44,7 @@ function* addGoalSaga(action: any): SagaIterator {
 	}
 }
 
-function* removeGoalSaga(action: any): SagaIterator {
+function* removeGoalSaga(action: { type: GoalsActions.REMOVE_GOAL, payload: Goal }): SagaIterator {
 	try {
 		yield call(() => api.request(deleteGoal({ id: action.payload.id })));
 		yield put(removeGoalSuccessAction(action.payload));
@@ -53,7 +54,7 @@ function* removeGoalSaga(action: any): SagaIterator {
 	}
 }
 
-function* editGoalSaga(action: any): SagaIterator {
+function* editGoalSaga(action: { type: GoalsActions.EDIT_GOAL, payload: Goal }): SagaIterator {
 	try {
 		yield call(() => api.request(putGoal({ id: action.payload.id }, action.payload)));
 		yield put(editGoalSuccessAction(action.payload));
@@ -63,7 +64,7 @@ function* editGoalSaga(action: any): SagaIterator {
 	}
 }
 
-function* realizeGoalSaga(action: any): SagaIterator {
+function* realizeGoalSaga(action: { type: GoalsActions.REALIZE_GOAL, payload: Goal }): SagaIterator {
 	try {
 		yield call(() => api.request(patchGoal({ id: action.payload.id })));
 		yield put(realizeGoalSuccessAction(action.payload));

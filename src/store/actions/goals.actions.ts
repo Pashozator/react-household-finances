@@ -44,7 +44,6 @@ export const removeGoalFailureAction = () => ({ type: GoalsActions.REMOVE_GOAL_F
 
 export const realizeGoalAction = (goal: Goal) => ({ type: GoalsActions.REALIZE_GOAL, payload: goal });
 
-// TODO: Reduce debit on success
 export const realizeGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.REALIZE_GOAL_SUCCESS, payload: goal });
 
 export const realizeGoalFailureAction = () => ({ type: GoalsActions.REALIZE_GOAL_FAILURE });

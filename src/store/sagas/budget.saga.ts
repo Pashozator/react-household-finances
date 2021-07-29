@@ -17,6 +17,7 @@ import { postOperation } from '../../domain/endpoints/budget/operation.post.endp
 import { putOperation } from '../../domain/endpoints/budget/operation.put.endpoint';
 import { deleteOperation } from '../../domain/endpoints/budget/operation.delete.endpoint';
 import { openErrorDialogAction } from '../actions/dialogs.actions';
+import { Operation } from '../../domain/interfaces/operation';
 
 function* getBudgetSaga(): SagaIterator {
 	try {
@@ -29,7 +30,7 @@ function* getBudgetSaga(): SagaIterator {
 	}
 }
 
-function* addOperationSaga(action: any): SagaIterator {
+function* addOperationSaga(action: { type: BudgetActions.ADD_OPERATION, payload: Operation }): SagaIterator {
 	try {
 		const response = yield call(() => api.request(postOperation(action.payload)));
 
@@ -40,7 +41,7 @@ function* addOperationSaga(action: any): SagaIterator {
 	}
 }
 
-function* editOperationSaga(action: any): SagaIterator {
+function* editOperationSaga(action: { type: BudgetActions.EDIT_OPERATION, payload: Operation }): SagaIterator {
 	try {
 		yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload)));
 		yield put(editOperationSuccessAction(action.payload));
@@ -50,7 +51,7 @@ function* editOperationSaga(action: any): SagaIterator {
 	}
 }
 
-function* removeOperationSaga(action: any): SagaIterator {
+function* removeOperationSaga(action: { type: BudgetActions.REMOVE_OPERATION, payload: Operation }): SagaIterator {
 	try {
 		yield call(() => api.request(deleteOperation({ id: action.payload.id })));
 		yield put(removeOperationSuccessAction(action.payload));
