@@ -1,5 +1,7 @@
-import { DialogProps } from '@material-ui/core';
+import { Goal } from '../../../domain/interfaces/goal';
 
-export interface AddGoalDialogProps extends DialogProps {
-	onClose: (state?: any) => void;
+export interface AddGoalDialogProps {
+	open: boolean;
+	onClose: () => void;
+	onSubmit: (goal: Goal) => void;
 }

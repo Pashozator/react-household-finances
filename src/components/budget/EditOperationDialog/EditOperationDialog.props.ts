@@ -1,7 +1,8 @@
-import { DialogProps } from '@material-ui/core';
 import { Operation } from '../../../domain/interfaces/operation';
 
-export interface EditOperationDialogProps extends DialogProps {
+export interface EditOperationDialogProps {
+	open: boolean;
 	operation: Operation;
-	onClose: (state?: any) => void;
+	onClose: () => void;
+	onSubmit: (operation: Operation) => void;
 }

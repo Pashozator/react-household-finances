@@ -24,6 +24,8 @@ import {
 	closeErrorDialogAction
 } from '../../../store/actions/dialogs.actions';
 import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
+import { Operation } from '../../../domain/interfaces/operation';
+import { Goal } from '../../../domain/interfaces/goal';
 
 export const DialogsContainer: React.FC<DialogsContainerProps> = React.memo(() => {
 	const dispatch = useDispatch();
@@ -35,37 +37,21 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = React.memo(() =
 	const editGoalDialogPayload = useSelector(selectEditGoalDialogPayload);
 	const errorDialogOpened = useSelector(selectErrorDialogOpened);
 
-	const closeAddOperationDialog = (result: any) => {
-		if (result) {
-			dispatch(addOperationAction(result));
-		}
+	const closeAddOperationDialog = () => dispatch(closeAddOperationDialogAction());
 
-		dispatch(closeAddOperationDialogAction());
-	}
+	const submitAddOperationDialog = (operation: Operation) => dispatch(addOperationAction(operation));
 
-	const closeEditOperationDialog = (result: any) => {
-		if (result) {
-			dispatch(editOperationAction(result));
-		}
+	const closeEditOperationDialog = () => dispatch(closeEditOperationDialogAction());
 
-		dispatch(closeEditOperationDialogAction());
-	}
+	const submitEditOperationDialog = (operation: Operation) => dispatch(editOperationAction(operation));
 
-	const closeAddGoalDialog = (result: any) => {
-		if (result) {
-			dispatch(addGoalAction(result));
-		}
+	const closeAddGoalDialog = () => dispatch(closeAddGoalDialogAction());
 
-		dispatch(closeAddGoalDialogAction());
-	}
+	const submitAddGoalDialog = (goal: Goal) => dispatch(addGoalAction(goal));
 
-	const closeEditGoalDialog = (result: any) => {
-		if (result) {
-			dispatch(editGoalAction(result));
-		}
+	const closeEditGoalDialog = () => dispatch(closeEditGoalDialogAction());
 
-		dispatch(closeEditGoalDialogAction());
-	}
+	const submitEditGoalDialog = (goal: Goal) => dispatch(editGoalAction(goal));
 
 	const closeErrorDialog = () => dispatch(closeErrorDialogAction());
 
@@ -74,20 +60,24 @@ export const DialogsContainer: React.FC<DialogsContainerProps> = React.memo(() =
 			<AddOperationDialog
 				open={addOperationDialogOpened}
 				onClose={closeAddOperationDialog}
+				onSubmit={submitAddOperationDialog}
 			/>
 			<EditOperationDialog
 				open={editOperationDialogOpened}
 				operation={editOperationDialogPayload}
 				onClose={closeEditOperationDialog}
+				onSubmit={submitEditOperationDialog}
 			/>
 			<AddGoalDialog
 				open={addGoalDialogOpened}
 				onClose={closeAddGoalDialog}
+				onSubmit={submitAddGoalDialog}
 			/>
 			<EditGoalDialog
 				open={editGoalDialogOpened}
 				goal={editGoalDialogPayload}
 				onClose={closeEditGoalDialog}
+				onSubmit={submitEditGoalDialog}
 			/>
 			<ErrorDialog
 				open={errorDialogOpened}

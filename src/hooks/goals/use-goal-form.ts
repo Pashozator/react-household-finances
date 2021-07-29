@@ -18,7 +18,7 @@ export function useGoalForm(): {
 		(goal: Goal): void => {
 			setInitialValues({
 				label: goal.label,
-				value: goal.value.toString(),
+				value: goal.value,
 				description: goal.description,
 			});
 		},

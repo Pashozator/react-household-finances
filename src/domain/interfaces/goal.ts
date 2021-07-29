@@ -1,7 +1,7 @@
 export interface Goal {
-	id: string;
+	id?: string;
 	label: string;
 	value: number;
 	description: string;
-	realized: boolean;
+	realized?: boolean;
 }
