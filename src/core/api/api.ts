@@ -73,7 +73,7 @@ export class Api {
 			const queryParamValue: any = query[prop];
 
 			if (url.includes(queryParamName)) {
-				url = url.replaceAll(queryParamName, queryParamValue);
+				url = url.replace(new RegExp(queryParamName, 'g'), queryParamValue);
 				continue;
 			}
 
