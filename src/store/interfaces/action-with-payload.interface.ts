@@ -1,4 +1,5 @@
-export interface ActionWithPayload<T> {
-	type: T;
-	payload?: any;
+import { Action } from 'redux';
+
+export interface ActionWithPayload<T> extends Action {
+	payload: T;
 }

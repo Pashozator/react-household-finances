@@ -1,16 +1,17 @@
 import { Goal } from '../../../domain/interfaces/goal';
 import { ActionWithPayload } from '../../interfaces/action-with-payload.interface';
 import { GoalsActions } from '../../actions/goals.actions';
+import { Action } from 'redux';
 
 export const goalsInitialState: Goal[] = [];
 
-export function goalsReducer(state = goalsInitialState, action: ActionWithPayload<GoalsActions>): Goal[] {
+export function goalsReducer(state = goalsInitialState, action: Action | ActionWithPayload<Goal | Goal[]>): Goal[] {
 	switch (action.type) {
 		case GoalsActions.GET_GOALS: {
 			return state;
 		}
 		case GoalsActions.GET_GOALS_SUCCESS: {
-			return action.payload;
+			return (action as ActionWithPayload<Goal[]>).payload;
 		}
 		case GoalsActions.GET_GOALS_FAILURE: {
 			return state;
@@ -19,7 +20,8 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 			return state;
 		}
 		case GoalsActions.CREATE_GOAL_SUCCESS: {
-			return [action.payload, ...state];
+			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
+			return [goal, ...state];
 		}
 		case GoalsActions.CREATE_GOAL_FAILURE: {
 			return state;
@@ -29,9 +31,10 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 		}
 		case GoalsActions.UPDATE_GOAL_SUCCESS: {
 			const goals = [...state];
-			const index = goals.findIndex(goal => goal.id === action.payload.id);
+			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
+			const index = goals.findIndex(_goal => _goal.id === goal.id);
 
-			goals[index] = action.payload;
+			goals[index] = goal;
 			return goals;
 		}
 		case GoalsActions.UPDATE_GOAL_FAILURE: {
@@ -41,7 +44,8 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 			return state;
 		}
 		case GoalsActions.REMOVE_GOAL_SUCCESS: {
-			return state.filter(goal => goal.id !== action.payload.id);
+			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
+			return state.filter(_goal => _goal.id !== goal.id);
 		}
 		case GoalsActions.REMOVE_GOAL_FAILURE: {
 			return state;
@@ -51,7 +55,8 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 		}
 		case GoalsActions.REALIZE_GOAL_SUCCESS: {
 			const goals = [...state];
-			const index = goals.findIndex(goal => goal.id === action.payload.id);
+			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
+			const index = goals.findIndex(_goal => _goal.id === goal.id);
 
 			goals[index] = { ...goals[index], realized: true };
 			return goals;

@@ -1,6 +1,9 @@
 import { DialogsState } from '../../interfaces/dialogs-state';
 import { ActionWithPayload } from '../../interfaces/action-with-payload.interface';
 import { DialogsActions } from '../../actions/dialogs.actions';
+import { Action } from 'redux';
+import { Goal } from '../../../domain/interfaces/goal';
+import { Operation } from '../../../domain/interfaces/operation';
 
 export const dialogsInitialState: DialogsState = {
 	addOperationDialogOpened: false,
@@ -12,7 +15,7 @@ export const dialogsInitialState: DialogsState = {
 	errorDialogOpened: false
 };
 
-export function dialogsReducer(state: DialogsState = dialogsInitialState, action: ActionWithPayload<DialogsActions>) {
+export function dialogsReducer(state: DialogsState = dialogsInitialState, action: Action | ActionWithPayload<Operation | Goal>) {
 	switch (action.type) {
 		case DialogsActions.OPEN_CREATE_OPERATION_DIALOG: {
 			return { ...state, addOperationDialogOpened: true };
@@ -21,10 +24,15 @@ export function dialogsReducer(state: DialogsState = dialogsInitialState, action
 			return { ...state, addOperationDialogOpened: false };
 		}
 		case DialogsActions.OPEN_UPDATE_OPERATION_DIALOG: {
-			return { ...state, editOperationDialogOpened: true, editOperationDialogPayload: action.payload };
+			const operation: Operation = (action as ActionWithPayload<Operation>).payload;
+			return { ...state, editOperationDialogOpened: true, editOperationDialogPayload: operation };
 		}
 		case DialogsActions.CLOSE_UPDATE_OPERATION_DIALOG: {
-			return { ...state, editOperationDialogOpened: false,  editOperationDialogPayload: { id: '', label: '', date: '', value: 0, description: '' } };
+			return {
+				...state,
+				editOperationDialogOpened: false,
+				editOperationDialogPayload: { id: '', label: '', date: '', value: 0, description: '' }
+			};
 		}
 		case DialogsActions.OPEN_CREATE_GOAL_DIALOG: {
 			return { ...state, addGoalDialogOpened: true };
@@ -33,10 +41,15 @@ export function dialogsReducer(state: DialogsState = dialogsInitialState, action
 			return { ...state, addGoalDialogOpened: false };
 		}
 		case DialogsActions.OPEN_UPDATE_GOAL_DIALOG: {
-			return { ...state, editGoalDialogOpened: true, editGoalDialogPayload: action.payload };
+			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
+			return { ...state, editGoalDialogOpened: true, editGoalDialogPayload: goal };
 		}
 		case DialogsActions.CLOSE_UPDATE_GOAL_DIALOG: {
-			return { ...state, editGoalDialogOpened: false, editGoalDialogPayload: { id: '', label: '', value: 0, description: '', realized: false } };
+			return {
+				...state,
+				editGoalDialogOpened: false,
+				editGoalDialogPayload: { id: '', label: '', value: 0, description: '', realized: false }
+			};
 		}
 		case DialogsActions.OPEN_ERROR_DIALOG: {
 			return { ...state, errorDialogOpened: true };
