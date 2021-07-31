@@ -1,8 +1,4 @@
 import React from 'react';
-import { AddOperationDialog } from '../../budget/AddOperationDialog/AddOperationDialog';
-import { AddGoalDialog } from '../../goals/AddGoalDialog/AddGoalDialog';
-import { EditOperationDialog } from '../../budget/EditOperationDialog/EditOperationDialog';
-import { EditGoalDialog } from '../../goals/EditGoalDialog/EditGoalDialog';
 import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,17 +10,21 @@ import {
 	selectEditOperationDialogPayload,
 	selectErrorDialogOpened
 } from '../../../store/selectors/dialogs.selectors';
-import { addOperationAction, editOperationAction } from '../../../store/actions/budget.actions';
+import { createOperationAction, updateOperationAction } from '../../../store/actions/budget.actions';
 import {
-	closeAddGoalDialogAction,
-	closeAddOperationDialogAction,
-	closeEditGoalDialogAction,
-	closeEditOperationDialogAction,
+	closeCreateGoalDialogAction,
+	closeCreateOperationDialogAction,
+	closeUpdateGoalDialogAction,
+	closeUpdateOperationDialogAction,
 	closeErrorDialogAction
 } from '../../../store/actions/dialogs.actions';
-import { addGoalAction, editGoalAction } from '../../../store/actions/goals.actions';
+import { createGoalAction, updateGoalAction } from '../../../store/actions/goals.actions';
 import { Operation } from '../../../domain/interfaces/operation';
 import { Goal } from '../../../domain/interfaces/goal';
+import { CreateOperationDialog } from '../../budget/CreateOperationDialog/CreateOperationDialog';
+import { UpdateOperationDialog } from '../../budget/UpdateOperationDialog/UpdateOperationDialog';
+import { CreateGoalDialog } from '../../goals/CreateGoalDialog/CreateGoalDialog';
+import { UpdateGoalDialog } from '../../goals/UpdateGoalDialog/UpdateGoalDialog';
 
 export const DialogsContainer: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
@@ -36,43 +36,43 @@ export const DialogsContainer: React.FC = React.memo(() => {
 	const editGoalDialogPayload = useSelector(selectEditGoalDialogPayload);
 	const errorDialogOpened = useSelector(selectErrorDialogOpened);
 
-	const closeAddOperationDialog = () => dispatch(closeAddOperationDialogAction());
+	const closeAddOperationDialog = () => dispatch(closeCreateOperationDialogAction());
 
-	const submitAddOperationDialog = (operation: Operation) => dispatch(addOperationAction(operation));
+	const submitAddOperationDialog = (operation: Operation) => dispatch(createOperationAction(operation));
 
-	const closeEditOperationDialog = () => dispatch(closeEditOperationDialogAction());
+	const closeEditOperationDialog = () => dispatch(closeUpdateOperationDialogAction());
 
-	const submitEditOperationDialog = (operation: Operation) => dispatch(editOperationAction(operation));
+	const submitEditOperationDialog = (operation: Operation) => dispatch(updateOperationAction(operation));
 
-	const closeAddGoalDialog = () => dispatch(closeAddGoalDialogAction());
+	const closeAddGoalDialog = () => dispatch(closeCreateGoalDialogAction());
 
-	const submitAddGoalDialog = (goal: Goal) => dispatch(addGoalAction(goal));
+	const submitAddGoalDialog = (goal: Goal) => dispatch(createGoalAction(goal));
 
-	const closeEditGoalDialog = () => dispatch(closeEditGoalDialogAction());
+	const closeEditGoalDialog = () => dispatch(closeUpdateGoalDialogAction());
 
-	const submitEditGoalDialog = (goal: Goal) => dispatch(editGoalAction(goal));
+	const submitEditGoalDialog = (goal: Goal) => dispatch(updateGoalAction(goal));
 
 	const closeErrorDialog = () => dispatch(closeErrorDialogAction());
 
 	return (
 		<>
-			<AddOperationDialog
+			<CreateOperationDialog
 				open={addOperationDialogOpened}
 				onClose={closeAddOperationDialog}
 				onSubmit={submitAddOperationDialog}
 			/>
-			<EditOperationDialog
+			<UpdateOperationDialog
 				open={editOperationDialogOpened}
 				operation={editOperationDialogPayload}
 				onClose={closeEditOperationDialog}
 				onSubmit={submitEditOperationDialog}
 			/>
-			<AddGoalDialog
+			<CreateGoalDialog
 				open={addGoalDialogOpened}
 				onClose={closeAddGoalDialog}
 				onSubmit={submitAddGoalDialog}
 			/>
-			<EditGoalDialog
+			<UpdateGoalDialog
 				open={editGoalDialogOpened}
 				goal={editGoalDialogPayload}
 				onClose={closeEditGoalDialog}

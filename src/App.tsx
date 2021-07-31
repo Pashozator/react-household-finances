@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { openAddGoalDialogAction, openAddOperationDialogAction } from './store/actions/dialogs.actions';
+import { openCreateGoalDialogAction, openCreateOperationDialogAction } from './store/actions/dialogs.actions';
 import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
 import { GoalsView } from './views/GoalsView/GoalsView';
 import { BudgetView } from './views/BudgetView/BudgetView';
@@ -18,11 +18,11 @@ export const App: React.FC = () => {
 
 	const openAddOperationDialog = () => {
 		closeMenu();
-		dispatch(openAddOperationDialogAction());
+		dispatch(openCreateOperationDialogAction());
 	}
 
 	const openAddGoalDialog = () => {
-		dispatch(openAddGoalDialogAction());
+		dispatch(openCreateGoalDialogAction());
 		closeMenu();
 	};
 

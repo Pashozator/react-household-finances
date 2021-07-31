@@ -1,13 +1,13 @@
 import React from 'react';
-import './AddGoalDialog.scss';
+import './CreateGoalDialog.scss';
 import { Dialog, DialogTitle } from '@material-ui/core';
-import { AddGoalDialogProps } from './AddGoalDialog.props';
+import { CreateGoalDialogProps } from './CreateGoalDialog.props';
 import { GoalForm } from '../GoalForm/GoalForm';
 import { useGoalForm } from '../../../hooks/goals/use-goal-form';
 import { GoalFormValues } from '../../../interfaces/goal-form-values';
 import { Goal } from '../../../domain/interfaces/goal';
 
-export const AddGoalDialog: React.FC<AddGoalDialogProps> = React.memo((props: AddGoalDialogProps) => {
+export const CreateGoalDialog: React.FC<CreateGoalDialogProps> = React.memo((props: CreateGoalDialogProps) => {
 	const { onClose, onSubmit, open } = props;
 	const { initialValues, validate } = useGoalForm();
 

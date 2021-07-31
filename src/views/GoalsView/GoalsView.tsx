@@ -4,7 +4,7 @@ import { selectGoals } from '../../store/selectors/goals.selectors';
 import { selectDebit } from '../../store/selectors/budget.selectors';
 import { Goal as GoalComponent } from '../../components/goals/Goal/Goal';
 import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
-import { openEditGoalDialogAction } from '../../store/actions/dialogs.actions';
+import { openUpdateGoalDialogAction } from '../../store/actions/dialogs.actions';
 import { Goal } from '../../domain/interfaces/goal';
 
 export const GoalsView: React.FC = React.memo(() => {
@@ -13,7 +13,7 @@ export const GoalsView: React.FC = React.memo(() => {
 	const debit = useSelector(selectDebit);
 
 	const onGoalRemove = (goal: Goal) => dispatch(removeGoalAction(goal));
-	const onGoalEdit = (goal: Goal) => dispatch(openEditGoalDialogAction(goal));
+	const onGoalEdit = (goal: Goal) => dispatch(openUpdateGoalDialogAction(goal));
 	const onGoalRealize = (goal: Goal) => dispatch(realizeGoalAction(goal));
 	const onGetGoals = () => dispatch(getGoalsAction());
 

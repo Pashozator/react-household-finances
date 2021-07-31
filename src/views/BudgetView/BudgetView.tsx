@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
 import { Operation } from '../../domain/interfaces/operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
-import { openEditOperationDialogAction } from '../../store/actions/dialogs.actions';
+import { openUpdateOperationDialogAction } from '../../store/actions/dialogs.actions';
 
 export const BudgetView: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export const BudgetView: React.FC = React.memo(() => {
 
 	const onOperationRemove = (operation: Operation) => dispatch(removeOperationAction(operation));
 
-	const onOperationEdit = (operation: Operation)  => dispatch(openEditOperationDialogAction(operation));
+	const onOperationEdit = (operation: Operation)  => dispatch(openUpdateOperationDialogAction(operation));
 
 	const onGetBudget = () => dispatch(getBudgetAction());
 

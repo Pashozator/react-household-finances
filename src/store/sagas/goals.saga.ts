@@ -1,10 +1,10 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
-	addGoalFailureAction,
-	addGoalSuccessAction,
-	editGoalFailureAction,
-	editGoalSuccessAction,
+	createGoalFailureAction,
+	createGoalSuccessAction,
+	updateGoalFailureAction,
+	updateGoalSuccessAction,
 	getGoalsFailureAction,
 	getGoalsSuccessAction,
 	GoalsActions,
@@ -33,14 +33,14 @@ function* getGoalsSaga(): SagaIterator {
 	}
 }
 
-function* addGoalSaga(action: { type: GoalsActions.ADD_GOAL, payload: Goal }): SagaIterator {
+function* addGoalSaga(action: { type: GoalsActions.CREATE_GOAL, payload: Goal }): SagaIterator {
 	try {
 		const response = yield call(() => api.request(postGoal(action.payload)));
 
-		yield put(addGoalSuccessAction(response.data));
+		yield put(createGoalSuccessAction(response.data));
 	} catch (err) {
 		console.error(err);
-		yield put(addGoalFailureAction())
+		yield put(createGoalFailureAction())
 	}
 }
 
@@ -54,13 +54,13 @@ function* removeGoalSaga(action: { type: GoalsActions.REMOVE_GOAL, payload: Goal
 	}
 }
 
-function* editGoalSaga(action: { type: GoalsActions.EDIT_GOAL, payload: Goal }): SagaIterator {
+function* editGoalSaga(action: { type: GoalsActions.UPDATE_GOAL, payload: Goal }): SagaIterator {
 	try {
 		yield call(() => api.request(putGoal({ id: action.payload.id }, action.payload)));
-		yield put(editGoalSuccessAction(action.payload));
+		yield put(updateGoalSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
-		yield put(editGoalFailureAction());
+		yield put(updateGoalFailureAction());
 	}
 }
 
@@ -81,13 +81,13 @@ function* handleFailureSaga(): SagaIterator {
 export function* goalsSagas(): SagaIterator {
 	yield all([
 		yield takeLatest(GoalsActions.GET_GOALS, getGoalsSaga),
-		yield takeLatest(GoalsActions.ADD_GOAL, addGoalSaga),
-		yield takeLatest(GoalsActions.EDIT_GOAL, editGoalSaga),
+		yield takeLatest(GoalsActions.CREATE_GOAL, addGoalSaga),
+		yield takeLatest(GoalsActions.UPDATE_GOAL, editGoalSaga),
 		yield takeLatest(GoalsActions.REMOVE_GOAL, removeGoalSaga),
 		yield takeLatest(GoalsActions.REALIZE_GOAL, realizeGoalSaga),
 		yield takeLatest(GoalsActions.GET_GOALS_FAILURE, handleFailureSaga),
-		yield takeLatest(GoalsActions.ADD_GOAL_FAILURE, handleFailureSaga),
-		yield takeLatest(GoalsActions.EDIT_GOAL_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.CREATE_GOAL_FAILURE, handleFailureSaga),
+		yield takeLatest(GoalsActions.UPDATE_GOAL_FAILURE, handleFailureSaga),
 		yield takeLatest(GoalsActions.REMOVE_GOAL_FAILURE, handleFailureSaga),
 		yield takeLatest(GoalsActions.REALIZE_GOAL_FAILURE, handleFailureSaga),
 	])

@@ -1,13 +1,13 @@
 import { SagaIterator } from 'redux-saga';
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 import {
-	addOperationFailureAction,
-	addOperationSuccessAction,
+	createOperationFailureAction,
+	createOperationSuccessAction,
 	BudgetActions,
-	editOperationFailureAction,
-	editOperationSuccessAction,
-	getBudgetFailure,
-	getBudgetSuccess,
+	updateOperationFailureAction,
+	updateOperationSuccessAction,
+	getBudgetFailureAction,
+	getBudgetSuccessAction,
 	removeOperationFailureAction,
 	removeOperationSuccessAction
 } from '../actions/budget.actions';
@@ -23,31 +23,31 @@ function* getBudgetSaga(): SagaIterator {
 	try {
 		const response = yield call(() => api.request(getBudget()));
 
-		yield put(getBudgetSuccess(response.data));
+		yield put(getBudgetSuccessAction(response.data));
 	} catch (err) {
 		console.error(err);
-		yield put(getBudgetFailure());
+		yield put(getBudgetFailureAction());
 	}
 }
 
-function* addOperationSaga(action: { type: BudgetActions.ADD_OPERATION, payload: Operation }): SagaIterator {
+function* addOperationSaga(action: { type: BudgetActions.CREATE_OPERATION, payload: Operation }): SagaIterator {
 	try {
 		const response = yield call(() => api.request(postOperation(action.payload)));
 
-		yield put(addOperationSuccessAction(response.data));
+		yield put(createOperationSuccessAction(response.data));
 	} catch (err) {
 		console.error(err);
-		yield put(addOperationFailureAction());
+		yield put(createOperationFailureAction());
 	}
 }
 
-function* editOperationSaga(action: { type: BudgetActions.EDIT_OPERATION, payload: Operation }): SagaIterator {
+function* editOperationSaga(action: { type: BudgetActions.UPDATE_OPERATION, payload: Operation }): SagaIterator {
 	try {
 		yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload)));
-		yield put(editOperationSuccessAction(action.payload));
+		yield put(updateOperationSuccessAction(action.payload));
 	} catch (err) {
 		console.error(err);
-		yield put(editOperationFailureAction());
+		yield put(updateOperationFailureAction());
 	}
 }
 
@@ -68,12 +68,12 @@ function* handleFailureSaga(): SagaIterator {
 export function* budgetSagas(): SagaIterator {
 	yield all([
 		yield takeLatest(BudgetActions.GET_BUDGET, getBudgetSaga),
-		yield takeLatest(BudgetActions.ADD_OPERATION, addOperationSaga),
-		yield takeLatest(BudgetActions.EDIT_OPERATION, editOperationSaga),
+		yield takeLatest(BudgetActions.CREATE_OPERATION, addOperationSaga),
+		yield takeLatest(BudgetActions.UPDATE_OPERATION, editOperationSaga),
 		yield takeLatest(BudgetActions.REMOVE_OPERATION, removeOperationSaga),
 		yield takeLatest(BudgetActions.GET_BUDGET_FAILURE, handleFailureSaga),
-		yield takeLatest(BudgetActions.ADD_OPERATION_FAILURE, handleFailureSaga),
-		yield takeLatest(BudgetActions.EDIT_OPERATION_FAILURE, handleFailureSaga),
+		yield takeLatest(BudgetActions.CREATE_OPERATION_FAILURE, handleFailureSaga),
+		yield takeLatest(BudgetActions.UPDATE_OPERATION_FAILURE, handleFailureSaga),
 		yield takeLatest(BudgetActions.REMOVE_OPERATION_FAILURE, handleFailureSaga),
 	]);
 }

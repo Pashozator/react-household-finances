@@ -1,6 +1,6 @@
-import { Goal } from '../../domain/interfaces/goal';
-import { ActionWithPayload } from '../interfaces/action-with-payload.interface';
-import { GoalsActions } from '../actions/goals.actions';
+import { Goal } from '../../../domain/interfaces/goal';
+import { ActionWithPayload } from '../../interfaces/action-with-payload.interface';
+import { GoalsActions } from '../../actions/goals.actions';
 
 export const goalsInitialState: Goal[] = [];
 
@@ -15,26 +15,26 @@ export function goalsReducer(state = goalsInitialState, action: ActionWithPayloa
 		case GoalsActions.GET_GOALS_FAILURE: {
 			return state;
 		}
-		case GoalsActions.ADD_GOAL: {
+		case GoalsActions.CREATE_GOAL: {
 			return state;
 		}
-		case GoalsActions.ADD_GOAL_SUCCESS: {
+		case GoalsActions.CREATE_GOAL_SUCCESS: {
 			return [action.payload, ...state];
 		}
-		case GoalsActions.ADD_GOAL_FAILURE: {
+		case GoalsActions.CREATE_GOAL_FAILURE: {
 			return state;
 		}
-		case GoalsActions.EDIT_GOAL: {
+		case GoalsActions.UPDATE_GOAL: {
 			return state;
 		}
-		case GoalsActions.EDIT_GOAL_SUCCESS: {
+		case GoalsActions.UPDATE_GOAL_SUCCESS: {
 			const goals = [...state];
 			const index = goals.findIndex(goal => goal.id === action.payload.id);
 
 			goals[index] = action.payload;
 			return goals;
 		}
-		case GoalsActions.EDIT_GOAL_FAILURE: {
+		case GoalsActions.UPDATE_GOAL_FAILURE: {
 			return state;
 		}
 		case GoalsActions.REMOVE_GOAL: {

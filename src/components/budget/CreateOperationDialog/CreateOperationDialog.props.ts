@@ -1,8 +1,7 @@
 import { Operation } from '../../../domain/interfaces/operation';
 
-export interface EditOperationDialogProps {
+export interface CreateOperationDialogProps {
 	open: boolean;
-	operation: Operation;
 	onClose: () => void;
 	onSubmit: (operation: Operation) => void;
 }

@@ -1,6 +1,6 @@
-import { BudgetActions } from '../actions/budget.actions';
-import { ActionWithPayload } from '../interfaces/action-with-payload.interface';
-import { Budget } from '../../domain/interfaces/budget';
+import { BudgetActions } from '../../actions/budget.actions';
+import { ActionWithPayload } from '../../interfaces/action-with-payload.interface';
+import { Budget } from '../../../domain/interfaces/budget';
 
 export const budgetInitialState: Budget = {
 	operations: [],
@@ -18,19 +18,19 @@ export function budgetReducer(state: Budget = budgetInitialState, action: Action
 		case BudgetActions.GET_BUDGET_FAILURE: {
 			return state;
 		}
-		case BudgetActions.ADD_OPERATION: {
+		case BudgetActions.CREATE_OPERATION: {
 			return state;
 		}
-		case BudgetActions.ADD_OPERATION_SUCCESS: {
+		case BudgetActions.CREATE_OPERATION_SUCCESS: {
 			return { operations: [action.payload, ...state.operations], debit: state.debit + action.payload.value };
 		}
-		case BudgetActions.ADD_OPERATION_FAILURE: {
+		case BudgetActions.CREATE_OPERATION_FAILURE: {
 			return state;
 		}
-		case BudgetActions.EDIT_OPERATION: {
+		case BudgetActions.UPDATE_OPERATION: {
 			return state;
 		}
-		case BudgetActions.EDIT_OPERATION_SUCCESS: {
+		case BudgetActions.UPDATE_OPERATION_SUCCESS: {
 			let operations = [...state.operations];
 			const index = operations.findIndex(operation => operation.id === action.payload.id);
 
@@ -44,7 +44,7 @@ export function budgetReducer(state: Budget = budgetInitialState, action: Action
 
 			return { operations, debit };
 		}
-		case BudgetActions.EDIT_OPERATION_FAILURE: {
+		case BudgetActions.UPDATE_OPERATION_FAILURE: {
 			return state;
 		}
 		case BudgetActions.REMOVE_OPERATION: {

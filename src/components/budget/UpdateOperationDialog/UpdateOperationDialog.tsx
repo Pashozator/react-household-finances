@@ -1,14 +1,18 @@
-import React from 'react';
-import { AddOperationDialogProps } from './AddOperationDialog.props';
+import React, { useEffect } from 'react';
+import { UpdateOperationDialogProps } from './UpdateOperationDialog.props';
 import { Dialog, DialogTitle } from '@material-ui/core';
 import { OperationForm } from '../OperationForm/OperationForm';
 import { useOperationForm } from '../../../hooks/budget/use-operation-form';
 import { OperationFormValues } from '../../../interfaces/operation-form-values';
 import { Operation } from '../../../domain/interfaces/operation';
 
-export const AddOperationDialog: React.FC<AddOperationDialogProps> = React.memo((props: AddOperationDialogProps) => {
-	const { open, onClose, onSubmit } = props;
-	const { initialValues, validate } = useOperationForm();
+export const UpdateOperationDialog: React.FC<UpdateOperationDialogProps> = React.memo((props: UpdateOperationDialogProps) => {
+	const { open, onClose, onSubmit, operation } = props;
+	const { initialValues, validate, patchValues } = useOperationForm();
+
+	useEffect(() => {
+		patchValues(operation);
+	}, [operation, patchValues])
 
 	const close = () => onClose();
 
@@ -17,12 +21,12 @@ export const AddOperationDialog: React.FC<AddOperationDialogProps> = React.memo(
 			return;
 		}
 
-		onSubmit(values as Operation);
+		onSubmit({ id: operation.id, ...values } as Operation);
 	}
 
 	return (
 		<Dialog onClose={close} open={open}>
-			<DialogTitle>Add operation</DialogTitle>
+			<DialogTitle>Edit operation</DialogTitle>
 			<OperationForm initialValues={initialValues} validate={validate} cancel={close} submit={submit}/>
 		</Dialog>
 	);

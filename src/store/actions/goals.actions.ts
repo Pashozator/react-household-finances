@@ -1,21 +1,21 @@
 import { Goal } from '../../domain/interfaces/goal';
 
 export enum GoalsActions {
-	GET_GOALS = '[Goals] Get Goals',
-	GET_GOALS_SUCCESS = '[Goals] Get Goals success',
-	GET_GOALS_FAILURE = '[Goals] Get Goals failure',
-	ADD_GOAL = '[Goals] Add Goal',
-	ADD_GOAL_SUCCESS = '[Goals] Add Goal success',
-	ADD_GOAL_FAILURE = '[Goals] Add Goal failure',
-	EDIT_GOAL = '[Goals] Edit Goal',
-	EDIT_GOAL_SUCCESS = '[Goals] Edit Goal success',
-	EDIT_GOAL_FAILURE = '[Goals] Edit Goal failure',
-	REMOVE_GOAL = '[Goals] Remove Goal',
-	REMOVE_GOAL_SUCCESS = '[Goals] Remove Goal success',
-	REMOVE_GOAL_FAILURE = '[Goals] Remove Goal failure',
-	REALIZE_GOAL = '[Goals] Realize Goal',
-	REALIZE_GOAL_SUCCESS = '[Goals] Realize Goal success',
-	REALIZE_GOAL_FAILURE = '[Goals] Realize Goal failure'
+	GET_GOALS = '[Goals] Get goals',
+	GET_GOALS_SUCCESS = '[Goals] Get goals success',
+	GET_GOALS_FAILURE = '[Goals] Get goals failure',
+	CREATE_GOAL = '[Goals] Create goal',
+	CREATE_GOAL_SUCCESS = '[Goals] Create goal success',
+	CREATE_GOAL_FAILURE = '[Goals] Create goal failure',
+	UPDATE_GOAL = '[Goals] Update goal',
+	UPDATE_GOAL_SUCCESS = '[Goals] Update goal success',
+	UPDATE_GOAL_FAILURE = '[Goals] Update goal failure',
+	REMOVE_GOAL = '[Goals] Remove goal',
+	REMOVE_GOAL_SUCCESS = '[Goals] Remove goal success',
+	REMOVE_GOAL_FAILURE = '[Goals] Remove goal failure',
+	REALIZE_GOAL = '[Goals] Realize goal',
+	REALIZE_GOAL_SUCCESS = '[Goals] Realize goal success',
+	REALIZE_GOAL_FAILURE = '[Goals] Realize goal failure'
 }
 
 export const getGoalsAction = () => ({ type: GoalsActions.GET_GOALS });
@@ -24,17 +24,17 @@ export const getGoalsSuccessAction = (goals: Goal[]) => ({ type: GoalsActions.GE
 
 export const getGoalsFailureAction = () => ({ type: GoalsActions.GET_GOALS_FAILURE });
 
-export const addGoalAction = (goal: Goal) => ({ type: GoalsActions.ADD_GOAL, payload: goal });
+export const createGoalAction = (goal: Goal) => ({ type: GoalsActions.CREATE_GOAL, payload: goal });
 
-export const addGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.ADD_GOAL_SUCCESS, payload: goal });
+export const createGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.CREATE_GOAL_SUCCESS, payload: goal });
 
-export const addGoalFailureAction = () => ({ type: GoalsActions.ADD_GOAL_FAILURE });
+export const createGoalFailureAction = () => ({ type: GoalsActions.CREATE_GOAL_FAILURE });
 
-export const editGoalAction = (goal: Goal) => ({ type: GoalsActions.EDIT_GOAL, payload: goal });
+export const updateGoalAction = (goal: Goal) => ({ type: GoalsActions.UPDATE_GOAL, payload: goal });
 
-export const editGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.EDIT_GOAL_SUCCESS, payload: goal });
+export const updateGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.UPDATE_GOAL_SUCCESS, payload: goal });
 
-export const editGoalFailureAction = () => ({ type: GoalsActions.EDIT_GOAL_FAILURE });
+export const updateGoalFailureAction = () => ({ type: GoalsActions.UPDATE_GOAL_FAILURE });
 
 export const removeGoalAction = (goal: Goal) => ({ type: GoalsActions.REMOVE_GOAL, payload: goal });
 
