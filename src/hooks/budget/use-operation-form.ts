@@ -36,8 +36,7 @@ export function useOperationForm(): {
 			}
 
 			if (!values.description) {
-				errors.description =
-					'Description is required.';
+				errors.description = 'Description is required.';
 			}
 
 			if (!values.value) {
@@ -45,7 +44,7 @@ export function useOperationForm(): {
 			}
 
 			if (!values.date) {
-				errors.value = 'Date is required.';
+				errors.date = 'Date is required.';
 			}
 
 			return errors;
