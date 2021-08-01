@@ -5,11 +5,12 @@ import { Operation } from '../../../domain/interfaces/operation';
 import { OperationElementsTestIds } from './Operation.helper';
 
 describe('Operation', () => {
-	const operation: Operation = operationMock;
+	let operation: Operation;
 	let update: jest.Mock;
 	let remove: jest.Mock;
 
 	beforeEach(() => {
+		operation = operationMock;
 		update = jest.fn();
 		remove = jest.fn();
 	});
@@ -23,7 +24,7 @@ describe('Operation', () => {
 		expect(screen.getByTestId(OperationElementsTestIds.DESCRIPTION)).toHaveTextContent(operation.description);
 	});
 
-	it('should emit remove function when remove button is pressed', () => {
+	it('should emit remove function when remove button is clicked', () => {
 		render(<OperationComponent operation={operation} onUpdate={update} onRemove={remove}/>);
 
 		fireEvent.click(screen.getByTestId(OperationElementsTestIds.REMOVE_BUTTON));
@@ -31,7 +32,7 @@ describe('Operation', () => {
 		expect(remove).toHaveBeenCalledWith(operation);
 	});
 
-	it('should emit update function when update button is pressed', () => {
+	it('should emit update function when update button is clicked', () => {
 		render(<OperationComponent operation={operation} onUpdate={update} onRemove={remove}/>);
 
 		fireEvent.click(screen.getByTestId(OperationElementsTestIds.UPDATE_BUTTON));
