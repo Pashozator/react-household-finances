@@ -18,6 +18,7 @@ export class Api {
 					method: RequestMethod.GET,
 					headers: this.headers
 				})
+					.then((response: Response) => this.handleResponseStatus(response))
 					.then((response: Response) => response.json());
 			case RequestMethod.POST:
 				return fetch(url, {
@@ -25,6 +26,7 @@ export class Api {
 					body: JSON.stringify(endpoint.body),
 					headers: this.headers
 				})
+					.then((response: Response) => this.handleResponseStatus(response))
 					.then((response: Response) => response.json());
 			case RequestMethod.PATCH:
 				return fetch(url, {
@@ -32,6 +34,7 @@ export class Api {
 					body: JSON.stringify(endpoint.body),
 					headers: this.headers
 				})
+					.then((response: Response) => this.handleResponseStatus(response))
 					.then((response: Response) => response.json());
 			case RequestMethod.PUT:
 				return fetch(url, {
@@ -39,12 +42,14 @@ export class Api {
 					body: JSON.stringify(endpoint.body),
 					headers: this.headers
 				})
+					.then((response: Response) => this.handleResponseStatus(response))
 					.then((response: Response) => response.json());
 			case RequestMethod.DELETE:
 				return fetch(url, {
 					method: RequestMethod.DELETE,
 					headers: this.headers
 				})
+					.then((response: Response) => this.handleResponseStatus(response))
 					.then((response: Response) => response.json());
 			default:
 				throw new Error('Unknown http method');
@@ -91,6 +96,14 @@ export class Api {
 		return `?${queryParams
 			.map((param: QueryParam) => `${param.name}=${param.value}`)
 			.join('&')}`;
+	}
+
+	private handleResponseStatus(response: Response): Response {
+		if (response.status >= 400 && response.status < 600) {
+			throw new Error();
+		}
+
+		return response;
 	}
 }
 
