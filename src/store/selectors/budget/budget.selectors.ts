@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
-import { RootState } from '../interfaces/root-state.interface';
-import { Budget } from '../../domain/interfaces/budget';
+import { RootState } from '../../interfaces/root-state.interface';
+import { Budget } from '../../../domain/interfaces/budget';
 
 export const selectBudget = (state: RootState) => state.budget;
 

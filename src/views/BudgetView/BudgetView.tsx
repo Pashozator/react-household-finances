@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Operation as OperationComponent } from '../../components/budget/Operation/Operation';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectDebit, selectOperations } from '../../store/selectors/budget.selectors';
+import { selectDebit, selectOperations } from '../../store/selectors/budget/budget.selectors';
 import { Operation } from '../../domain/interfaces/operation';
 import { getBudgetAction, removeOperationAction } from '../../store/actions/budget.actions';
 import { openUpdateOperationDialogAction } from '../../store/actions/dialogs.actions';

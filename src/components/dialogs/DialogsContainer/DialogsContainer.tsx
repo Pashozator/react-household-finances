@@ -2,14 +2,14 @@ import React from 'react';
 import { ErrorDialog } from '../ErrorDialog/ErrorDialog';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	selectAddGoalDialogOpened,
-	selectAddOperationDialogOpened,
-	selectEditGoalDialogOpened,
-	selectEditGoalDialogPayload,
-	selectEditOperationDialogOpened,
-	selectEditOperationDialogPayload,
+	selectCreateGoalDialogOpened,
+	selectCreateOperationDialogOpened,
+	selectUpdateGoalDialogOpened,
+	selectUpdateGoalDialogPayload,
+	selectUpdateOperationDialogOpened,
+	selectUpdateOperationDialogPayload,
 	selectErrorDialogOpened
-} from '../../../store/selectors/dialogs.selectors';
+} from '../../../store/selectors/dialogs/dialogs.selectors';
 import { createOperationAction, updateOperationAction } from '../../../store/actions/budget.actions';
 import {
 	closeCreateGoalDialogAction,
@@ -28,12 +28,12 @@ import { UpdateGoalDialog } from '../../goals/UpdateGoalDialog/UpdateGoalDialog'
 
 export const DialogsContainer: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
-	const addOperationDialogOpened = useSelector(selectAddOperationDialogOpened);
-	const editOperationDialogOpened = useSelector(selectEditOperationDialogOpened);
-	const editOperationDialogPayload = useSelector(selectEditOperationDialogPayload);
-	const addGoalDialogOpened = useSelector(selectAddGoalDialogOpened);
-	const editGoalDialogOpened = useSelector(selectEditGoalDialogOpened);
-	const editGoalDialogPayload = useSelector(selectEditGoalDialogPayload);
+	const addOperationDialogOpened = useSelector(selectCreateOperationDialogOpened);
+	const editOperationDialogOpened = useSelector(selectUpdateOperationDialogOpened);
+	const editOperationDialogPayload = useSelector(selectUpdateOperationDialogPayload);
+	const addGoalDialogOpened = useSelector(selectCreateGoalDialogOpened);
+	const editGoalDialogOpened = useSelector(selectUpdateGoalDialogOpened);
+	const editGoalDialogPayload = useSelector(selectUpdateGoalDialogPayload);
 	const errorDialogOpened = useSelector(selectErrorDialogOpened);
 
 	const closeAddOperationDialog = () => dispatch(closeCreateOperationDialogAction());

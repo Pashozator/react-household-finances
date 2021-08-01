@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectGoals } from '../../store/selectors/goals.selectors';
-import { selectDebit } from '../../store/selectors/budget.selectors';
+import { selectGoals } from '../../store/selectors/goals/goals.selectors';
+import { selectDebit } from '../../store/selectors/budget/budget.selectors';
 import { Goal as GoalComponent } from '../../components/goals/Goal/Goal';
 import { getGoalsAction, realizeGoalAction, removeGoalAction } from '../../store/actions/goals.actions';
 import { openUpdateGoalDialogAction } from '../../store/actions/dialogs.actions';
