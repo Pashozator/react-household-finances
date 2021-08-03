@@ -16,10 +16,9 @@ export const GoalForm: React.FC<GoalFormProps> = React.memo((props: GoalFormProp
 			initialValues={initialValues}
 			validate={validate}
 			onSubmit={handleSubmit}
-			data-testid={GoalFormElementsTestIds.ROOT}
 		>
 			{({ values, setFieldValue, handleSubmit }) => (
-				<form onSubmit={handleSubmit} data-testid={GoalFormElementsTestIds.FORM}>
+				<form onSubmit={handleSubmit}>
 					<div className="dialog">
 						<Input name="label"
 							   inputProps={{ type: 'text', 'data-testid': GoalFormElementsTestIds.INPUT_LABEL }}
@@ -33,7 +32,7 @@ export const GoalForm: React.FC<GoalFormProps> = React.memo((props: GoalFormProp
 							   placeholder="Value"
 							   className="input"
 							   value={values.value}
-							   onChange={(e => setFieldValue(e.target.name, parseFloat(e.target.value)))}
+							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
 						/>
 						<TextField name="description"
 								   inputProps={{ type: 'text', 'data-testid': GoalFormElementsTestIds.INPUT_DESCRIPTION }}
