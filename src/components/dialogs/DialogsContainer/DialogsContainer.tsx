@@ -23,10 +23,10 @@ import { CreateOperationDialog } from '../../budget/CreateOperationDialog/Create
 import { UpdateOperationDialog } from '../../budget/UpdateOperationDialog/UpdateOperationDialog';
 import { CreateGoalDialog } from '../../goals/CreateGoalDialog/CreateGoalDialog';
 import { UpdateGoalDialog } from '../../goals/UpdateGoalDialog/UpdateGoalDialog';
-import { PostGoalRequestBody } from '../../../domain/endpoints/goals/goal.post.endpoint';
-import { PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
-import { PostOperationRequestBody } from '../../../domain/endpoints/budget/operation.post.endpoint';
-import { PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
+import { CreateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/create-goal.endpoint';
+import { UpdateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/update-goal.endpoint';
+import { CreateOperationEndpointRequestBody } from '../../../domain/endpoints/budget/create-operation.endpoint';
+import { UpdateOperationEndpointRequestBody } from '../../../domain/endpoints/budget/update-operation.endpoint';
 
 export const DialogsContainer: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
@@ -40,22 +40,22 @@ export const DialogsContainer: React.FC = React.memo(() => {
 
 	const closeAddOperationDialog = () => dispatch(closeCreateOperationDialogAction());
 
-	const submitAddOperationDialog = (createOperationRequestBody: PostOperationRequestBody) => dispatch(createOperationAction(createOperationRequestBody));
+	const submitAddOperationDialog = (createOperationRequestBody: CreateOperationEndpointRequestBody) => dispatch(createOperationAction(createOperationRequestBody));
 
 	const closeEditOperationDialog = () => dispatch(closeUpdateOperationDialogAction());
 
-	const submitEditOperationDialog = (id: string, updateOperationRequestBody: PutOperationRequestBody) => dispatch(updateOperationAction({
+	const submitEditOperationDialog = (id: string, updateOperationRequestBody: UpdateOperationEndpointRequestBody) => dispatch(updateOperationAction({
 		id,
 		updateOperationRequestBody
 	}));
 
 	const closeAddGoalDialog = () => dispatch(closeCreateGoalDialogAction());
 
-	const submitAddGoalDialog = (createGoalRequestBody: PostGoalRequestBody) => dispatch(createGoalAction(createGoalRequestBody));
+	const submitAddGoalDialog = (createGoalRequestBody: CreateGoalEndpointRequestBody) => dispatch(createGoalAction(createGoalRequestBody));
 
 	const closeEditGoalDialog = () => dispatch(closeUpdateGoalDialogAction());
 
-	const submitEditGoalDialog = (id: string, updateGoalRequestBody: PutGoalRequestBody) => dispatch(updateGoalAction({
+	const submitEditGoalDialog = (id: string, updateGoalRequestBody: UpdateGoalEndpointRequestBody) => dispatch(updateGoalAction({
 		id,
 		putGoalRequestBody: updateGoalRequestBody
 	}));

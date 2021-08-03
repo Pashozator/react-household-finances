@@ -1,7 +1,7 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
 
-export function postOperation(body: PostOperationRequestBody): Endpoint {
+export function createOperationEndpoint(body: CreateOperationEndpointRequestBody): Endpoint {
 	return {
 		url: 'budget/operations',
 		method: RequestMethod.POST,
@@ -9,7 +9,7 @@ export function postOperation(body: PostOperationRequestBody): Endpoint {
 	}
 }
 
-export interface PostOperationRequestBody {
+export interface CreateOperationEndpointRequestBody {
 	label: string;
 	date: string;
 	value: number;

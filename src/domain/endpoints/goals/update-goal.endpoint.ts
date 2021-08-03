@@ -1,22 +1,21 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
 
-export function putOperation(query: PutOperationRequestQuery, body: PutOperationRequestBody): Endpoint {
+export function updateGoalEndpoint(query: UpdateGoalEndpointRequestQuery, body: UpdateGoalEndpointRequestBody): Endpoint {
 	return {
-		url: 'budget/operations/:id',
+		url: 'goals/:id',
 		method: RequestMethod.PUT,
 		query,
 		body
 	}
 }
 
-export interface PutOperationRequestQuery {
+export interface UpdateGoalEndpointRequestQuery {
 	id: string;
 }
 
-export interface PutOperationRequestBody {
+export interface UpdateGoalEndpointRequestBody {
 	label: string;
-	date: string;
 	value: number;
 	description: string;
 }

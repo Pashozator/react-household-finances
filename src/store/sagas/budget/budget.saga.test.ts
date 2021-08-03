@@ -28,7 +28,7 @@ import {
 } from '../../actions/dialogs.actions';
 import { operationMock } from '../../../mocks/opreration.mock';
 import { Operation } from '../../../domain/interfaces/operation';
-import { PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
+import { UpdateOperationEndpointRequestBody } from '../../../domain/endpoints/budget/update-operation.endpoint';
 
 describe('budget saga', () => {
 	describe('getBudgetSaga', () => {
@@ -74,7 +74,7 @@ describe('budget saga', () => {
 
 	describe('updateOperationSaga', () => {
 		const operation: Operation = operationMock;
-		const payload: { id: string, updateOperationRequestBody: PutOperationRequestBody } = { id: operation.id, updateOperationRequestBody: { label: operation.label, value: operation.value, description: operation.description, date: operation.date}};
+		const payload: { id: string, updateOperationRequestBody: UpdateOperationEndpointRequestBody } = { id: operation.id, updateOperationRequestBody: { label: operation.label, value: operation.value, description: operation.description, date: operation.date}};
 
 		it('should dispatch successful action', () => {
 			return expectSaga(updateOperationSaga, updateOperationAction(payload))

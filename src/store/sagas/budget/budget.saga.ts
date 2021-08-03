@@ -12,10 +12,10 @@ import {
 	updateOperationSuccessAction
 } from '../../actions/budget.actions';
 import { api } from '../../../core/api/api';
-import { getBudget } from '../../../domain/endpoints/budget/budget.get.endpoint';
-import { postOperation, PostOperationRequestBody } from '../../../domain/endpoints/budget/operation.post.endpoint';
-import { putOperation, PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
-import { deleteOperation } from '../../../domain/endpoints/budget/operation.delete.endpoint';
+import { getBudgetEndpoint } from '../../../domain/endpoints/budget/get-budget.endpoint';
+import { createOperationEndpoint, CreateOperationEndpointRequestBody } from '../../../domain/endpoints/budget/create-operation.endpoint';
+import { updateOperationEndpoint, UpdateOperationEndpointRequestBody } from '../../../domain/endpoints/budget/update-operation.endpoint';
+import { removeOperationEndpoint } from '../../../domain/endpoints/budget/remove-operation.endpoint';
 import {
 	closeCreateOperationDialogAction,
 	closeUpdateOperationDialogAction,
@@ -26,7 +26,7 @@ import { ActionWithPayload } from '../../interfaces/action-with-payload.interfac
 
 export function* getBudgetSaga(): SagaIterator {
 	try {
-		const response = yield call(() => api.request(getBudget()));
+		const response = yield call(() => api.request(getBudgetEndpoint()));
 
 		yield put(getBudgetSuccessAction(response.data));
 	} catch (err) {
@@ -34,9 +34,9 @@ export function* getBudgetSaga(): SagaIterator {
 	}
 }
 
-export function* createOperationSaga(action: ActionWithPayload<PostOperationRequestBody>): SagaIterator {
+export function* createOperationSaga(action: ActionWithPayload<CreateOperationEndpointRequestBody>): SagaIterator {
 	try {
-		const response = yield call(() => api.request(postOperation(action.payload)));
+		const response = yield call(() => api.request(createOperationEndpoint(action.payload)));
 
 		yield put(createOperationSuccessAction(response.data));
 		yield put(closeCreateOperationDialogAction());
@@ -45,9 +45,9 @@ export function* createOperationSaga(action: ActionWithPayload<PostOperationRequ
 	}
 }
 
-export function* updateOperationSaga(action: ActionWithPayload<{ id: string, updateOperationRequestBody: PutOperationRequestBody }>): SagaIterator {
+export function* updateOperationSaga(action: ActionWithPayload<{ id: string, updateOperationRequestBody: UpdateOperationEndpointRequestBody }>): SagaIterator {
 	try {
-		const response = yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload.updateOperationRequestBody)));
+		const response = yield call(() => api.request(updateOperationEndpoint({ id: action.payload.id }, action.payload.updateOperationRequestBody)));
 		yield put(updateOperationSuccessAction(response.data));
 		yield put(closeUpdateOperationDialogAction());
 	} catch (err) {
@@ -57,7 +57,7 @@ export function* updateOperationSaga(action: ActionWithPayload<{ id: string, upd
 
 export function* removeOperationSaga(action: ActionWithPayload<Operation>): SagaIterator {
 	try {
-		yield call(() => api.request(deleteOperation({ id: action.payload.id })));
+		yield call(() => api.request(removeOperationEndpoint({ id: action.payload.id })));
 		yield put(removeOperationSuccessAction(action.payload));
 	} catch (err) {
 		yield put(removeOperationFailureAction());

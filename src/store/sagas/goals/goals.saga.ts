@@ -14,11 +14,11 @@ import {
 	removeGoalSuccessAction
 } from '../../actions/goals.actions';
 import { api } from '../../../core/api/api';
-import { getGoals } from '../../../domain/endpoints/goals/goals.get.endpoint';
-import { postGoal, PostGoalRequestBody } from '../../../domain/endpoints/goals/goal.post.endpoint';
-import { deleteGoal } from '../../../domain/endpoints/goals/goal.delete.endpoint';
-import { putGoal, PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
-import { patchGoal } from '../../../domain/endpoints/goals/goal.patch.endpoint';
+import { getGoalsEndpoint } from '../../../domain/endpoints/goals/get-goals.endpoint';
+import { createGoalEndpoint, CreateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/create-goal.endpoint';
+import { removeGoalEndpoint } from '../../../domain/endpoints/goals/remove-goal.endpoint';
+import { updateGoalEndpoint, UpdateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/update-goal.endpoint';
+import { realizeGoalEndpoint } from '../../../domain/endpoints/goals/realize-goal.endpoint';
 import {
 	closeCreateGoalDialogAction,
 	closeUpdateGoalDialogAction,
@@ -29,16 +29,16 @@ import { ActionWithPayload } from '../../interfaces/action-with-payload.interfac
 
 export function* getGoalsSaga(): SagaIterator {
 	try {
-		const response = yield call(() => api.request(getGoals()));
+		const response = yield call(() => api.request(getGoalsEndpoint()));
 		yield put(getGoalsSuccessAction(response.data));
 	} catch (err) {
 		yield put(getGoalsFailureAction());
 	}
 }
 
-export function* createGoalSaga(action: ActionWithPayload<PostGoalRequestBody>): SagaIterator {
+export function* createGoalSaga(action: ActionWithPayload<CreateGoalEndpointRequestBody>): SagaIterator {
 	try {
-		const response = yield call(() => api.request(postGoal(action.payload)));
+		const response = yield call(() => api.request(createGoalEndpoint(action.payload)));
 
 		yield put(createGoalSuccessAction(response.data));
 		yield put(closeCreateGoalDialogAction());
@@ -47,9 +47,9 @@ export function* createGoalSaga(action: ActionWithPayload<PostGoalRequestBody>):
 	}
 }
 
-export function* updateGoalSaga(action: ActionWithPayload<{ id: string,  putGoalRequestBody: PutGoalRequestBody }>): SagaIterator {
+export function* updateGoalSaga(action: ActionWithPayload<{ id: string,  putGoalRequestBody: UpdateGoalEndpointRequestBody }>): SagaIterator {
 	try {
-		const response = yield call(() => api.request(putGoal({ id: action.payload.id }, action.payload.putGoalRequestBody)));
+		const response = yield call(() => api.request(updateGoalEndpoint({ id: action.payload.id }, action.payload.putGoalRequestBody)));
 		yield put(updateGoalSuccessAction(response.data));
 		yield put(closeUpdateGoalDialogAction());
 	} catch (err) {
@@ -59,7 +59,7 @@ export function* updateGoalSaga(action: ActionWithPayload<{ id: string,  putGoal
 
 export function* removeGoalSaga(action: ActionWithPayload<Goal>): SagaIterator {
 	try {
-		yield call(() => api.request(deleteGoal({ id: action.payload.id })));
+		yield call(() => api.request(removeGoalEndpoint({ id: action.payload.id })));
 		yield put(removeGoalSuccessAction(action.payload));
 	} catch (err) {
 		yield put(removeGoalFailureAction());
@@ -68,7 +68,7 @@ export function* removeGoalSaga(action: ActionWithPayload<Goal>): SagaIterator {
 
 export function* realizeGoalSaga(action: ActionWithPayload<Goal>): SagaIterator {
 	try {
-		yield call(() => api.request(patchGoal({ id: action.payload.id })));
+		yield call(() => api.request(realizeGoalEndpoint({ id: action.payload.id })));
 		yield put(realizeGoalSuccessAction(action.payload));
 	} catch (err) {
 		yield put(realizeGoalFailureAction());

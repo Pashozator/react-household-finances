@@ -1,7 +1,7 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
 
-export function deleteOperation(query: DeleteOperationRequestQuery): Endpoint {
+export function removeOperationEndpoint(query: RemoveOperationEndpointRequestQuery): Endpoint {
 	return {
 		url: 'budget/operations/:id',
 		method: RequestMethod.DELETE,
@@ -9,6 +9,6 @@ export function deleteOperation(query: DeleteOperationRequestQuery): Endpoint {
 	}
 }
 
-export interface DeleteOperationRequestQuery {
+export interface RemoveOperationEndpointRequestQuery {
 	id: string;
 }

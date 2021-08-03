@@ -32,7 +32,7 @@ import {
 	openErrorDialogAction
 } from '../../actions/dialogs.actions';
 import { Goal } from '../../../domain/interfaces/goal';
-import { PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
+import { UpdateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/update-goal.endpoint';
 
 describe('goals saga', () => {
 	describe('getGoalsSaga', () => {
@@ -78,7 +78,7 @@ describe('goals saga', () => {
 
 	describe('updateGoalSaga', () => {
 		const goal: Goal = goalMock;
-		const payload: { id: string, putGoalRequestBody: PutGoalRequestBody } = { id: goal.id, putGoalRequestBody: { label: goal.label, value: goal.value, description: goal.description } };
+		const payload: { id: string, putGoalRequestBody: UpdateGoalEndpointRequestBody } = { id: goal.id, putGoalRequestBody: { label: goal.label, value: goal.value, description: goal.description } };
 
 		it('should dispatch successful action', () => {
 			return expectSaga(updateGoalSaga, updateGoalAction(payload))

@@ -1,9 +1,9 @@
 import { Goal } from '../../../domain/interfaces/goal';
-import { PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
+import { UpdateGoalEndpointRequestBody } from '../../../domain/endpoints/goals/update-goal.endpoint';
 
 export interface UpdateGoalDialogProps {
 	open: boolean;
 	goal: Goal;
 	onClose: () => void;
-	onSubmit: (id: string, putGoalRequestBody: PutGoalRequestBody) => void;
+	onSubmit: (id: string, putGoalRequestBody: UpdateGoalEndpointRequestBody) => void;
 }
