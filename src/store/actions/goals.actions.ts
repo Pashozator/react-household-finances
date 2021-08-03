@@ -1,4 +1,6 @@
 import { Goal } from '../../domain/interfaces/goal';
+import { PostGoalRequestBody } from '../../domain/endpoints/goals/goal.post.endpoint';
+import { PutGoalRequestBody } from '../../domain/endpoints/goals/goal.put.endpoint';
 
 export enum GoalsActions {
 	GET_GOALS = '[Goals] Get goals',
@@ -24,13 +26,13 @@ export const getGoalsSuccessAction = (goals: Goal[]) => ({ type: GoalsActions.GE
 
 export const getGoalsFailureAction = () => ({ type: GoalsActions.GET_GOALS_FAILURE });
 
-export const createGoalAction = (goal: Goal) => ({ type: GoalsActions.CREATE_GOAL, payload: goal });
+export const createGoalAction = (postGoalRequestBody: PostGoalRequestBody) => ({ type: GoalsActions.CREATE_GOAL, payload: postGoalRequestBody });
 
 export const createGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.CREATE_GOAL_SUCCESS, payload: goal });
 
 export const createGoalFailureAction = () => ({ type: GoalsActions.CREATE_GOAL_FAILURE });
 
-export const updateGoalAction = (goal: Goal) => ({ type: GoalsActions.UPDATE_GOAL, payload: goal });
+export const updateGoalAction = (payload: { id: string,  putGoalRequestBody: PutGoalRequestBody }) => ({ type: GoalsActions.UPDATE_GOAL, payload });
 
 export const updateGoalSuccessAction = (goal: Goal) => ({ type: GoalsActions.UPDATE_GOAL_SUCCESS, payload: goal });
 

@@ -31,6 +31,8 @@ import {
 	closeUpdateGoalDialogAction,
 	openErrorDialogAction
 } from '../../actions/dialogs.actions';
+import { Goal } from '../../../domain/interfaces/goal';
+import { PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
 
 describe('goals saga', () => {
 	describe('getGoalsSaga', () => {
@@ -75,9 +77,12 @@ describe('goals saga', () => {
 	});
 
 	describe('updateGoalSaga', () => {
+		const goal: Goal = goalMock;
+		const payload: { id: string, putGoalRequestBody: PutGoalRequestBody } = { id: goal.id, putGoalRequestBody: { label: goal.label, value: goal.value, description: goal.description } };
+
 		it('should dispatch successful action', () => {
-			return expectSaga(updateGoalSaga, updateGoalAction(goalMock))
-				.put(updateGoalSuccessAction(goalMock))
+			return expectSaga(updateGoalSaga, updateGoalAction(payload))
+				.put(updateGoalSuccessAction(goal))
 				.put(closeUpdateGoalDialogAction())
 				.run();
 		});
@@ -89,7 +94,7 @@ describe('goals saga', () => {
 				}),
 			);
 
-			return expectSaga(updateGoalSaga, updateGoalAction(goalMock))
+			return expectSaga(updateGoalSaga, updateGoalAction(payload))
 				.put(updateGoalFailureAction())
 				.run();
 		});
@@ -109,7 +114,7 @@ describe('goals saga', () => {
 				}),
 			);
 
-			return expectSaga(removeGoalSaga, updateGoalAction(goalMock))
+			return expectSaga(removeGoalSaga, removeGoalAction(goalMock))
 				.put(removeGoalFailureAction())
 				.run();
 		});
@@ -129,7 +134,7 @@ describe('goals saga', () => {
 				}),
 			);
 
-			return expectSaga(realizeGoalSaga, updateGoalAction(goalMock))
+			return expectSaga(realizeGoalSaga, realizeGoalAction(goalMock))
 				.put(realizeGoalFailureAction())
 				.run();
 		});

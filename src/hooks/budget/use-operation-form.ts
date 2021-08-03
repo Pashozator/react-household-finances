@@ -9,17 +9,17 @@ export function useOperationForm(): {
 	validate: (values: OperationFormValues) => FormikErrors<OperationFormValues>;
 } {
 	const [initialValues, setInitialValues] = useState<OperationFormValues>({
-		label: null,
-		value: null,
-		description: null,
-		date: null
+		label: '',
+		value: '',
+		description: '',
+		date: ''
 	});
 
 	const patchValues = useCallback(
 		(operation: Operation): void => {
 			setInitialValues({
 				label: operation.label,
-				value: operation.value,
+				value: operation.value.toString(),
 				description: operation.description,
 				date: operation.date,
 			});

@@ -1,6 +1,5 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
-import { Goal } from '../../interfaces/goal';
 
 export function postGoal(body: PostGoalRequestBody): Endpoint {
 	return {
@@ -10,4 +9,8 @@ export function postGoal(body: PostGoalRequestBody): Endpoint {
 	}
 }
 
-export interface PostGoalRequestBody extends Goal {}
+export interface PostGoalRequestBody {
+	label: string;
+	value: number;
+	description: string;
+}

@@ -1,6 +1,5 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
-import { Operation } from '../../interfaces/operation';
 
 export function postOperation(body: PostOperationRequestBody): Endpoint {
 	return {
@@ -10,4 +9,9 @@ export function postOperation(body: PostOperationRequestBody): Endpoint {
 	}
 }
 
-export interface PostOperationRequestBody extends Operation {}
+export interface PostOperationRequestBody {
+	label: string;
+	date: string;
+	value: number;
+	description: string;
+}

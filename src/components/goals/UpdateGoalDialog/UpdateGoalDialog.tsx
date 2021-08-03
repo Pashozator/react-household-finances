@@ -4,7 +4,6 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { useGoalForm } from '../../../hooks/goals/use-goal-form';
 import { GoalForm } from '../GoalForm/GoalForm';
 import { GoalFormValues } from '../../../interfaces/goal-form-values';
-import { Goal } from '../../../domain/interfaces/goal';
 
 export const UpdateGoalDialog: React.FC<UpdateGoalDialogProps> = React.memo((props: UpdateGoalDialogProps) => {
 	const { onClose, onSubmit, goal, open } = props;
@@ -21,13 +20,17 @@ export const UpdateGoalDialog: React.FC<UpdateGoalDialogProps> = React.memo((pro
 			return;
 		}
 
-		onSubmit({ id: goal.id, ...values } as Goal);
+		onSubmit(goal.id, {
+			label: values.label,
+			value: parseFloat(values.value),
+			description: values.description
+		});
 	}
 
 	return (
 		<Dialog onClose={close} open={open}>
 			<DialogTitle>Edit goal</DialogTitle>
-			<GoalForm initialValues={initialValues} validate={validate} cancel={close} submit={submit} />
+			<GoalForm initialValues={initialValues} validate={validate} cancel={close} submit={submit}/>
 		</Dialog>
 	);
 });

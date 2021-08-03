@@ -4,27 +4,29 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	selectCreateGoalDialogOpened,
 	selectCreateOperationDialogOpened,
+	selectErrorDialogOpened,
 	selectUpdateGoalDialogOpened,
 	selectUpdateGoalDialogPayload,
 	selectUpdateOperationDialogOpened,
-	selectUpdateOperationDialogPayload,
-	selectErrorDialogOpened
+	selectUpdateOperationDialogPayload
 } from '../../../store/selectors/dialogs/dialogs.selectors';
 import { createOperationAction, updateOperationAction } from '../../../store/actions/budget.actions';
 import {
 	closeCreateGoalDialogAction,
 	closeCreateOperationDialogAction,
+	closeErrorDialogAction,
 	closeUpdateGoalDialogAction,
-	closeUpdateOperationDialogAction,
-	closeErrorDialogAction
+	closeUpdateOperationDialogAction
 } from '../../../store/actions/dialogs.actions';
 import { createGoalAction, updateGoalAction } from '../../../store/actions/goals.actions';
-import { Operation } from '../../../domain/interfaces/operation';
-import { Goal } from '../../../domain/interfaces/goal';
 import { CreateOperationDialog } from '../../budget/CreateOperationDialog/CreateOperationDialog';
 import { UpdateOperationDialog } from '../../budget/UpdateOperationDialog/UpdateOperationDialog';
 import { CreateGoalDialog } from '../../goals/CreateGoalDialog/CreateGoalDialog';
 import { UpdateGoalDialog } from '../../goals/UpdateGoalDialog/UpdateGoalDialog';
+import { PostGoalRequestBody } from '../../../domain/endpoints/goals/goal.post.endpoint';
+import { PutGoalRequestBody } from '../../../domain/endpoints/goals/goal.put.endpoint';
+import { PostOperationRequestBody } from '../../../domain/endpoints/budget/operation.post.endpoint';
+import { PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
 
 export const DialogsContainer: React.FC = React.memo(() => {
 	const dispatch = useDispatch();
@@ -38,19 +40,25 @@ export const DialogsContainer: React.FC = React.memo(() => {
 
 	const closeAddOperationDialog = () => dispatch(closeCreateOperationDialogAction());
 
-	const submitAddOperationDialog = (operation: Operation) => dispatch(createOperationAction(operation));
+	const submitAddOperationDialog = (createOperationRequestBody: PostOperationRequestBody) => dispatch(createOperationAction(createOperationRequestBody));
 
 	const closeEditOperationDialog = () => dispatch(closeUpdateOperationDialogAction());
 
-	const submitEditOperationDialog = (operation: Operation) => dispatch(updateOperationAction(operation));
+	const submitEditOperationDialog = (id: string, updateOperationRequestBody: PutOperationRequestBody) => dispatch(updateOperationAction({
+		id,
+		updateOperationRequestBody
+	}));
 
 	const closeAddGoalDialog = () => dispatch(closeCreateGoalDialogAction());
 
-	const submitAddGoalDialog = (goal: Goal) => dispatch(createGoalAction(goal));
+	const submitAddGoalDialog = (createGoalRequestBody: PostGoalRequestBody) => dispatch(createGoalAction(createGoalRequestBody));
 
 	const closeEditGoalDialog = () => dispatch(closeUpdateGoalDialogAction());
 
-	const submitEditGoalDialog = (goal: Goal) => dispatch(updateGoalAction(goal));
+	const submitEditGoalDialog = (id: string, updateGoalRequestBody: PutGoalRequestBody) => dispatch(updateGoalAction({
+		id,
+		putGoalRequestBody: updateGoalRequestBody
+	}));
 
 	const closeErrorDialog = () => dispatch(closeErrorDialogAction());
 

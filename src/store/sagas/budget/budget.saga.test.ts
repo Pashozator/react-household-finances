@@ -27,6 +27,8 @@ import {
 	openErrorDialogAction
 } from '../../actions/dialogs.actions';
 import { operationMock } from '../../../mocks/opreration.mock';
+import { Operation } from '../../../domain/interfaces/operation';
+import { PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
 
 describe('budget saga', () => {
 	describe('getBudgetSaga', () => {
@@ -71,9 +73,12 @@ describe('budget saga', () => {
 	});
 
 	describe('updateOperationSaga', () => {
+		const operation: Operation = operationMock;
+		const payload: { id: string, updateOperationRequestBody: PutOperationRequestBody } = { id: operation.id, updateOperationRequestBody: { label: operation.label, value: operation.value, description: operation.description, date: operation.date}};
+
 		it('should dispatch successful action', () => {
-			return expectSaga(updateOperationSaga, updateOperationAction(operationMock))
-				.put(updateOperationSuccessAction(operationMock))
+			return expectSaga(updateOperationSaga, updateOperationAction(payload))
+				.put(updateOperationSuccessAction(operation))
 				.put(closeUpdateOperationDialogAction())
 				.run();
 		});
@@ -85,7 +90,7 @@ describe('budget saga', () => {
 				}),
 			);
 
-			return expectSaga(updateOperationSaga, updateOperationAction(operationMock))
+			return expectSaga(updateOperationSaga, updateOperationAction(payload))
 				.put(updateOperationFailureAction())
 				.run();
 		});

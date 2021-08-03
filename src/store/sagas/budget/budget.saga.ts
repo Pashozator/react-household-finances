@@ -13,8 +13,8 @@ import {
 } from '../../actions/budget.actions';
 import { api } from '../../../core/api/api';
 import { getBudget } from '../../../domain/endpoints/budget/budget.get.endpoint';
-import { postOperation } from '../../../domain/endpoints/budget/operation.post.endpoint';
-import { putOperation } from '../../../domain/endpoints/budget/operation.put.endpoint';
+import { postOperation, PostOperationRequestBody } from '../../../domain/endpoints/budget/operation.post.endpoint';
+import { putOperation, PutOperationRequestBody } from '../../../domain/endpoints/budget/operation.put.endpoint';
 import { deleteOperation } from '../../../domain/endpoints/budget/operation.delete.endpoint';
 import {
 	closeCreateOperationDialogAction,
@@ -34,7 +34,7 @@ export function* getBudgetSaga(): SagaIterator {
 	}
 }
 
-export function* createOperationSaga(action: ActionWithPayload<Operation>): SagaIterator {
+export function* createOperationSaga(action: ActionWithPayload<PostOperationRequestBody>): SagaIterator {
 	try {
 		const response = yield call(() => api.request(postOperation(action.payload)));
 
@@ -45,10 +45,10 @@ export function* createOperationSaga(action: ActionWithPayload<Operation>): Saga
 	}
 }
 
-export function* updateOperationSaga(action: ActionWithPayload<Operation>): SagaIterator {
+export function* updateOperationSaga(action: ActionWithPayload<{ id: string, updateOperationRequestBody: PutOperationRequestBody }>): SagaIterator {
 	try {
-		yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload)));
-		yield put(updateOperationSuccessAction(action.payload));
+		const response = yield call(() => api.request(putOperation({ id: action.payload.id }, action.payload.updateOperationRequestBody)));
+		yield put(updateOperationSuccessAction(response.data));
 		yield put(closeUpdateOperationDialogAction());
 	} catch (err) {
 		yield put(updateOperationFailureAction());

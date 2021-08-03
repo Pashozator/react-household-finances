@@ -1,6 +1,5 @@
 import { Endpoint } from '../../../core/api/interfaces/endpoint';
 import { RequestMethod } from '../../../core/api/enums/request-method.enum';
-import { Operation } from '../../interfaces/operation';
 
 export function putOperation(query: PutOperationRequestQuery, body: PutOperationRequestBody): Endpoint {
 	return {
@@ -15,4 +14,9 @@ export interface PutOperationRequestQuery {
 	id: string;
 }
 
-export interface PutOperationRequestBody extends Operation {}
+export interface PutOperationRequestBody {
+	label: string;
+	date: string;
+	value: number;
+	description: string;
+}

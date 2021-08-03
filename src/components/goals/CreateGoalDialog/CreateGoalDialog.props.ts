@@ -1,7 +1,7 @@
-import { Goal } from '../../../domain/interfaces/goal';
+import { PostGoalRequestBody } from '../../../domain/endpoints/goals/goal.post.endpoint';
 
 export interface CreateGoalDialogProps {
 	open: boolean;
 	onClose: () => void;
-	onSubmit: (goal: Goal) => void;
+	onSubmit: (postGoalRequestBody: PostGoalRequestBody) => void;
 }

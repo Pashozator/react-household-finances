@@ -1,5 +1,7 @@
 import { Budget } from '../../domain/interfaces/budget';
 import { Operation } from '../../domain/interfaces/operation';
+import { PostOperationRequestBody } from '../../domain/endpoints/budget/operation.post.endpoint';
+import { PutOperationRequestBody } from '../../domain/endpoints/budget/operation.put.endpoint';
 
 export enum BudgetActions {
 	GET_BUDGET = '[Budget] Get budget',
@@ -22,13 +24,13 @@ export const getBudgetSuccessAction = (budget: Budget) => ({ type: BudgetActions
 
 export const getBudgetFailureAction = () => ({ type: BudgetActions.GET_BUDGET_FAILURE });
 
-export const createOperationAction = (operation: Operation) => ({ type: BudgetActions.CREATE_OPERATION, payload: operation });
+export const createOperationAction = (createOperationRequestBody: PostOperationRequestBody) => ({ type: BudgetActions.CREATE_OPERATION, payload: createOperationRequestBody });
 
 export const createOperationSuccessAction = (operation: Operation) => ({ type: BudgetActions.CREATE_OPERATION_SUCCESS, payload: operation });
 
 export const createOperationFailureAction = () => ({ type: BudgetActions.CREATE_OPERATION_FAILURE });
 
-export const updateOperationAction = (operation: Operation) => ({ type: BudgetActions.UPDATE_OPERATION, payload: operation });
+export const updateOperationAction = (payload: { id: string, updateOperationRequestBody: PutOperationRequestBody }) => ({ type: BudgetActions.UPDATE_OPERATION, payload });
 
 export const updateOperationSuccessAction = (operation: Operation) => ({ type: BudgetActions.UPDATE_OPERATION_SUCCESS, payload: operation });
 

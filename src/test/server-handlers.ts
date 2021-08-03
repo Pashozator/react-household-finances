@@ -1,7 +1,6 @@
 import { ResponseComposition, rest, RestContext, RestRequest } from 'msw';
 import { goalMock } from '../mocks/goal.mock';
 import { budgetMock } from '../mocks/budget.mock';
-import { operationMock } from '../mocks/opreration.mock';
 
 export const handlers = [
 	rest.get('/api-client-test', (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
@@ -26,7 +25,8 @@ export const handlers = [
 		return res(ctx.json({ data: req.body }));
 	}),
 	rest.put('/goals/:id', (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
-		return res(ctx.json({ data: req.body }));
+		const body: Record<string, any> = req.body as Record<string, any>;
+		return res(ctx.json({ data: { id: req.params.id, realized: false, ...body } }));
 	}),
 	rest.delete('/goals/:id', (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
 		return res(ctx.json({ data: req.body }));
@@ -41,7 +41,8 @@ export const handlers = [
 		return res(ctx.json({ data: req.body }));
 	}),
 	rest.put('/budget/operations/:id', (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
-		return res(ctx.json({ data: req.body }));
+		const body: Record<string, any> = req.body as Record<string, any>;
+		return res(ctx.json({ data: { id: req.params.id, ...body } }));
 	}),
 	rest.delete('/budget/operations/:id', (req: RestRequest, res: ResponseComposition, ctx: RestContext) => {
 		return res(ctx.json({ data: req.body }));

@@ -4,7 +4,6 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { OperationForm } from '../OperationForm/OperationForm';
 import { useOperationForm } from '../../../hooks/budget/use-operation-form';
 import { OperationFormValues } from '../../../interfaces/operation-form-values';
-import { Operation } from '../../../domain/interfaces/operation';
 
 export const UpdateOperationDialog: React.FC<UpdateOperationDialogProps> = React.memo((props: UpdateOperationDialogProps) => {
 	const { open, onClose, onSubmit, operation } = props;
@@ -21,7 +20,12 @@ export const UpdateOperationDialog: React.FC<UpdateOperationDialogProps> = React
 			return;
 		}
 
-		onSubmit({ id: operation.id, ...values } as Operation);
+		onSubmit(operation.id, {
+			label: values.label,
+			value: parseFloat(values.value),
+			date: values.date,
+			description: values.description
+		});
 	}
 
 	return (
