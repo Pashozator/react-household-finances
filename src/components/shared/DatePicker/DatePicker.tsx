@@ -4,7 +4,7 @@ import { DatePickerProps } from './DatePicker.props';
 import { MaterialUiPickersDate } from '@material-ui/pickers/typings/date';
 
 export const DatePicker: React.FC<DatePickerProps> = React.memo((props: DatePickerProps) => {
-	const { name, label, value, className, onChange, testId } = props;
+	const { name, label, value, maxDate, className, onChange, testId } = props;
 
 	const handleChange = useCallback((date: MaterialUiPickersDate) => onChange(name, date), [name, onChange]);
 
@@ -16,6 +16,7 @@ export const DatePicker: React.FC<DatePickerProps> = React.memo((props: DatePick
 				disableToolbar
 				inputProps={{ 'data-testid': testId }}
 				label={label}
+				maxDate={maxDate}
 				value={value}
 				onChange={handleChange}
 			/>
