@@ -46,7 +46,8 @@ describe('goalsReducer', () => {
 	});
 
 	it('should handle update goal request', () => {
-		expect(goalsReducer(goalsInitialState, updateGoalAction(goalMock))).toEqual(goalsInitialState);
+		const goal: Goal = goalMock;
+		expect(goalsReducer(goalsInitialState, updateGoalAction({ id: goal.id, putGoalRequestBody: { label: goal.label, value: goal.value, description: goal.description} }))).toEqual(goalsInitialState);
 	});
 
 	it('should handle update goal successful request', () => {
