@@ -29,8 +29,8 @@ export const GoalsView: React.FC = React.memo(() => {
 
 	return (
 		<div className="wrapper padding-top-25">
-			{goals.map((goal, index) => (
-				<GoalComponent className="margin-top-10-not-on-first" goal={goal} debit={debit} key={index}
+			{goals.map(goal => (
+				<GoalComponent className="margin-top-10-not-on-first" goal={goal} debit={debit} key={goal.id}
 							   onRemove={onGoalRemove}
 							   onUpdate={onGoalEdit} onRealize={onGoalRealize}/>
 			))}

@@ -27,8 +27,8 @@ export const BudgetView: React.FC = React.memo(() => {
 	return (
 		<div className="wrapper">
 			<h3>Debit: {debit}</h3>
-			{operations.map((operation, index) => (
-				<OperationComponent className="margin-top-10-not-on-first" operation={operation} key={index}
+			{operations.map(operation => (
+				<OperationComponent className="margin-top-10-not-on-first" operation={operation} key={operation.id}
 									onRemove={onOperationRemove}
 									onUpdate={onOperationEdit}/>))}
 
