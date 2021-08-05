@@ -12,7 +12,7 @@ export const Operation: React.FC<OperationProps> = React.memo((props: OperationP
 	const update = () => onUpdate(operation);
 
 	return (
-		<Card data-testid={OperationElementsTestIds.ROOT} className={className}>
+		<Card variant="outlined" data-testid={OperationElementsTestIds.ROOT} className={className}>
 			<CardContent>
 				<div className="content">
 					<div className="label-date">

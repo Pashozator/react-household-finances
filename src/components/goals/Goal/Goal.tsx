@@ -16,7 +16,7 @@ export const Goal: React.FC<GoalProps> = React.memo((props: GoalProps) => {
 	const realize = () => onRealize(goal);
 
 	return (
-		<Card data-testid={GoalElementsTestIds.ROOT} className={`${className} ${goal.realized ? 'realized' : ''}`}>
+		<Card variant="outlined" data-testid={GoalElementsTestIds.ROOT} className={`${className} ${goal.realized ? 'realized' : ''}`}>
 			<CardContent>
 				<Typography className="header" variant="h4">
 					{goal.realized ? (<Icon data-testid={GoalElementsTestIds.ICON}>check_circle</Icon>) : null}
