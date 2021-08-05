@@ -1,31 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { openCreateGoalDialogAction, openCreateOperationDialogAction } from './store/actions/dialogs.actions';
-import { Fab, Icon, Menu, MenuItem } from '@material-ui/core';
 import { GoalsView } from './views/GoalsView/GoalsView';
 import { BudgetView } from './views/BudgetView/BudgetView';
 import { DialogsContainer } from './components/dialogs/DialogsContainer/DialogsContainer';
 import moment from 'moment';
 
 export const App: React.FC = () => {
-	const [anchorEl, setAnchorEl] = useState<any>();
-	const dispatch = useDispatch();
-
-	const openMenu = (event: React.SyntheticEvent) => setAnchorEl(event.currentTarget);
-
-	const closeMenu = () => setAnchorEl(null);
-
-	const openAddOperationDialog = () => {
-		closeMenu();
-		dispatch(openCreateOperationDialogAction());
-	}
-
-	const openAddGoalDialog = () => {
-		dispatch(openCreateGoalDialogAction());
-		closeMenu();
-	};
-
 	return (
 		<Router>
 			<>
@@ -55,26 +35,6 @@ export const App: React.FC = () => {
 					<Route path="/goals" component={GoalsView}/>
 					<Redirect from="/" to="/budget"/>
 				</Switch>
-
-				<Fab color="primary" className="fab" onClick={openMenu}>
-					<Icon>
-						add_circle
-					</Icon>
-				</Fab>
-
-				<Menu
-					id="simple-menu"
-					anchorEl={anchorEl}
-					open={Boolean(anchorEl)}
-					onClose={closeMenu}
-				>
-					<MenuItem onClick={openAddOperationDialog}>
-						Add operation
-					</MenuItem>
-					<MenuItem onClick={openAddGoalDialog}>
-						Add goal
-					</MenuItem>
-				</Menu>
 				<DialogsContainer/>
 			</>
 		</Router>
