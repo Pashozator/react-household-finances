@@ -12,7 +12,7 @@ export const DatePicker: React.FC<DatePickerProps> = React.memo((props: DatePick
 		<div className={className}>
 			<MaterialDatePicker
 				name={name}
-				format="dd.MM.yyyy"
+				format="yyyy-MM-dd"
 				disableToolbar
 				inputProps={{ 'data-testid': testId }}
 				label={label}

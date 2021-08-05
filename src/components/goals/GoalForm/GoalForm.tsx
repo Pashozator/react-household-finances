@@ -1,9 +1,10 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { GoalFormProps } from './GoalForm.props';
-import { Button, DialogActions, Input, TextField } from '@material-ui/core';
+import { Button, DialogActions } from '@material-ui/core';
 import { GoalFormElementsTestIds } from './GoalForm.helper';
 import { GoalFormValues } from '../../../interfaces/goal-form-values';
+import { Input } from '../../shared/Input/Input';
 
 export const GoalForm: React.FC<GoalFormProps> = React.memo((props: GoalFormProps) => {
 	const { initialValues, validate, cancel, submit } = props;
@@ -21,26 +22,26 @@ export const GoalForm: React.FC<GoalFormProps> = React.memo((props: GoalFormProp
 				<form onSubmit={handleSubmit}>
 					<div className="dialog">
 						<Input name="label"
-							   inputProps={{ type: 'text', 'data-testid': GoalFormElementsTestIds.INPUT_LABEL }}
-							   placeholder="Label"
+							   label="Label"
 							   className="input"
 							   value={values.label}
-							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
+							   testId={GoalFormElementsTestIds.INPUT_LABEL}
+							   onChange={setFieldValue}
 						/>
 						<Input name="value"
-							   inputProps={{ type: 'number', 'data-testid': GoalFormElementsTestIds.INPUT_VALUE }}
-							   placeholder="Value"
+							   label="Value"
+							   type="number"
 							   className="input"
 							   value={values.value}
-							   onChange={(e => setFieldValue(e.target.name, e.target.value))}
+							   testId={GoalFormElementsTestIds.INPUT_VALUE}
+							   onChange={setFieldValue}
 						/>
-						<TextField name="description"
-								   inputProps={{ type: 'text', 'data-testid': GoalFormElementsTestIds.INPUT_DESCRIPTION }}
-								   multiline
-								   placeholder="Description"
-								   value={values.description}
-								   className="input"
-								   onChange={(e => setFieldValue(e.target.name, e.target.value))}
+						<Input name="description"
+							   label="Description"
+							   value={values.description}
+							   className="input"
+							   testId={GoalFormElementsTestIds.INPUT_DESCRIPTION}
+							   onChange={setFieldValue}
 						/>
 					</div>
 					<DialogActions>

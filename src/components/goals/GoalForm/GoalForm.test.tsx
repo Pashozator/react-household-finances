@@ -21,9 +21,9 @@ describe('GoalForm', () => {
 	it('should display inputs initial values', () => {
 		render(<GoalForm initialValues={initialValues} validate={validate} submit={submit} cancel={cancel}/>);
 
-		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_LABEL)).toHaveTextContent(initialValues.label);
-		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_VALUE)).toHaveTextContent(initialValues.value);
-		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_DESCRIPTION)).toHaveTextContent(initialValues.description);
+		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_LABEL)).toHaveTextContent('');
+		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_VALUE)).toHaveTextContent('');
+		expect(screen.getByTestId(GoalFormElementsTestIds.INPUT_DESCRIPTION)).toHaveTextContent('');
 	});
 
 	it('should emit cancel function when cancel button is clicked', () => {
@@ -47,6 +47,6 @@ describe('GoalForm', () => {
 
 		userEvent.click(screen.getByTestId(GoalFormElementsTestIds.SAVE_BUTTON));
 
-		await waitFor(() => expect(submit).toHaveBeenCalledWith({ label, value, description }));
+		await waitFor(() => expect(submit).toHaveBeenCalledWith({ label, value: parseFloat(value), description }));
 	});
 });

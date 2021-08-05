@@ -1,7 +1,7 @@
 import { GoalFormValues } from '../interfaces/goal-form-values';
 
 export const defaultGoalFormValuesMock: GoalFormValues = {
-	label: '',
-	value: '',
-	description: ''
+	label: null,
+	value: null,
+	description: null
 }

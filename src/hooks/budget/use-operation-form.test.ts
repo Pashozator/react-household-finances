@@ -9,10 +9,10 @@ describe('useOperationForm', () => {
 		const { result } = renderHook(() => useOperationForm());
 
 		expect(result.current.initialValues).toBeTruthy();
-		expect(result.current.initialValues.label).toBe('');
-		expect(result.current.initialValues.value).toBe('');
-		expect(result.current.initialValues.description).toBe('');
-		expect(result.current.initialValues.date).toBe('');
+		expect(result.current.initialValues.label).toBeNull();
+		expect(result.current.initialValues.value).toBeNull();
+		expect(result.current.initialValues.description).toBeNull();
+		expect(result.current.initialValues.date).toBeNull();
 	});
 
 	it('should patch values', () => {
@@ -22,10 +22,10 @@ describe('useOperationForm', () => {
 		act(() => result.current.patchValues(operation));
 
 		expect(result.current.initialValues).toBeTruthy();
-		expect(result.current.initialValues.label).toBe(operation.label)
-		expect(result.current.initialValues.value).toBe(operation.value.toString())
-		expect(result.current.initialValues.description).toBe(operation.description)
-		expect(result.current.initialValues.date).toBe(operation.date)
+		expect(result.current.initialValues.label).toBe(operation.label);
+		expect(result.current.initialValues.value).toBe(operation.value);
+		expect(result.current.initialValues.description).toBe(operation.description);
+		expect(result.current.initialValues.date).toEqual(new Date(operation.date));
 	});
 
 	describe('validate', () => {
@@ -35,9 +35,9 @@ describe('useOperationForm', () => {
 		beforeEach(() => {
 			values = {
 				label: 'label',
-				value: '100',
+				value: 100,
 				description: 'description',
-				date: '2021-07-31'
+				date: new Date('2021-07-31')
 			};
 		});
 
@@ -45,20 +45,20 @@ describe('useOperationForm', () => {
 			expect(result.current.validate(values)).toEqual({});
 		});
 
-		it('should return object with label error if label is empty string', () => {
-			expect(result.current.validate({ ...values, label: '' }).label).toBeTruthy();
+		it('should return object with label error if label is null', () => {
+			expect(result.current.validate({ ...values, label: null }).label).toBeTruthy();
 		});
 
-		it('should return object with label error if value is empty string', () => {
-			expect(result.current.validate({ ...values, value: '' }).value).toBeTruthy();
+		it('should return object with label error if value is null', () => {
+			expect(result.current.validate({ ...values, value: null }).value).toBeTruthy();
 		});
 
-		it('should return object with label error if description is empty string', () => {
-			expect(result.current.validate({ ...values, description: '' }).description).toBeTruthy();
+		it('should return object with label error if description is null', () => {
+			expect(result.current.validate({ ...values, description: null }).description).toBeTruthy();
 		});
 
-		it('should return object with label error if date is empty string', () => {
-			expect(result.current.validate({ ...values, date: '' }).date).toBeTruthy();
+		it('should return object with label error if date is null', () => {
+			expect(result.current.validate({ ...values, date: null }).date).toBeTruthy();
 		});
 	});
 });

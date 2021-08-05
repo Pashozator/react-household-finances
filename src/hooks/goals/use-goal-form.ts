@@ -9,16 +9,16 @@ export function useGoalForm(): {
 	validate: (values: GoalFormValues) => FormikErrors<GoalFormValues>;
 } {
 	const [initialValues, setInitialValues] = useState<GoalFormValues>({
-		label: '',
-		value: '',
-		description: '',
+		label: null,
+		value: null,
+		description: null,
 	});
 
 	const patchValues = useCallback(
 		(goal: Goal): void => {
 			setInitialValues({
 				label: goal.label,
-				value: goal.value.toString(),
+				value: goal.value,
 				description: goal.description,
 			});
 		},

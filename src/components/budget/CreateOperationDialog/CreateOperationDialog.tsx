@@ -4,6 +4,7 @@ import { Dialog, DialogTitle } from '@material-ui/core';
 import { OperationForm } from '../OperationForm/OperationForm';
 import { useOperationForm } from '../../../hooks/budget/use-operation-form';
 import { OperationFormValues } from '../../../interfaces/operation-form-values';
+import { format } from 'date-fns';
 
 export const CreateOperationDialog: React.FC<CreateOperationDialogProps> = React.memo((props: CreateOperationDialogProps) => {
 	const { open, onClose, onSubmit } = props;
@@ -12,20 +13,20 @@ export const CreateOperationDialog: React.FC<CreateOperationDialogProps> = React
 	const close = () => onClose();
 
 	const submit = (values: OperationFormValues) => {
-		if (Object.keys(validate(values)).length) {
+		if (!values.label || !values.value || !values.date || !values.description) {
 			return;
 		}
 
 		onSubmit({
 			label: values.label,
-			value: parseFloat(values.value),
-			date: values.date,
+			value: values.value,
+			date: format(values.date, 'dd.MM.yyyy'),
 			description: values.description
 		});
 	}
 
 	return (
-		<Dialog onClose={close} open={open}>
+		<Dialog className="dialog" onClose={close} open={open}>
 			<DialogTitle>Add operation</DialogTitle>
 			<OperationForm initialValues={initialValues} validate={validate} cancel={close} submit={submit}/>
 		</Dialog>

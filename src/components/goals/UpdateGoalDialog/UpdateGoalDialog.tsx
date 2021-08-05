@@ -16,13 +16,13 @@ export const UpdateGoalDialog: React.FC<UpdateGoalDialogProps> = React.memo((pro
 	const close = () => onClose();
 
 	const submit = (values: GoalFormValues) => {
-		if (Object.keys(validate(values)).length) {
+		if (!values.label || !values.value || !values.description) {
 			return;
 		}
 
 		onSubmit(goal.id, {
 			label: values.label,
-			value: parseFloat(values.value),
+			value: values.value,
 			description: values.description
 		});
 	}
