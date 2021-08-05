@@ -21,7 +21,7 @@ export function goalsReducer(state = goalsInitialState, action: Action | ActionW
 		}
 		case GoalsActions.CREATE_GOAL_SUCCESS: {
 			const goal: Goal = (action as ActionWithPayload<Goal>).payload;
-			return [goal, ...state];
+			return [...state, goal];
 		}
 		case GoalsActions.CREATE_GOAL_FAILURE: {
 			return state;
